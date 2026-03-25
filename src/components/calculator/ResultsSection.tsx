@@ -54,7 +54,7 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
           </p>
         </div>
         {isPositive && savingsMultiplier >= 1.5 && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">
             <TrendingUp className="w-4 h-4" />
             Je daktent heeft zichzelf {savingsMultiplier.toFixed(1)}x terugverdiend!
           </div>
