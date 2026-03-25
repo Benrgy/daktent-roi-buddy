@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CalculatorResults, CalculatorInputs, ScenarioResult } from "@/lib/calculator";
 import { CostChart } from "./CostChart";
+import { SavingsChart } from "./SavingsChart";
 import { motion } from "framer-motion";
 import { TrendingUp, Leaf, Share2 } from "lucide-react";
 
@@ -233,7 +234,12 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         <CostChart yearlyBreakdown={data.yearlyBreakdown} altLabel={activeTab === "hotel" ? "Hotel" : activeTab === "camper" ? "Camper" : "Caravan"} />
       </div>
 
-      {/* Environmental */}
+      {/* Savings Line Chart */}
+      <div className="card-elevated p-5">
+        <h4 className="section-header">📈 Cumulatieve Besparing</h4>
+        <SavingsChart yearlyBreakdown={data.yearlyBreakdown} />
+      </div>
+
       <div className="card-elevated p-5">
         <h4 className="section-header">🌍 Milieu Impact</h4>
         <div className="grid grid-cols-2 gap-4">

@@ -15,6 +15,19 @@ export interface CalculatorInputs {
   extraFuelPerNight: number;
   hotelParkingPerDay: number;
   touristTaxPerNight: number;
+  // Camper scenario
+  camperHuurPerDay: number;
+  camperInsurancePerDay: number;
+  camperFuelPerDay: number;
+  camperFoodPerDay: number;
+  // Caravan scenario
+  caravanPrice: number;
+  caravanMaintenancePerYear: number;
+  caravanInsurancePerYear: number;
+  caravanStoragePerMonth: number;
+  caravanCampsitePerNight: number;
+  caravanFoodPerDay: number;
+  caravanFuelPerNight: number;
 }
 
 export interface ScenarioResult {
@@ -77,6 +90,17 @@ export const defaultInputs: CalculatorInputs = {
   extraFuelPerNight: 5,
   hotelParkingPerDay: 15,
   touristTaxPerNight: 3,
+  camperHuurPerDay: 85,
+  camperInsurancePerDay: 15,
+  camperFuelPerDay: 20,
+  camperFoodPerDay: 30,
+  caravanPrice: 12000,
+  caravanMaintenancePerYear: 300,
+  caravanInsurancePerYear: 250,
+  caravanStoragePerMonth: 60,
+  caravanCampsitePerNight: 30,
+  caravanFoodPerDay: 28,
+  caravanFuelPerNight: 8,
 };
 
 export const presets: Record<string, { label: string; emoji: string; desc: string; values: Partial<CalculatorInputs> }> = {
@@ -160,10 +184,10 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
   const plasticSavings = Math.round(totalNights * 2.4); // ~2.4 plastic items per hotel night
 
   // === Scenario: Daktent vs Camper Huur ===
-  const camperRentalPerDay = 85;
-  const camperInsurancePerDay = 15;
-  const camperFuelPerDay = 20;
-  const camperFoodPerDay = 30;
+  const camperRentalPerDay = inputs.camperHuurPerDay;
+  const camperInsurancePerDay = inputs.camperInsurancePerDay;
+  const camperFuelPerDay = inputs.camperFuelPerDay;
+  const camperFoodPerDay = inputs.camperFoodPerDay;
   const totalCamperCost = totalNights * (camperRentalPerDay + camperInsurancePerDay + camperFuelPerDay + camperFoodPerDay);
   
   const camperYearly: YearBreakdown[] = [];
@@ -212,13 +236,13 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
   };
 
   // === Scenario: Daktent vs Caravan Kopen ===
-  const caravanPrice = 12000;
-  const caravanMaintenancePerYear = 300;
-  const caravanInsurancePerYear = 250;
-  const caravanStoragePerMonth = 60;
-  const caravanCampsitePerNight = 30;
-  const caravanFoodPerDay = 28;
-  const caravanFuelPerNight = 8;
+  const caravanPrice = inputs.caravanPrice;
+  const caravanMaintenancePerYear = inputs.caravanMaintenancePerYear;
+  const caravanInsurancePerYear = inputs.caravanInsurancePerYear;
+  const caravanStoragePerMonth = inputs.caravanStoragePerMonth;
+  const caravanCampsitePerNight = inputs.caravanCampsitePerNight;
+  const caravanFoodPerDay = inputs.caravanFoodPerDay;
+  const caravanFuelPerNight = inputs.caravanFuelPerNight;
   const totalCaravanCost = caravanPrice + (inputs.years * (caravanMaintenancePerYear + caravanInsurancePerYear + caravanStoragePerMonth * 12)) +
     totalNights * (caravanCampsitePerNight + caravanFoodPerDay + caravanFuelPerNight);
 
