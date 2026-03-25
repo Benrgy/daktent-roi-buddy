@@ -6,7 +6,19 @@ import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import presetWeekend from "@/assets/preset-weekend.jpg";
+import presetFamily from "@/assets/preset-family.jpg";
+import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
+import presetFirsttime from "@/assets/preset-firsttime.jpg";
+
+const presetBackgrounds: Record<string, string> = {
+  weekend: presetWeekend,
+  family: presetFamily,
+  roadtrip: presetRoadtrip,
+  firsttime: presetFirsttime,
+};
 
 export default function Index() {
   const [inputs, setInputs] = useState<CalculatorInputs>(() => {
