@@ -49,7 +49,7 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
             Totale {isPositive ? "besparing" : "meerkosten"} na {years} jaar
           </p>
-          <p className={`number-hero animate-count-up ${isPositive ? "text-accent" : "text-danger"}`}>
+          <p className={`number-hero animate-count-up ${isPositive ? "text-primary" : "text-danger"}`}>
             {isPositive ? "+" : ""}{formatEuro(savings)}
           </p>
         </div>
