@@ -49,12 +49,12 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
             Totale {isPositive ? "besparing" : "meerkosten"} na {years} jaar
           </p>
-          <p className={`number-hero animate-count-up ${isPositive ? "text-accent" : "text-danger"}`}>
+          <p className={`number-hero animate-count-up ${isPositive ? "text-primary" : "text-danger"}`}>
             {isPositive ? "+" : ""}{formatEuro(savings)}
           </p>
         </div>
         {isPositive && savingsMultiplier >= 1.5 && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">
             <TrendingUp className="w-4 h-4" />
             Je daktent heeft zichzelf {savingsMultiplier.toFixed(1)}x terugverdiend!
           </div>
@@ -138,7 +138,7 @@ function CostBreakdownCard({ title, emoji, breakdown, color }: {
         <div className="h-px bg-border my-2" />
         <div className="flex justify-between text-sm font-bold">
           <span className="text-foreground">TOTAAL</span>
-          <span className={color === "accent" ? "text-accent" : "text-primary"}>{formatEuro(breakdown.total)}</span>
+          <span className={color === "accent" ? "text-primary" : "text-accent"}>{formatEuro(breakdown.total)}</span>
         </div>
       </div>
     </div>
@@ -224,7 +224,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
       </div>
 
       {/* Difference callout */}
-      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-accent/10 text-accent" : "bg-danger/10 text-danger"}`}>
+      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}>
         💰 VERSCHIL: {formatEuro(Math.abs(data.savings))} {data.savings > 0 ? "BESPAARD" : "DUURDER"} met daktent
       </div>
 

@@ -25,28 +25,29 @@ export function CostChart({ yearlyBreakdown, altLabel = "Hotel" }: CostChartProp
       <div className="h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(30 15% 89%)" />
-            <XAxis dataKey="name" tick={{ fontSize: 12, fill: "hsl(30 8% 46%)" }} />
-            <YAxis tickFormatter={formatEuro} tick={{ fontSize: 12, fill: "hsl(30 8% 46%)" }} />
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(33 18% 85%)" />
+            <XAxis dataKey="name" tick={{ fontSize: 12, fill: "hsl(25 10% 45%)" }} />
+            <YAxis tickFormatter={formatEuro} tick={{ fontSize: 12, fill: "hsl(25 10% 45%)" }} />
             <Tooltip
               formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name]}
               contentStyle={{
                 borderRadius: "12px",
-                border: "1px solid hsl(30 15% 89%)",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                border: "1px solid hsl(33 18% 85%)",
+                boxShadow: "0 4px 12px rgba(60,45,30,0.08)",
                 fontSize: "13px",
                 fontFamily: "'DM Sans', sans-serif",
+                backgroundColor: "hsl(38 30% 98%)",
               }}
             />
             <Legend wrapperStyle={{ fontSize: "13px" }} />
-            <Bar dataKey="Daktent" fill="hsl(152 55% 38%)" radius={[6, 6, 0, 0]} />
-            <Bar dataKey={altLabel} fill="hsl(28 85% 52%)" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="Daktent" fill="hsl(155 45% 28%)" radius={[6, 6, 0, 0]} />
+            <Bar dataKey={altLabel} fill="hsl(32 80% 48%)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
       {breakEvenIdx >= 0 && (
         <p className="text-center text-sm text-muted-foreground">
-          🎯 Break-even bereikt in <span className="font-semibold text-accent">Jaar {breakEvenIdx + 1}</span>
+          🎯 Break-even bereikt in <span className="font-semibold text-primary">Jaar {breakEvenIdx + 1}</span>
         </p>
       )}
     </div>
