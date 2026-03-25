@@ -6,7 +6,19 @@ import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import presetWeekend from "@/assets/preset-weekend.jpg";
+import presetFamily from "@/assets/preset-family.jpg";
+import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
+import presetFirsttime from "@/assets/preset-firsttime.jpg";
+
+const presetBackgrounds: Record<string, string> = {
+  weekend: presetWeekend,
+  family: presetFamily,
+  roadtrip: presetRoadtrip,
+  firsttime: presetFirsttime,
+};
 
 export default function Index() {
   const [inputs, setInputs] = useState<CalculatorInputs>(() => {
@@ -110,12 +122,60 @@ export default function Index() {
       </div>
 
       {/* Calculator */}
-      <main id="calculator" className="max-w-6xl mx-auto px-4 py-10 md:py-14">
+      {/* Ambient preset background */}
+      <AnimatePresence>
+        {activePreset && (
+          <motion.div
+            key={activePreset}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 z-0 pointer-events-none"
+          >
+            <img
+              src={presetBackgrounds[activePreset]}
+              alt=""
+              className="w-full h-full object-cover opacity-[0.04]"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <main id="calculator" className="relative z-10 max-w-6xl mx-auto px-4 py-10 md:py-14">
         {/* Presets */}
         <div className="mb-10">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">Bereken jouw besparing</h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2"
+          >
+            Bereken jouw besparing
+          </motion.h2>
           <p className="text-muted-foreground mb-5">Kies een profiel of pas de waarden handmatig aan.</p>
           <PresetButtons onSelect={handlePreset} activePreset={activePreset} />
+          
+          {/* Active preset banner */}
+          <AnimatePresence>
+            {activePreset && presets[activePreset] && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{ opacity: 1, height: "auto", marginTop: 12 }}
+                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/8 border border-primary/15">
+                  <span className="text-2xl">{presets[activePreset].emoji}</span>
+                  <div>
+                    <p className="text-sm font-bold text-foreground">
+                      {presets[activePreset].label} profiel geladen
+                    </p>
+                    <p className="text-xs text-muted-foreground">{presets[activePreset].desc} — pas hieronder aan naar wens</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Two-column layout */}
