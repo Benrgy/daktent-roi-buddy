@@ -184,10 +184,10 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
   const plasticSavings = Math.round(totalNights * 2.4); // ~2.4 plastic items per hotel night
 
   // === Scenario: Daktent vs Camper Huur ===
-  const camperRentalPerDay = 85;
-  const camperInsurancePerDay = 15;
-  const camperFuelPerDay = 20;
-  const camperFoodPerDay = 30;
+  const camperRentalPerDay = inputs.camperHuurPerDay;
+  const camperInsurancePerDay = inputs.camperInsurancePerDay;
+  const camperFuelPerDay = inputs.camperFuelPerDay;
+  const camperFoodPerDay = inputs.camperFoodPerDay;
   const totalCamperCost = totalNights * (camperRentalPerDay + camperInsurancePerDay + camperFuelPerDay + camperFoodPerDay);
   
   const camperYearly: YearBreakdown[] = [];
