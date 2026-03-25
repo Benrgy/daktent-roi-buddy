@@ -17,6 +17,22 @@ export interface CalculatorInputs {
   touristTaxPerNight: number;
 }
 
+export interface ScenarioResult {
+  label: string;
+  emoji: string;
+  altLabel: string;
+  altEmoji: string;
+  totalDaktentCost: number;
+  totalAltCost: number;
+  totalSavings: number;
+  breakEvenTrips: number;
+  breakEvenMonths: number;
+  savingsMultiplier: number;
+  yearlyBreakdown: YearBreakdown[];
+  daktentBreakdown: CostBreakdown;
+  altBreakdown: CostBreakdown;
+}
+
 export interface CalculatorResults {
   totalDaktentCost: number;
   totalHotelCost: number;
@@ -29,6 +45,7 @@ export interface CalculatorResults {
   hotelBreakdown: CostBreakdown;
   co2Savings: number;
   plasticSavings: number;
+  scenarios: ScenarioResult[];
 }
 
 export interface YearBreakdown {
@@ -142,6 +159,123 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
   const co2Savings = Math.round(totalNights * 4.5); // ~4.5kg CO2 per hotel night
   const plasticSavings = Math.round(totalNights * 2.4); // ~2.4 plastic items per hotel night
 
+  // === Scenario: Daktent vs Camper Huur ===
+  const camperRentalPerDay = 85;
+  const camperInsurancePerDay = 15;
+  const camperFuelPerDay = 20;
+  const camperFoodPerDay = 30;
+  const totalCamperCost = totalNights * (camperRentalPerDay + camperInsurancePerDay + camperFuelPerDay + camperFoodPerDay);
+  
+  const camperYearly: YearBreakdown[] = [];
+  for (let y = 1; y <= inputs.years; y++) {
+    const n = inputs.nightsPerYear * y;
+    const dCum = tentPurchase + roofRack + (inputs.maintenancePerYear * y) + (inputs.storageMonthly * 12 * y) +
+      (inputs.extraFuelPerNight * n) + (inputs.campsitePricePerNight * n) + (inputs.tentFoodPerDay * n);
+    const cCum = n * (camperRentalPerDay + camperInsurancePerDay + camperFuelPerDay + camperFoodPerDay);
+    camperYearly.push({ year: y, daktentCumulative: dCum, hotelCumulative: cCum, savings: cCum - dCum });
+  }
+
+  const camperSavingsPerNight = (camperRentalPerDay + camperInsurancePerDay + camperFuelPerDay + camperFoodPerDay) - costPerNightDaktent;
+  const camperBreakEvenNights = camperSavingsPerNight > 0 ? Math.ceil(initialInvestment / camperSavingsPerNight) : 999;
+
+  const camperScenario: ScenarioResult = {
+    label: "Daktent", emoji: "🏕️",
+    altLabel: "Camper Huur", altEmoji: "🚐",
+    totalDaktentCost: totalDaktentCost,
+    totalAltCost: totalCamperCost,
+    totalSavings: totalCamperCost - totalDaktentCost,
+    breakEvenTrips: camperBreakEvenNights,
+    breakEvenMonths: camperSavingsPerNight > 0 && inputs.nightsPerYear > 0 ? Math.ceil((camperBreakEvenNights / inputs.nightsPerYear) * 12) : 999,
+    savingsMultiplier: totalDaktentCost > 0 ? totalCamperCost / totalDaktentCost : 1,
+    yearlyBreakdown: camperYearly,
+    daktentBreakdown: {
+      items: [
+        { label: "Aanschaf daktent", amount: tentPurchase },
+        { label: "Dakdrager", amount: roofRack },
+        { label: `Onderhoud (${inputs.years}j)`, amount: maintenance },
+        { label: "Opslag", amount: storage },
+        { label: "Extra brandstof", amount: extraFuel },
+        { label: `Campsites (${totalNights} nachten)`, amount: campsiteCost },
+        { label: "Eten (zelfkoken)", amount: tentFood },
+      ],
+      total: totalDaktentCost,
+    },
+    altBreakdown: {
+      items: [
+        { label: `Huur (${totalNights} dagen × €${camperRentalPerDay})`, amount: totalNights * camperRentalPerDay },
+        { label: "Verzekering", amount: totalNights * camperInsurancePerDay },
+        { label: "Brandstof camper", amount: totalNights * camperFuelPerDay },
+        { label: "Eten", amount: totalNights * camperFoodPerDay },
+      ],
+      total: totalCamperCost,
+    },
+  };
+
+  // === Scenario: Daktent vs Caravan Kopen ===
+  const caravanPrice = 12000;
+  const caravanMaintenancePerYear = 300;
+  const caravanInsurancePerYear = 250;
+  const caravanStoragePerMonth = 60;
+  const caravanCampsitePerNight = 30;
+  const caravanFoodPerDay = 28;
+  const caravanFuelPerNight = 8;
+  const totalCaravanCost = caravanPrice + (inputs.years * (caravanMaintenancePerYear + caravanInsurancePerYear + caravanStoragePerMonth * 12)) +
+    totalNights * (caravanCampsitePerNight + caravanFoodPerDay + caravanFuelPerNight);
+
+  const caravanYearly: YearBreakdown[] = [];
+  for (let y = 1; y <= inputs.years; y++) {
+    const n = inputs.nightsPerYear * y;
+    const dCum = tentPurchase + roofRack + (inputs.maintenancePerYear * y) + (inputs.storageMonthly * 12 * y) +
+      (inputs.extraFuelPerNight * n) + (inputs.campsitePricePerNight * n) + (inputs.tentFoodPerDay * n);
+    const cvCum = caravanPrice + (y * (caravanMaintenancePerYear + caravanInsurancePerYear + caravanStoragePerMonth * 12)) +
+      n * (caravanCampsitePerNight + caravanFoodPerDay + caravanFuelPerNight);
+    caravanYearly.push({ year: y, daktentCumulative: dCum, hotelCumulative: cvCum, savings: cvCum - dCum });
+  }
+
+  const caravanCostPerNight = caravanCampsitePerNight + caravanFoodPerDay + caravanFuelPerNight +
+    (caravanMaintenancePerYear + caravanInsurancePerYear + caravanStoragePerMonth * 12) / inputs.nightsPerYear;
+  const caravanSavingsPerNight = caravanCostPerNight - costPerNightDaktent;
+  const caravanInitialDiff = caravanPrice - initialInvestment;
+  const caravanBreakEvenNights = caravanSavingsPerNight > 0 
+    ? Math.max(1, Math.ceil(-caravanInitialDiff / caravanSavingsPerNight))
+    : (totalCaravanCost > totalDaktentCost ? Math.ceil(totalNights * 0.3) : 999);
+
+  const caravanScenario: ScenarioResult = {
+    label: "Daktent", emoji: "🏕️",
+    altLabel: "Caravan Kopen", altEmoji: "🏠",
+    totalDaktentCost: totalDaktentCost,
+    totalAltCost: totalCaravanCost,
+    totalSavings: totalCaravanCost - totalDaktentCost,
+    breakEvenTrips: caravanBreakEvenNights > 200 ? 999 : caravanBreakEvenNights,
+    breakEvenMonths: caravanSavingsPerNight > 0 && inputs.nightsPerYear > 0 ? Math.ceil((caravanBreakEvenNights / inputs.nightsPerYear) * 12) : 999,
+    savingsMultiplier: totalDaktentCost > 0 ? totalCaravanCost / totalDaktentCost : 1,
+    yearlyBreakdown: caravanYearly,
+    daktentBreakdown: {
+      items: [
+        { label: "Aanschaf daktent", amount: tentPurchase },
+        { label: "Dakdrager", amount: roofRack },
+        { label: `Onderhoud (${inputs.years}j)`, amount: maintenance },
+        { label: "Opslag", amount: storage },
+        { label: "Extra brandstof", amount: extraFuel },
+        { label: `Campsites (${totalNights} nachten)`, amount: campsiteCost },
+        { label: "Eten (zelfkoken)", amount: tentFood },
+      ],
+      total: totalDaktentCost,
+    },
+    altBreakdown: {
+      items: [
+        { label: "Aanschaf caravan", amount: caravanPrice },
+        { label: `Onderhoud (${inputs.years}j)`, amount: caravanMaintenancePerYear * inputs.years },
+        { label: `Verzekering (${inputs.years}j)`, amount: caravanInsurancePerYear * inputs.years },
+        { label: `Stalling (${inputs.years}j)`, amount: caravanStoragePerMonth * 12 * inputs.years },
+        { label: `Campsites (${totalNights} nachten)`, amount: totalNights * caravanCampsitePerNight },
+        { label: "Brandstof", amount: totalNights * caravanFuelPerNight },
+        { label: "Eten", amount: totalNights * caravanFoodPerDay },
+      ],
+      total: totalCaravanCost,
+    },
+  };
+
   return {
     totalDaktentCost,
     totalHotelCost,
@@ -173,5 +307,6 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
     },
     co2Savings,
     plasticSavings,
+    scenarios: [camperScenario, caravanScenario],
   };
 }

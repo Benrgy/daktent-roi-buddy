@@ -1,7 +1,8 @@
-import { CalculatorResults, CalculatorInputs } from "@/lib/calculator";
+import { useState } from "react";
+import { CalculatorResults, CalculatorInputs, ScenarioResult } from "@/lib/calculator";
 import { CostChart } from "./CostChart";
-import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, TrendingDown, Leaf, Share2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { TrendingUp, Leaf, Share2 } from "lucide-react";
 
 interface ResultsSectionProps {
   results: CalculatorResults;
@@ -9,48 +10,52 @@ interface ResultsSectionProps {
   onShare: () => void;
 }
 
+type ScenarioTab = "hotel" | "camper" | "caravan";
+
 function formatEuro(amount: number) {
   return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
 }
 
-function HeroResult({ results, inputs }: { results: CalculatorResults; inputs: CalculatorInputs }) {
-  const isPositive = results.totalSavings > 0;
-  const breakEvenYears = results.breakEvenMonths / 12;
+function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplier, nightsPerYear, years }: {
+  savings: number; breakEvenTrips: number; breakEvenMonths: number; savingsMultiplier: number; nightsPerYear: number; years: number;
+}) {
+  const isPositive = savings > 0;
+  const breakEvenYears = breakEvenMonths / 12;
 
   return (
     <motion.div
-      key={results.totalSavings}
+      key={savings}
       initial={{ scale: 0.98, opacity: 0.8 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className={isPositive ? "card-result p-6 md:p-8" : results.totalSavings > -500 ? "card-warning p-6 md:p-8" : "card-danger p-6 md:p-8"}
+      className={isPositive ? "card-result p-6 md:p-8" : savings > -500 ? "card-warning p-6 md:p-8" : "card-danger p-6 md:p-8"}
     >
       <div className="text-center space-y-4">
         <div className="text-4xl">{isPositive ? "🎉" : "⚠️"}</div>
         <div>
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Break-even na</p>
           <p className="number-hero text-foreground animate-count-up">
-            {results.breakEvenTrips > 200 ? "200+" : results.breakEvenTrips} <span className="text-2xl font-bold">nachten</span>
+            {breakEvenTrips > 200 ? "200+" : breakEvenTrips} <span className="text-2xl font-bold">nachten</span>
           </p>
-          {results.breakEvenTrips <= 200 && (
+          {breakEvenTrips <= 200 && (
             <p className="text-sm text-muted-foreground mt-1">
-              ≈ {breakEvenYears.toFixed(1)} jaar bij {inputs.nightsPerYear} nachten/jaar
+              ≈ {breakEvenYears.toFixed(1)} jaar bij {nightsPerYear} nachten/jaar
             </p>
           )}
         </div>
         <div className="h-px bg-border" />
         <div>
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-            Totale {isPositive ? "besparing" : "meerkosten"} na {inputs.years} jaar
+            Totale {isPositive ? "besparing" : "meerkosten"} na {years} jaar
           </p>
           <p className={`number-hero animate-count-up ${isPositive ? "text-accent" : "text-danger"}`}>
-            {isPositive ? "+" : ""}{formatEuro(results.totalSavings)}
+            {isPositive ? "+" : ""}{formatEuro(savings)}
           </p>
         </div>
-        {isPositive && results.savingsMultiplier >= 1.5 && (
+        {isPositive && savingsMultiplier >= 1.5 && (
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold">
             <TrendingUp className="w-4 h-4" />
-            Je daktent heeft zichzelf {results.savingsMultiplier.toFixed(1)}x terugverdiend!
+            Je daktent heeft zichzelf {savingsMultiplier.toFixed(1)}x terugverdiend!
           </div>
         )}
       </div>
@@ -139,28 +144,93 @@ function CostBreakdownCard({ title, emoji, breakdown, color }: {
   );
 }
 
+const scenarioTabs: { key: ScenarioTab; label: string; emoji: string }[] = [
+  { key: "hotel", label: "vs Hotel", emoji: "🏨" },
+  { key: "camper", label: "vs Camper Huur", emoji: "🚐" },
+  { key: "caravan", label: "vs Caravan", emoji: "🏠" },
+];
+
 export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps) {
+  const [activeTab, setActiveTab] = useState<ScenarioTab>("hotel");
+
+  // Get current scenario data based on tab
+  const getScenarioData = () => {
+    if (activeTab === "hotel") {
+      return {
+        savings: results.totalSavings,
+        breakEvenTrips: results.breakEvenTrips,
+        breakEvenMonths: results.breakEvenMonths,
+        savingsMultiplier: results.savingsMultiplier,
+        yearlyBreakdown: results.yearlyBreakdown,
+        daktentBreakdown: results.daktentBreakdown,
+        altBreakdown: results.hotelBreakdown,
+        altLabel: "Hotel/Airbnb Route",
+        altEmoji: "🏨",
+      };
+    }
+    const scenario = results.scenarios[activeTab === "camper" ? 0 : 1];
+    return {
+      savings: scenario.totalSavings,
+      breakEvenTrips: scenario.breakEvenTrips,
+      breakEvenMonths: scenario.breakEvenMonths,
+      savingsMultiplier: scenario.savingsMultiplier,
+      yearlyBreakdown: scenario.yearlyBreakdown,
+      daktentBreakdown: scenario.daktentBreakdown,
+      altBreakdown: scenario.altBreakdown,
+      altLabel: `${scenario.altLabel} Route`,
+      altEmoji: scenario.altEmoji,
+    };
+  };
+
+  const data = getScenarioData();
+
   return (
     <div className="space-y-5">
-      <HeroResult results={results} inputs={inputs} />
+      {/* Scenario Tabs */}
+      <div className="flex rounded-xl bg-secondary p-1 gap-1">
+        {scenarioTabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+              activeTab === tab.key
+                ? "bg-card text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <span className="mr-1">{tab.emoji}</span>
+            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="sm:hidden">{tab.label.replace("vs ", "")}</span>
+          </button>
+        ))}
+      </div>
+
+      <HeroResult
+        savings={data.savings}
+        breakEvenTrips={data.breakEvenTrips}
+        breakEvenMonths={data.breakEvenMonths}
+        savingsMultiplier={data.savingsMultiplier}
+        nightsPerYear={inputs.nightsPerYear}
+        years={inputs.years}
+      />
       
-      <SmartInsight results={results} inputs={inputs} />
+      {activeTab === "hotel" && <SmartInsight results={results} inputs={inputs} />}
 
       {/* Breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <CostBreakdownCard title="Daktent Route" emoji="🏕️" breakdown={results.daktentBreakdown} color="accent" />
-        <CostBreakdownCard title="Hotel/Airbnb Route" emoji="🏨" breakdown={results.hotelBreakdown} color="primary" />
+        <CostBreakdownCard title="Daktent Route" emoji="🏕️" breakdown={data.daktentBreakdown} color="accent" />
+        <CostBreakdownCard title={data.altLabel} emoji={data.altEmoji} breakdown={data.altBreakdown} color="primary" />
       </div>
 
       {/* Difference callout */}
-      <div className={`p-4 rounded-xl text-center font-bold text-lg ${results.totalSavings > 0 ? "bg-accent/10 text-accent" : "bg-danger/10 text-danger"}`}>
-        💰 VERSCHIL: {formatEuro(Math.abs(results.totalSavings))} {results.totalSavings > 0 ? "BESPAARD" : "DUURDER"} met daktent
+      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-accent/10 text-accent" : "bg-danger/10 text-danger"}`}>
+        💰 VERSCHIL: {formatEuro(Math.abs(data.savings))} {data.savings > 0 ? "BESPAARD" : "DUURDER"} met daktent
       </div>
 
       {/* Chart */}
       <div className="card-elevated p-5">
         <h4 className="section-header">📊 Visuele Vergelijking</h4>
-        <CostChart yearlyBreakdown={results.yearlyBreakdown} />
+        <CostChart yearlyBreakdown={data.yearlyBreakdown} altLabel={activeTab === "hotel" ? "Hotel" : activeTab === "camper" ? "Camper" : "Caravan"} />
       </div>
 
       {/* Environmental */}

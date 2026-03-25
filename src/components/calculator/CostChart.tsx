@@ -3,17 +3,18 @@ import { YearBreakdown } from "@/lib/calculator";
 
 interface CostChartProps {
   yearlyBreakdown: YearBreakdown[];
+  altLabel?: string;
 }
 
 function formatEuro(v: number) {
   return `€${(v / 1000).toFixed(1)}k`;
 }
 
-export function CostChart({ yearlyBreakdown }: CostChartProps) {
+export function CostChart({ yearlyBreakdown, altLabel = "Hotel" }: CostChartProps) {
   const data = yearlyBreakdown.map((y) => ({
     name: `Jaar ${y.year}`,
     Daktent: Math.round(y.daktentCumulative),
-    Hotel: Math.round(y.hotelCumulative),
+    [altLabel]: Math.round(y.hotelCumulative),
     Besparing: Math.round(y.savings),
   }));
 
@@ -39,7 +40,7 @@ export function CostChart({ yearlyBreakdown }: CostChartProps) {
             />
             <Legend wrapperStyle={{ fontSize: "13px" }} />
             <Bar dataKey="Daktent" fill="hsl(217 91% 60%)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="Hotel" fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey={altLabel} fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
