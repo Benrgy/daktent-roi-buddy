@@ -7,24 +7,20 @@ interface PresetButtonsProps {
 
 export function PresetButtons({ onSelect, activePreset }: PresetButtonsProps) {
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       {Object.entries(presets).map(([key, preset]) => (
         <button
           key={key}
           onClick={() => onSelect(key)}
-          className={`p-3 rounded-xl text-left transition-all duration-200 border ${
+          className={`p-4 rounded-2xl text-left transition-all duration-200 border group ${
             activePreset === key
-              ? "border-primary bg-primary/10 shadow-md"
-              : "border-border bg-card hover:border-primary/40 hover:shadow-sm"
+              ? "border-primary bg-primary/8 shadow-lg shadow-primary/10"
+              : "border-border bg-card hover:border-primary/30 hover:shadow-md"
           }`}
         >
-          <div className="flex items-center gap-2">
-            <span className="text-xl">{preset.emoji}</span>
-            <div>
-              <div className="text-sm font-semibold text-foreground">{preset.label}</div>
-              <div className="text-xs text-muted-foreground">{preset.desc}</div>
-            </div>
-          </div>
+          <span className="text-2xl block mb-2">{preset.emoji}</span>
+          <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">{preset.label}</div>
+          <div className="text-xs text-muted-foreground mt-0.5">{preset.desc}</div>
         </button>
       ))}
     </div>
