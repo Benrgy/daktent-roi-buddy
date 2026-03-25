@@ -4,6 +4,7 @@ import { PresetButtons } from "@/components/calculator/PresetButtons";
 import { InputSection } from "@/components/calculator/InputSection";
 import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
+import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
