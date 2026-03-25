@@ -90,6 +90,17 @@ export const defaultInputs: CalculatorInputs = {
   extraFuelPerNight: 5,
   hotelParkingPerDay: 15,
   touristTaxPerNight: 3,
+  camperHuurPerDay: 85,
+  camperInsurancePerDay: 15,
+  camperFuelPerDay: 20,
+  camperFoodPerDay: 30,
+  caravanPrice: 12000,
+  caravanMaintenancePerYear: 300,
+  caravanInsurancePerYear: 250,
+  caravanStoragePerMonth: 60,
+  caravanCampsitePerNight: 30,
+  caravanFoodPerDay: 28,
+  caravanFuelPerNight: 8,
 };
 
 export const presets: Record<string, { label: string; emoji: string; desc: string; values: Partial<CalculatorInputs> }> = {
