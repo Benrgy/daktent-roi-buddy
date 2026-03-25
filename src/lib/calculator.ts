@@ -310,5 +310,3 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
     scenarios: [camperScenario, caravanScenario],
   };
 }
-  };
-}
