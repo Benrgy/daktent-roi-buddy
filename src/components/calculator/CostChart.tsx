@@ -3,6 +3,7 @@ import { YearBreakdown } from "@/lib/calculator";
 
 interface CostChartProps {
   yearlyBreakdown: YearBreakdown[];
+  altLabel?: string;
 }
 
 function formatEuro(v: number) {
