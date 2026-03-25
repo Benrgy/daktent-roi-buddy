@@ -62,7 +62,7 @@ export default function Index() {
             width={1920}
             height={800}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-[hsl(155_45%_10%/0.85)]" />
         </div>
 
         <div className="relative z-10 py-16 md:py-24 px-4">

@@ -224,7 +224,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
       </div>
 
       {/* Difference callout */}
-      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-accent/10 text-accent" : "bg-danger/10 text-danger"}`}>
+      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}>
         💰 VERSCHIL: {formatEuro(Math.abs(data.savings))} {data.savings > 0 ? "BESPAARD" : "DUURDER"} met daktent
       </div>
 
