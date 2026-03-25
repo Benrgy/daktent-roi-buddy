@@ -40,7 +40,7 @@ export function CostChart({ yearlyBreakdown, altLabel = "Hotel" }: CostChartProp
             />
             <Legend wrapperStyle={{ fontSize: "13px" }} />
             <Bar dataKey="Daktent" fill="hsl(217 91% 60%)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="Hotel" fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey={altLabel} fill="hsl(38 92% 50%)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
