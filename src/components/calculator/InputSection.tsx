@@ -180,6 +180,33 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
         <EuroInput label="Parkeergeld hotels/dag:" value={inputs.hotelParkingPerDay} onChange={(v) => onChange({ hotelParkingPerDay: v })} />
         <EuroInput label="Toeristenbelasting/nacht:" value={inputs.touristTaxPerNight} onChange={(v) => onChange({ touristTaxPerNight: v })} />
       </div>
+
+      {/* Section 5: Camper Huur Scenario */}
+      <div className="card-elevated p-5 space-y-4">
+        <h3 className="section-header">🚐 Camper Huur Kosten</h3>
+        <p className="text-xs text-muted-foreground -mt-2">Gebruikt in de vergelijking "Daktent vs Camper Huur"</p>
+        <EuroInput label="Camper huurprijs per dag:" value={inputs.camperHuurPerDay} onChange={(v) => onChange({ camperHuurPerDay: v })} />
+        <EuroInput label="Verzekering per dag:" value={inputs.camperInsurancePerDay} onChange={(v) => onChange({ camperInsurancePerDay: v })} />
+        <EuroInput label="Brandstof camper per dag:" value={inputs.camperFuelPerDay} onChange={(v) => onChange({ camperFuelPerDay: v })} />
+        <EuroInput label="Eten per dag (camper):" value={inputs.camperFoodPerDay} onChange={(v) => onChange({ camperFoodPerDay: v })} />
+      </div>
+
+      {/* Section 6: Caravan Scenario */}
+      <div className="card-elevated p-5 space-y-4">
+        <h3 className="section-header">🏠 Caravan Kosten</h3>
+        <p className="text-xs text-muted-foreground -mt-2">Gebruikt in de vergelijking "Daktent vs Caravan Kopen"</p>
+        <EuroInput label="Aanschafprijs caravan:" value={inputs.caravanPrice} onChange={(v) => onChange({ caravanPrice: v })} />
+        <div className="grid grid-cols-2 gap-3">
+          <EuroInput label="Onderhoud/jaar:" value={inputs.caravanMaintenancePerYear} onChange={(v) => onChange({ caravanMaintenancePerYear: v })} />
+          <EuroInput label="Verzekering/jaar:" value={inputs.caravanInsurancePerYear} onChange={(v) => onChange({ caravanInsurancePerYear: v })} />
+        </div>
+        <EuroInput label="Stalling per maand:" value={inputs.caravanStoragePerMonth} onChange={(v) => onChange({ caravanStoragePerMonth: v })} />
+        <EuroInput label="Campsite per nacht:" value={inputs.caravanCampsitePerNight} onChange={(v) => onChange({ caravanCampsitePerNight: v })} />
+        <div className="grid grid-cols-2 gap-3">
+          <EuroInput label="Eten/dag:" value={inputs.caravanFoodPerDay} onChange={(v) => onChange({ caravanFoodPerDay: v })} />
+          <EuroInput label="Brandstof/nacht:" value={inputs.caravanFuelPerNight} onChange={(v) => onChange({ caravanFuelPerNight: v })} />
+        </div>
+      </div>
     </div>
   );
 }
