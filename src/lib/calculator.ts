@@ -236,13 +236,13 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
   };
 
   // === Scenario: Daktent vs Caravan Kopen ===
-  const caravanPrice = 12000;
-  const caravanMaintenancePerYear = 300;
-  const caravanInsurancePerYear = 250;
-  const caravanStoragePerMonth = 60;
-  const caravanCampsitePerNight = 30;
-  const caravanFoodPerDay = 28;
-  const caravanFuelPerNight = 8;
+  const caravanPrice = inputs.caravanPrice;
+  const caravanMaintenancePerYear = inputs.caravanMaintenancePerYear;
+  const caravanInsurancePerYear = inputs.caravanInsurancePerYear;
+  const caravanStoragePerMonth = inputs.caravanStoragePerMonth;
+  const caravanCampsitePerNight = inputs.caravanCampsitePerNight;
+  const caravanFoodPerDay = inputs.caravanFoodPerDay;
+  const caravanFuelPerNight = inputs.caravanFuelPerNight;
   const totalCaravanCost = caravanPrice + (inputs.years * (caravanMaintenancePerYear + caravanInsurancePerYear + caravanStoragePerMonth * 12)) +
     totalNights * (caravanCampsitePerNight + caravanFoodPerDay + caravanFuelPerNight);
 
