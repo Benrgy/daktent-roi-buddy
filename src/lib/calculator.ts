@@ -17,6 +17,22 @@ export interface CalculatorInputs {
   touristTaxPerNight: number;
 }
 
+export interface ScenarioResult {
+  label: string;
+  emoji: string;
+  altLabel: string;
+  altEmoji: string;
+  totalDaktentCost: number;
+  totalAltCost: number;
+  totalSavings: number;
+  breakEvenTrips: number;
+  breakEvenMonths: number;
+  savingsMultiplier: number;
+  yearlyBreakdown: YearBreakdown[];
+  daktentBreakdown: CostBreakdown;
+  altBreakdown: CostBreakdown;
+}
+
 export interface CalculatorResults {
   totalDaktentCost: number;
   totalHotelCost: number;
@@ -29,6 +45,7 @@ export interface CalculatorResults {
   hotelBreakdown: CostBreakdown;
   co2Savings: number;
   plasticSavings: number;
+  scenarios: ScenarioResult[];
 }
 
 export interface YearBreakdown {
