@@ -15,6 +15,19 @@ export interface CalculatorInputs {
   extraFuelPerNight: number;
   hotelParkingPerDay: number;
   touristTaxPerNight: number;
+  // Camper scenario
+  camperHuurPerDay: number;
+  camperInsurancePerDay: number;
+  camperFuelPerDay: number;
+  camperFoodPerDay: number;
+  // Caravan scenario
+  caravanPrice: number;
+  caravanMaintenancePerYear: number;
+  caravanInsurancePerYear: number;
+  caravanStoragePerMonth: number;
+  caravanCampsitePerNight: number;
+  caravanFoodPerDay: number;
+  caravanFuelPerNight: number;
 }
 
 export interface ScenarioResult {
