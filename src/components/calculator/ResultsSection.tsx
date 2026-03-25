@@ -138,7 +138,7 @@ function CostBreakdownCard({ title, emoji, breakdown, color }: {
         <div className="h-px bg-border my-2" />
         <div className="flex justify-between text-sm font-bold">
           <span className="text-foreground">TOTAAL</span>
-          <span className={color === "accent" ? "text-accent" : "text-primary"}>{formatEuro(breakdown.total)}</span>
+          <span className={color === "accent" ? "text-primary" : "text-accent"}>{formatEuro(breakdown.total)}</span>
         </div>
       </div>
     </div>
