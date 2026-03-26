@@ -5,6 +5,7 @@ import { InputSection } from "@/components/calculator/InputSection";
 import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
 import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
+import { Testimonials } from "@/components/calculator/Testimonials";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -192,6 +193,9 @@ export default function Index() {
 
       {/* Why rooftop tent */}
       <WhyRooftopTent />
+
+      {/* Testimonials */}
+      <Testimonials />
 
       {/* Footer */}
       <footer className="border-t border-border bg-card py-10 px-4">
