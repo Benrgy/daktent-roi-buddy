@@ -228,7 +228,7 @@ export default function Index() {
             Deze calculator geeft een indicatie op basis van jouw invoer. Werkelijke kosten kunnen afwijken afhankelijk van bestemming en seizoen.
           </p>
         </div>
-      </footer>
+      </motion.footer>
 
       {/* Modals */}
       <ShareModal isOpen={shareOpen} onClose={() => setShareOpen(false)} results={results} inputs={inputs} />
