@@ -209,7 +209,13 @@ export default function Index() {
       <Testimonials />
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-10 px-4">
+      <motion.footer
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="border-t border-border bg-card py-10 px-4"
+      >
         <div className="max-w-5xl mx-auto text-center space-y-4">
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
