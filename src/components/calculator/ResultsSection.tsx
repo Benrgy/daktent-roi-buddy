@@ -6,6 +6,7 @@ import { ShareImageButton } from "./ShareImageGenerator";
 import { PdfExportButton } from "./PdfExport";
 import { motion } from "framer-motion";
 import { TrendingUp, Leaf, Share2 } from "lucide-react";
+import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 
 interface ResultsSectionProps {
   results: CalculatorResults;
