@@ -116,14 +116,20 @@ export default function Index() {
       </header>
 
       {/* Trust bar */}
-      <div className="bg-card border-b border-border">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-card border-b border-border"
+      >
         <div className="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
           <span className="flex items-center gap-2">🏕️ <strong className="text-foreground">3 scenario's</strong> vergelijken</span>
           <span className="flex items-center gap-2">📊 <strong className="text-foreground">Visuele</strong> grafieken</span>
           <span className="flex items-center gap-2">🌍 <strong className="text-foreground">CO₂</strong> impact</span>
           <span className="flex items-center gap-2">⚡ <strong className="text-foreground">30 sec</strong> resultaat</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Calculator */}
       {/* Ambient preset background */}
@@ -203,7 +209,13 @@ export default function Index() {
       <Testimonials />
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-10 px-4">
+      <motion.footer
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="border-t border-border bg-card py-10 px-4"
+      >
         <div className="max-w-5xl mx-auto text-center space-y-4">
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
@@ -216,7 +228,7 @@ export default function Index() {
             Deze calculator geeft een indicatie op basis van jouw invoer. Werkelijke kosten kunnen afwijken afhankelijk van bestemming en seizoen.
           </p>
         </div>
-      </footer>
+      </motion.footer>
 
       {/* Modals */}
       <ShareModal isOpen={shareOpen} onClose={() => setShareOpen(false)} results={results} inputs={inputs} />

@@ -6,6 +6,7 @@ import { ShareImageButton } from "./ShareImageGenerator";
 import { PdfExportButton } from "./PdfExport";
 import { motion } from "framer-motion";
 import { TrendingUp, Leaf, Share2 } from "lucide-react";
+import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 
 interface ResultsSectionProps {
   results: CalculatorResults;
@@ -24,21 +25,23 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
 }) {
   const isPositive = savings > 0;
   const breakEvenYears = breakEvenMonths / 12;
+  const animatedTrips = useAnimatedNumber(breakEvenTrips > 200 ? 200 : breakEvenTrips);
+  const animatedSavings = useAnimatedNumber(savings);
 
   return (
     <motion.div
-      key={savings}
-      initial={{ scale: 0.98, opacity: 0.8 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      key={`${savings}-${breakEvenTrips}`}
+      initial={{ scale: 0.96, opacity: 0, y: 10 }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className={isPositive ? "card-result p-6 md:p-8" : savings > -500 ? "card-warning p-6 md:p-8" : "card-danger p-6 md:p-8"}
     >
       <div className="text-center space-y-4">
         <div className="text-4xl">{isPositive ? "🎉" : "⚠️"}</div>
         <div>
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Break-even na</p>
-          <p className="number-hero text-foreground animate-count-up">
-            {breakEvenTrips > 200 ? "200+" : breakEvenTrips} <span className="text-2xl font-bold">nachten</span>
+          <p className="number-hero text-foreground">
+            {animatedTrips}{breakEvenTrips > 200 ? "+" : ""} <span className="text-2xl font-bold">nachten</span>
           </p>
           {breakEvenTrips <= 200 && (
             <p className="text-sm text-muted-foreground mt-1">
@@ -51,15 +54,20 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
             Totale {isPositive ? "besparing" : "meerkosten"} na {years} jaar
           </p>
-          <p className={`number-hero animate-count-up ${isPositive ? "text-primary" : "text-danger"}`}>
-            {isPositive ? "+" : ""}{formatEuro(savings)}
+          <p className={`number-hero ${isPositive ? "text-primary" : "text-danger"}`}>
+            {isPositive ? "+" : ""}{formatEuro(animatedSavings)}
           </p>
         </div>
         {isPositive && savingsMultiplier >= 1.5 && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold"
+          >
             <TrendingUp className="w-4 h-4" />
             Je daktent heeft zichzelf {savingsMultiplier.toFixed(1)}x terugverdiend!
-          </div>
+          </motion.div>
         )}
       </div>
     </motion.div>
@@ -220,29 +228,41 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
       {activeTab === "hotel" && <SmartInsight results={results} inputs={inputs} />}
 
       {/* Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
         <CostBreakdownCard title="Daktent Route" emoji="🏕️" breakdown={data.daktentBreakdown} color="accent" />
         <CostBreakdownCard title={data.altLabel} emoji={data.altEmoji} breakdown={data.altBreakdown} color="primary" />
-      </div>
+      </motion.div>
 
       {/* Difference callout */}
-      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}
+      >
         💰 VERSCHIL: {formatEuro(Math.abs(data.savings))} {data.savings > 0 ? "BESPAARD" : "DUURDER"} met daktent
-      </div>
+      </motion.div>
 
       {/* Chart */}
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="card-elevated p-5">
         <h4 className="section-header">📊 Visuele Vergelijking</h4>
         <CostChart yearlyBreakdown={data.yearlyBreakdown} altLabel={activeTab === "hotel" ? "Hotel" : activeTab === "camper" ? "Camper" : "Caravan"} />
-      </div>
+      </motion.div>
 
       {/* Savings Line Chart */}
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="card-elevated p-5">
         <h4 className="section-header">📈 Cumulatieve Besparing</h4>
         <SavingsChart yearlyBreakdown={data.yearlyBreakdown} />
-      </div>
+      </motion.div>
 
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="card-elevated p-5">
         <h4 className="section-header">🌍 Milieu Impact</h4>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-3 rounded-xl bg-accent/5">
@@ -256,7 +276,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
             <p className="text-xs text-muted-foreground">Hotel flesjes vermeden</p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Affiliate CTA */}
       {results.totalSavings > 0 && (
