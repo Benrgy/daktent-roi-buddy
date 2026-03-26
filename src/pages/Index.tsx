@@ -116,14 +116,20 @@ export default function Index() {
       </header>
 
       {/* Trust bar */}
-      <div className="bg-card border-b border-border">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-card border-b border-border"
+      >
         <div className="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
           <span className="flex items-center gap-2">🏕️ <strong className="text-foreground">3 scenario's</strong> vergelijken</span>
           <span className="flex items-center gap-2">📊 <strong className="text-foreground">Visuele</strong> grafieken</span>
           <span className="flex items-center gap-2">🌍 <strong className="text-foreground">CO₂</strong> impact</span>
           <span className="flex items-center gap-2">⚡ <strong className="text-foreground">30 sec</strong> resultaat</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Calculator */}
       {/* Ambient preset background */}
