@@ -279,13 +279,19 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         </a>
       )}
 
+      {/* Share image generator */}
+      <ShareImageButton results={results} inputs={inputs} />
+
+      {/* PDF Export */}
+      <PdfExportButton results={results} inputs={inputs} />
+
       {/* Share button */}
       <button
         onClick={onShare}
-        className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md"
+        className="w-full py-3 rounded-xl bg-secondary text-secondary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-secondary/80 transition-all"
       >
         <Share2 className="w-4 h-4" />
-        📤 Deel Je Resultaten
+        📤 Deel Via WhatsApp/Email
       </button>
     </div>
   );
