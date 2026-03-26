@@ -7,6 +7,8 @@ import { ShareModal } from "@/components/calculator/ShareModal";
 import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
 import { Testimonials } from "@/components/calculator/Testimonials";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
+import { SocialProofBanner } from "@/components/calculator/SocialProofBanner";
+import { ExitIntentPopup } from "@/components/calculator/ExitIntentPopup";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
