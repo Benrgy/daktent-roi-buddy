@@ -194,6 +194,9 @@ export default function Index() {
       {/* Why rooftop tent */}
       <WhyRooftopTent />
 
+      {/* Testimonials */}
+      <Testimonials />
+
       {/* Footer */}
       <footer className="border-t border-border bg-card py-10 px-4">
         <div className="max-w-5xl mx-auto text-center space-y-4">
