@@ -221,6 +221,7 @@ export default function Index() {
       {/* Modals */}
       <ShareModal isOpen={shareOpen} onClose={() => setShareOpen(false)} results={results} inputs={inputs} />
       <EmailCaptureModal isOpen={emailOpen} onClose={handleEmailClose} />
+      <ExitIntentPopup />
     </div>
   );
 }
