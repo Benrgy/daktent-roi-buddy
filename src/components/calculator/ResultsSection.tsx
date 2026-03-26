@@ -2,6 +2,8 @@ import { useState } from "react";
 import { CalculatorResults, CalculatorInputs, ScenarioResult } from "@/lib/calculator";
 import { CostChart } from "./CostChart";
 import { SavingsChart } from "./SavingsChart";
+import { ShareImageButton } from "./ShareImageGenerator";
+import { PdfExportButton } from "./PdfExport";
 import { motion } from "framer-motion";
 import { TrendingUp, Leaf, Share2 } from "lucide-react";
 
