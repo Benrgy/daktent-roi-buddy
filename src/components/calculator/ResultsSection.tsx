@@ -228,29 +228,41 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
       {activeTab === "hotel" && <SmartInsight results={results} inputs={inputs} />}
 
       {/* Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
         <CostBreakdownCard title="Daktent Route" emoji="🏕️" breakdown={data.daktentBreakdown} color="accent" />
         <CostBreakdownCard title={data.altLabel} emoji={data.altEmoji} breakdown={data.altBreakdown} color="primary" />
-      </div>
+      </motion.div>
 
       {/* Difference callout */}
-      <div className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className={`p-4 rounded-xl text-center font-bold text-lg ${data.savings > 0 ? "bg-primary/10 text-primary" : "bg-danger/10 text-danger"}`}
+      >
         💰 VERSCHIL: {formatEuro(Math.abs(data.savings))} {data.savings > 0 ? "BESPAARD" : "DUURDER"} met daktent
-      </div>
+      </motion.div>
 
       {/* Chart */}
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="card-elevated p-5">
         <h4 className="section-header">📊 Visuele Vergelijking</h4>
         <CostChart yearlyBreakdown={data.yearlyBreakdown} altLabel={activeTab === "hotel" ? "Hotel" : activeTab === "camper" ? "Camper" : "Caravan"} />
-      </div>
+      </motion.div>
 
       {/* Savings Line Chart */}
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="card-elevated p-5">
         <h4 className="section-header">📈 Cumulatieve Besparing</h4>
         <SavingsChart yearlyBreakdown={data.yearlyBreakdown} />
-      </div>
+      </motion.div>
 
-      <div className="card-elevated p-5">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="card-elevated p-5">
         <h4 className="section-header">🌍 Milieu Impact</h4>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-3 rounded-xl bg-accent/5">
@@ -264,7 +276,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
             <p className="text-xs text-muted-foreground">Hotel flesjes vermeden</p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Affiliate CTA */}
       {results.totalSavings > 0 && (
