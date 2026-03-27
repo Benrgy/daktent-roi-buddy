@@ -263,6 +263,34 @@ export default function Index() {
       {/* Testimonials */}
       <Testimonials />
 
+      {/* Vergelijkingsartikelen */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="bg-muted/30 py-12 px-4"
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-2">📖 Lees Onze Vergelijkingen</h2>
+          <p className="text-muted-foreground text-center mb-8">Ontdek welke overnachtingsoptie het beste bij jou past.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <a href="/daktent-vs-hotel" className="group block rounded-xl border border-border bg-card p-6 hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-3xl mb-3 block">🏨</span>
+              <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Daktent vs Hotel</h3>
+              <p className="text-sm text-muted-foreground mt-1">Is een daktent écht goedkoper dan een hotel? Eerlijke vergelijking 2025.</p>
+              <span className="text-sm font-semibold text-primary mt-3 inline-block">Lees meer →</span>
+            </a>
+            <a href="/daktent-vs-camper" className="group block rounded-xl border border-border bg-card p-6 hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-3xl mb-3 block">🚐</span>
+              <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Daktent vs Camper</h3>
+              <p className="text-sm text-muted-foreground mt-1">Koop je een daktent of huur je een camper? Kosten & gemak vergeleken.</p>
+              <span className="text-sm font-semibold text-primary mt-3 inline-block">Lees meer →</span>
+            </a>
+          </div>
+        </div>
+      </motion.section>
+
       {/* Footer */}
       <motion.footer
         initial={{ opacity: 0, y: 30 }}
