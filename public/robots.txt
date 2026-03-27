@@ -13,3 +13,5 @@ Allow: /
 # Daktent ROI Calculator
 User-agent: *
 Allow: /
+
+Sitemap: https://daktentroicalculator.online/sitemap.xml
