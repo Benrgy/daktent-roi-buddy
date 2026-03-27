@@ -207,7 +207,7 @@ export default function Index() {
         )}
       </AnimatePresence>
 
-      <main id="calculator" className="relative z-10 max-w-6xl mx-auto px-4 py-10 md:py-14">
+      <main id="calculator" className="relative z-10 max-w-6xl mx-auto px-4 py-10 md:py-14 scroll-mt-16">
         {/* Social Proof Banner */}
         <SocialProofBanner />
 
