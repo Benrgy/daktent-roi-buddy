@@ -26,6 +26,7 @@ const presetBackgrounds: Record<string, string> = {
 };
 
 export default function Index() {
+  const [scrolled, setScrolled] = useState(false);
   const [inputs, setInputs] = useState<CalculatorInputs>(() => {
     const saved = localStorage.getItem("daktent-calc-inputs");
     return saved ? { ...defaultInputs, ...JSON.parse(saved) } : defaultInputs;
@@ -40,6 +41,12 @@ export default function Index() {
   useEffect(() => {
     localStorage.setItem("daktent-calc-inputs", JSON.stringify(inputs));
   }, [inputs]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -69,6 +76,34 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Sticky Navigation */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/95 backdrop-blur-lg shadow-md border-b border-border/50"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2">
+            <img src={logoImg} alt="Daktent ROI Calculator logo" width={28} height={28} className="w-7 h-7" />
+            <span className={`font-bold text-sm transition-colors duration-300 ${scrolled ? "text-foreground" : "text-white"}`}>
+              Daktent ROI Calculator
+            </span>
+          </a>
+          <a
+            href="#calculator"
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              scrolled
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "bg-white/15 text-white hover:bg-white/25 backdrop-blur-sm"
+            }`}
+          >
+            Start Berekening
+          </a>
+        </div>
+      </nav>
+
       {/* Hero with background image */}
       <header className="relative overflow-hidden">
         <div className="absolute inset-0">
