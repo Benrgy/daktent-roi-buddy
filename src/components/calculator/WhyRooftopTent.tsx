@@ -38,7 +38,7 @@ const usps = [
 
 export function WhyRooftopTent() {
   return (
-    <section className="py-16 md:py-24 px-4 bg-muted/30">
+    <section id="waarom" className="py-16 md:py-24 px-4 bg-muted/30 scroll-mt-16">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
