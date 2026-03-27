@@ -91,16 +91,35 @@ export default function Index() {
               Daktent ROI Calculator
             </span>
           </a>
-          <a
-            href="#calculator"
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
-              scrolled
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : "bg-white/15 text-white hover:bg-white/25 backdrop-blur-sm"
-            }`}
-          >
-            Start Berekening
-          </a>
+          <div className="flex items-center gap-1 md:gap-4">
+            {[
+              { href: "#calculator", label: "Calculator" },
+              { href: "#waarom", label: "Waarom" },
+              { href: "#testimonials", label: "Reviews" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`hidden sm:inline-block px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-300 ${
+                  scrolled
+                    ? "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#calculator"
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                scrolled
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-white/15 text-white hover:bg-white/25 backdrop-blur-sm"
+              }`}
+            >
+              Start Berekening
+            </a>
+          </div>
         </div>
       </nav>
 
