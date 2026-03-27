@@ -26,6 +26,7 @@ const presetBackgrounds: Record<string, string> = {
 };
 
 export default function Index() {
+  const [scrolled, setScrolled] = useState(false);
   const [inputs, setInputs] = useState<CalculatorInputs>(() => {
     const saved = localStorage.getItem("daktent-calc-inputs");
     return saved ? { ...defaultInputs, ...JSON.parse(saved) } : defaultInputs;
