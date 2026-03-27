@@ -12,6 +12,7 @@ import { ExitIntentPopup } from "@/components/calculator/ExitIntentPopup";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import logoImg from "/logo.png";
 import presetWeekend from "@/assets/preset-weekend.jpg";
 import presetFamily from "@/assets/preset-family.jpg";
 import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
