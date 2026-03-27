@@ -43,6 +43,12 @@ export default function Index() {
   }, [inputs]);
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (!localStorage.getItem("daktent-email-dismissed")) {
         setEmailOpen(true);
