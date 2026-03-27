@@ -12,6 +12,7 @@ import { ExitIntentPopup } from "@/components/calculator/ExitIntentPopup";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import logoImg from "/logo.png";
 import presetWeekend from "@/assets/preset-weekend.jpg";
 import presetFamily from "@/assets/preset-family.jpg";
 import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
@@ -84,7 +85,7 @@ export default function Index() {
         <div className="relative z-10 py-16 md:py-24 px-4">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/90 text-sm font-medium backdrop-blur-md border border-white/10">
-              <MapPin className="w-4 h-4" />
+              <img src={logoImg} alt="Daktent ROI Calculator logo" width={24} height={24} className="w-6 h-6" />
               Daktent ROI Calculator
             </div>
 
