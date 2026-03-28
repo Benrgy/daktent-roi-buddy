@@ -314,7 +314,7 @@ export default function Index() {
             ⭐ Bekijk Peter Penthouse Daktenten →
           </a>
           <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            Combineer het gemak van een auto met het comfort van een camper. Compleet pakket vanaf €2.495.
+            Combineer het gemak van een auto met het comfort van een camper. Compleet pakket vanaf €1.599.
           </p>
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-muted-foreground mt-2">
             <span>☀️ 60W zonnepaneel</span>

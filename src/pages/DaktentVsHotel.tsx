@@ -321,7 +321,7 @@ export default function DaktentVsHotel() {
         <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
           <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
           <p className="text-sm text-muted-foreground mb-3">
-            Zoek je een daktent die het verschil maakt? De Peter Penthouse (€2.495) wordt geleverd als compleet pakket: 
+            Zoek je een daktent die het verschil maakt? De Peter Penthouse (€1.749) wordt geleverd als compleet pakket: 
             6 cm premium matras, 60W zonnepaneel met 20.000 mAh powerbank, 320 GSM waterdicht canvas en aluminium frame. 
             Geen verborgen kosten, geen upsells — plug & play.
           </p>

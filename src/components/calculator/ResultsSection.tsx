@@ -77,7 +77,7 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
 
 function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs: CalculatorInputs }) {
   const breakEvenYears = results.breakEvenMonths / 12;
-  const isPeterPenthouse = inputs.tentPrice === 2495;
+  const isPeterPenthouse = inputs.tentPrice === 1749;
 
   if (isPeterPenthouse && results.totalSavings > 0) {
     const fuelSaving = Math.round(inputs.nightsPerYear * inputs.extraFuelPerNight * 0.08 * inputs.years);
@@ -315,7 +315,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
                 <span>⛽ 8% minder brandstof</span>
               </div>
               <p className="text-sm font-bold text-primary mt-3 group-hover:underline">
-                Bekijk de Peter Penthouse → €2.495 compleet
+                Bekijk de Peter Penthouse → €1.749 compleet
               </p>
             </div>
           </div>
