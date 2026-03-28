@@ -1,48 +1,59 @@
 
 
-## Probleem: Wit scherm op custom domein (GitHub Pages)
+# Peter Penthouse Strategische Integratie
 
-Je site wordt gehost via **GitHub Pages**, maar je ziet een wit scherm op `daktentroicalculator.online`. Dit komt waarschijnlijk door een combinatie van deze problemen:
+## Wat we bouwen
 
-### Oorzaak 1: Geen `404.html` voor SPA routing
-GitHub Pages stuurt een 404 bij elke URL die geen bestaand bestand is. React Router heeft een `404.html` nodig die doorverwijst naar `index.html`.
+Diepere, psychologisch sterke Peter Penthouse productintegratie door de hele site — gebaseerd op de echte website-content en USP's. Geen aparte productpagina, maar slimme plaatsing op conversie-momenten.
 
-### Oorzaak 2: Mogelijk verkeerde base path of build-configuratie
-De Vite config heeft geen `base` ingesteld — dit is correct voor een custom domein (standaard `/`), dus dit zou goed moeten zijn.
+## Wijzigingen
 
-### Oorzaak 3: GitHub Pages deployment
-Als je via Lovable's GitHub sync werkt, wordt de code naar GitHub gepusht maar **niet automatisch gebuild voor GitHub Pages**. Je hebt een GitHub Actions workflow nodig die `npm run build` draait en de `dist/` folder deployt.
+### 1. Nieuw component: `PeterPenthouseSpotlight.tsx`
+Visueel rijke productkaart die verschijnt op de homepage tussen de calculator resultaten en "Waarom een daktent?" sectie. Bevat:
+- **Origin story**: "Fabrieksbezoeken in China, geen compromissen" — kort en persoonlijk
+- **4 USP-blokken** met iconen: Off-grid elektra (60W solar + 20.000mAh), Premium matras (6cm, 3cm memory foam), Compleet pakket (geen upsells), Compact maar ruim (2 panoramische dakramen)
+- **Prijsanker**: "€2.495 — compleet" vs "Premium merken vanaf €3.500+"
+- **CTA-knop** naar peter-penthouse.com/?ref=calculator
+- Tagline van hun site: "Combineer het gemak van een auto met het comfort van een camper"
 
----
+### 2. Verbeterde affiliate CTA in `ResultsSection.tsx`
+De bestaande simpele CTA (regel 281-299) wordt uitgebreid met:
+- Dynamische tekst op basis van besparing ("Je bespaart €X — investeer slim")
+- Volledige USP-lijst: solar panel, premium matras, off-grid, compleet pakket
+- Visueel aantrekkelijker met gradient border en hover-effect
+- "Loss aversion" element: "Elke nacht zonder daktent kost je €X"
 
-## Plan
+### 3. Verbeterde `SmartInsight` in ResultsSection
+Peter Penthouse insight (regel 81-91) uitbreiden met:
+- Specifiekere besparingsberekening: zonnepaneel €150/jaar + compact ontwerp = 8% minder brandstof
+- Link naar productpagina in de insight tekst
 
-### Stap 1: Voeg een GitHub Actions workflow toe voor automatische deployment
-Maak `.github/workflows/deploy.yml` aan die:
-- Triggered op push naar `main`
-- `npm install` + `npm run build` draait
-- De `dist/` folder deployt naar GitHub Pages
+### 4. SEO-pagina's: Verdict sectie
+In zowel `DaktentVsHotel.tsx` als `DaktentVsCamper.tsx` bij het eindoordeel een "Onze aanbeveling" toevoegen met Peter Penthouse als productvermelding, inclusief de kern-USP's.
 
-### Stap 2: Voeg `404.html` toe voor SPA support
-Kopieer `index.html` als `public/404.html` zodat GitHub Pages bij elke route de React app laadt in plaats van een 404.
+### 5. `WhyRooftopTent.tsx`: Subtiele verwijzing
+De "60 Sec Opzetten" kaart bijwerken met een subtiele Peter Penthouse verwijzing: "Zoals de Peter Penthouse: klap open en slaap — inclusief zonnepaneel en premium matras."
 
-### Stap 3: CNAME in public folder
-Verplaats het `CNAME` bestand naar de `public/` folder zodat het meekomt in de build output (`dist/`).
+### 6. Footer CTA verbeteren
+De bestaande footer-knop (Index.tsx regel 303-309) uitbreiden met de tagline en een korte USP-rij.
 
----
+## Bestanden
 
-## Alternatief: Gebruik Lovable's eigen hosting
+| Bestand | Actie |
+|---|---|
+| `src/components/calculator/PeterPenthouseSpotlight.tsx` | Nieuw |
+| `src/components/calculator/ResultsSection.tsx` | Affiliate CTA + SmartInsight verbeteren |
+| `src/components/calculator/WhyRooftopTent.tsx` | Subtiele productverwijzing |
+| `src/pages/Index.tsx` | Spotlight component toevoegen + footer CTA |
+| `src/pages/DaktentVsHotel.tsx` | Productvermelding in verdict |
+| `src/pages/DaktentVsCamper.tsx` | Productvermelding in verdict |
 
-Je kunt ook gewoon Lovable's ingebouwde hosting gebruiken met je custom domein. Ga naar **Project Settings → Domains → Connect Domain** en volg de stappen. Dan hoef je geen GitHub Pages setup te doen. Dit is eenvoudiger en werkt direct.
+## Psychologische technieken
 
-**DNS instelling voor Lovable hosting:**
-- A record `@` → `185.158.133.1`
-- A record `www` → `185.158.133.1`
-- TXT record `_lovable` → de verificatiecode die Lovable geeft
-
----
-
-## Aanbeveling
-
-**Gebruik Lovable's eigen hosting** — dit is veel eenvoudiger dan GitHub Pages en werkt out-of-the-box met je custom domein. Als je toch GitHub Pages wilt gebruiken, implementeer ik stap 1-3.
+- **Anchoring**: €2.495 naast €3.500+ premium alternatieven
+- **Loss aversion**: "Elke hotelnacht kost je €X meer"
+- **Social proof**: "Steeds populairder onder Nederlandse reizigers"
+- **Completeness bias**: "Alles inbegrepen — geen verborgen kosten"
+- **Origin story**: Persoonlijk verhaal = vertrouwen en gunfactor
+- **Specificity**: Exacte specs (320 GSM, 6cm matras, 60W paneel) verhogen geloofwaardigheid
 
