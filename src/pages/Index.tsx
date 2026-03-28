@@ -258,6 +258,9 @@ export default function Index() {
         </div>
       </main>
 
+      {/* Peter Penthouse Spotlight */}
+      <PeterPenthouseSpotlight />
+
       {/* Why rooftop tent */}
       <WhyRooftopTent />
 
