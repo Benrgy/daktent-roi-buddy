@@ -77,7 +77,7 @@ function HeroResult({ savings, breakEvenTrips, breakEvenMonths, savingsMultiplie
 
 function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs: CalculatorInputs }) {
   const breakEvenYears = results.breakEvenMonths / 12;
-  const isPeterPenthouse = inputs.tentPrice === 2495;
+  const isPeterPenthouse = inputs.tentPrice === 1749;
 
   if (isPeterPenthouse && results.totalSavings > 0) {
     const fuelSaving = Math.round(inputs.nightsPerYear * inputs.extraFuelPerNight * 0.08 * inputs.years);
