@@ -5,6 +5,7 @@ import { InputSection } from "@/components/calculator/InputSection";
 import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
 import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
+import { PeterPenthouseSpotlight } from "@/components/calculator/PeterPenthouseSpotlight";
 import { Testimonials } from "@/components/calculator/Testimonials";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { SocialProofBanner } from "@/components/calculator/SocialProofBanner";
