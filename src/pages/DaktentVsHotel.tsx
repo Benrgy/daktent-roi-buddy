@@ -139,8 +139,8 @@ export default function DaktentVsHotel() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Daktent comfort review 2025"
+              src="https://www.youtube.com/embed/zlluVZaTwkY"
+              title="Daktent review – eerlijke ervaring"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
