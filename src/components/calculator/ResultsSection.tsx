@@ -92,6 +92,7 @@ function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs:
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
+          onClick={() => trackPeterPenthouseClick('smart_insight')}
           className="text-xs font-semibold text-primary hover:underline"
         >
           Bekijk de Peter Penthouse →
