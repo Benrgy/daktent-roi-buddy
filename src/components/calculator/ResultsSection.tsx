@@ -315,7 +315,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
                 <span>⛽ 8% minder brandstof</span>
               </div>
               <p className="text-sm font-bold text-primary mt-3 group-hover:underline">
-                Bekijk de Peter Penthouse → €2.495 compleet
+                Bekijk de Peter Penthouse → €1.749 compleet
               </p>
             </div>
           </div>

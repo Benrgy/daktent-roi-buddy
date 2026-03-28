@@ -337,7 +337,7 @@ export default function DaktentVsCamper() {
         <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
           <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
           <p className="text-sm text-muted-foreground mb-3">
-            Waarom duizenden euro's uitgeven aan camper huur als je met de Peter Penthouse (€2.495) compleet klaar bent? 
+            Waarom duizenden euro's uitgeven aan camper huur als je met de Peter Penthouse (€1.749) compleet klaar bent? 
             Ingebouwd 60W zonnepaneel, 6 cm premium matras, compact ontwerp dat 8% minder brandstof verbruikt — 
             en je auto blijft gewoon je auto.
           </p>
