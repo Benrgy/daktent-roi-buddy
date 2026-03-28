@@ -1,59 +1,44 @@
 
 
-# Peter Penthouse Strategische Integratie
+# Prijzen updaten naar actuele Peter Penthouse prijzen
 
-## Wat we bouwen
+## Gevonden op peter-penthouse.com/kopen
 
-Diepere, psychologisch sterke Peter Penthouse productintegratie door de hele site — gebaseerd op de echte website-content en USP's. Geen aparte productpagina, maar slimme plaatsing op conversie-momenten.
+| Optie | Prijs |
+|-------|-------|
+| Verzenden (NL/BE) | **€1.749** |
+| Ophalen (Soerendonk) | **€1.599** |
 
-## Wijzigingen
+De huidige prijs op de site is overal **€2.495** — dit moet worden bijgewerkt.
 
-### 1. Nieuw component: `PeterPenthouseSpotlight.tsx`
-Visueel rijke productkaart die verschijnt op de homepage tussen de calculator resultaten en "Waarom een daktent?" sectie. Bevat:
-- **Origin story**: "Fabrieksbezoeken in China, geen compromissen" — kort en persoonlijk
-- **4 USP-blokken** met iconen: Off-grid elektra (60W solar + 20.000mAh), Premium matras (6cm, 3cm memory foam), Compleet pakket (geen upsells), Compact maar ruim (2 panoramische dakramen)
-- **Prijsanker**: "€2.495 — compleet" vs "Premium merken vanaf €3.500+"
-- **CTA-knop** naar peter-penthouse.com/?ref=calculator
-- Tagline van hun site: "Combineer het gemak van een auto met het comfort van een camper"
+## Aanpak
 
-### 2. Verbeterde affiliate CTA in `ResultsSection.tsx`
-De bestaande simpele CTA (regel 281-299) wordt uitgebreid met:
-- Dynamische tekst op basis van besparing ("Je bespaart €X — investeer slim")
-- Volledige USP-lijst: solar panel, premium matras, off-grid, compleet pakket
-- Visueel aantrekkelijker met gradient border en hover-effect
-- "Loss aversion" element: "Elke nacht zonder daktent kost je €X"
+Ik gebruik **€1.749** als standaardprijs (verzendoptie, meest relevant voor online bezoekers). De "vanaf" prijs wordt **€1.599**.
 
-### 3. Verbeterde `SmartInsight` in ResultsSection
-Peter Penthouse insight (regel 81-91) uitbreiden met:
-- Specifiekere besparingsberekening: zonnepaneel €150/jaar + compact ontwerp = 8% minder brandstof
-- Link naar productpagina in de insight tekst
+### Bestanden die worden aangepast
 
-### 4. SEO-pagina's: Verdict sectie
-In zowel `DaktentVsHotel.tsx` als `DaktentVsCamper.tsx` bij het eindoordeel een "Onze aanbeveling" toevoegen met Peter Penthouse als productvermelding, inclusief de kern-USP's.
+1. **`src/components/calculator/InputSection.tsx`**
+   - Preset-knop: `tentPrice: 2495` → `1749`
+   - Label: "€2.495" → "€1.749"
 
-### 5. `WhyRooftopTent.tsx`: Subtiele verwijzing
-De "60 Sec Opzetten" kaart bijwerken met een subtiele Peter Penthouse verwijzing: "Zoals de Peter Penthouse: klap open en slaap — inclusief zonnepaneel en premium matras."
+2. **`src/components/calculator/PeterPenthouseSpotlight.tsx`**
+   - Hoofdprijs: "€2.495" → "€1.749"
+   - Doorgestreepte vergelijkingsprijs "€3.500+" blijft (premium merken referentie)
+   - Toevoegen: "vanaf €1.599 bij ophalen"
 
-### 6. Footer CTA verbeteren
-De bestaande footer-knop (Index.tsx regel 303-309) uitbreiden met de tagline en een korte USP-rij.
+3. **`src/components/calculator/ResultsSection.tsx`**
+   - `inputs.tentPrice === 2495` → `=== 1749`
+   - CTA tekst: "€2.495" → "€1.749"
 
-## Bestanden
+4. **`src/pages/Index.tsx`**
+   - Footer tekst: "vanaf €2.495" → "vanaf €1.599"
 
-| Bestand | Actie |
-|---|---|
-| `src/components/calculator/PeterPenthouseSpotlight.tsx` | Nieuw |
-| `src/components/calculator/ResultsSection.tsx` | Affiliate CTA + SmartInsight verbeteren |
-| `src/components/calculator/WhyRooftopTent.tsx` | Subtiele productverwijzing |
-| `src/pages/Index.tsx` | Spotlight component toevoegen + footer CTA |
-| `src/pages/DaktentVsHotel.tsx` | Productvermelding in verdict |
-| `src/pages/DaktentVsCamper.tsx` | Productvermelding in verdict |
+5. **`src/pages/DaktentVsHotel.tsx`**
+   - Vermelding: "€2.495" → "€1.749"
 
-## Psychologische technieken
+6. **`src/pages/DaktentVsCamper.tsx`**
+   - Vermelding: "€2.495" → "€1.749"
 
-- **Anchoring**: €2.495 naast €3.500+ premium alternatieven
-- **Loss aversion**: "Elke hotelnacht kost je €X meer"
-- **Social proof**: "Steeds populairder onder Nederlandse reizigers"
-- **Completeness bias**: "Alles inbegrepen — geen verborgen kosten"
-- **Origin story**: Persoonlijk verhaal = vertrouwen en gunfactor
-- **Specificity**: Exacte specs (320 GSM, 6cm matras, 60W paneel) verhogen geloofwaardigheid
+7. **`src/lib/analytics.ts`**
+   - `value: 2495` → `value: 1749`
 
