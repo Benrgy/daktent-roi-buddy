@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 import { ArticleLayout } from "@/components/article/ArticleLayout";
 import { ComparisonTable } from "@/components/article/ComparisonTable";
 import { ProsCons } from "@/components/article/ProsCons";
@@ -349,6 +350,7 @@ export default function DaktentVsCamper() {
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
             target="_blank" rel="noopener noreferrer"
+            onClick={() => trackPeterPenthouseClick('article_camper_verdict')}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all"
           >
             Bekijk Peter Penthouse →

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 import { CalculatorResults, CalculatorInputs, ScenarioResult } from "@/lib/calculator";
 import { CostChart } from "./CostChart";
 import { SavingsChart } from "./SavingsChart";
@@ -92,6 +93,7 @@ function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs:
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
+          onClick={() => trackPeterPenthouseClick('smart_insight')}
           className="text-xs font-semibold text-primary hover:underline"
         >
           Bekijk de Peter Penthouse →
@@ -293,6 +295,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
+          onClick={() => trackPeterPenthouseClick('results_cta')}
           className="block rounded-2xl p-5 md:p-6 border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-r from-card to-primary/5 transition-all group shadow-sm hover:shadow-md"
         >
           <div className="flex items-start gap-4">
