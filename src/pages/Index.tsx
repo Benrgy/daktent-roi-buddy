@@ -307,6 +307,7 @@ export default function Index() {
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
             target="_blank" rel="noopener noreferrer"
+            onClick={() => trackPeterPenthouseClick('footer_cta')}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
           >
             ⭐ Bekijk Peter Penthouse Daktenten →

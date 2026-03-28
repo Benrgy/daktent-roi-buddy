@@ -102,6 +102,7 @@ export function PeterPenthouseSpotlight() {
                 href="https://www.peter-penthouse.com/?ref=calculator"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackPeterPenthouseClick('spotlight_cta')}
                 className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
               >
                 Bekijk Peter Penthouse →

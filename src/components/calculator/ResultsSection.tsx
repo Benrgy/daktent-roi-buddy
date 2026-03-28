@@ -294,6 +294,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
+          onClick={() => trackPeterPenthouseClick('results_cta')}
           className="block rounded-2xl p-5 md:p-6 border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-r from-card to-primary/5 transition-all group shadow-sm hover:shadow-md"
         >
           <div className="flex items-start gap-4">
