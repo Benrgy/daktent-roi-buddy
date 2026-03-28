@@ -266,6 +266,20 @@ export default function DaktentVsHotel() {
           Beste van beide werelden."
           <br /><strong>— Lisa, 32, Amsterdam (maart 2025)</strong>
         </blockquote>
+        {/* YouTube embed */}
+        <div className="not-prose my-6">
+          <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/hW7xDSUW_yw"
+              title="Daktent ervaringen en tips"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </div>
       </section>
 
       {/* FAQ */}
