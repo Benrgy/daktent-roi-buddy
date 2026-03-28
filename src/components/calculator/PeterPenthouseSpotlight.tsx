@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Sun, BedDouble, Package, Maximize2, Shield, Fuel } from "lucide-react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 
 const usps = [
   {
