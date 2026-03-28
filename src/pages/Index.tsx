@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 import { CalculatorInputs, defaultInputs, presets, calculate } from "@/lib/calculator";
 import { PresetButtons } from "@/components/calculator/PresetButtons";
 import { InputSection } from "@/components/calculator/InputSection";

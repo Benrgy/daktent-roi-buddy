@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 import { CalculatorResults, CalculatorInputs, ScenarioResult } from "@/lib/calculator";
 import { CostChart } from "./CostChart";
 import { SavingsChart } from "./SavingsChart";

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { trackPeterPenthouseClick } from "@/lib/analytics";
 import { ArticleLayout } from "@/components/article/ArticleLayout";
 import { ComparisonTable } from "@/components/article/ComparisonTable";
 import { ProsCons } from "@/components/article/ProsCons";
