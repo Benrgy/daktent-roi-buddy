@@ -5,6 +5,7 @@ import { InputSection } from "@/components/calculator/InputSection";
 import { ResultsSection } from "@/components/calculator/ResultsSection";
 import { ShareModal } from "@/components/calculator/ShareModal";
 import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
+import { PeterPenthouseSpotlight } from "@/components/calculator/PeterPenthouseSpotlight";
 import { Testimonials } from "@/components/calculator/Testimonials";
 import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
 import { SocialProofBanner } from "@/components/calculator/SocialProofBanner";
@@ -257,6 +258,9 @@ export default function Index() {
         </div>
       </main>
 
+      {/* Peter Penthouse Spotlight */}
+      <PeterPenthouseSpotlight />
+
       {/* Why rooftop tent */}
       <WhyRooftopTent />
 
@@ -303,11 +307,20 @@ export default function Index() {
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
             target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-lg"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
           >
             ⭐ Bekijk Peter Penthouse Daktenten →
           </a>
-          <p className="text-xs text-muted-foreground max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+            Combineer het gemak van een auto met het comfort van een camper. Compleet pakket vanaf €2.495.
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-muted-foreground mt-2">
+            <span>☀️ 60W zonnepaneel</span>
+            <span>🛏️ Premium matras</span>
+            <span>📦 Alles inbegrepen</span>
+            <span>🔧 Geen hydrauliek</span>
+          </div>
+          <p className="text-xs text-muted-foreground max-w-md mx-auto mt-4">
             Deze calculator geeft een indicatie op basis van jouw invoer. Werkelijke kosten kunnen afwijken afhankelijk van bestemming en seizoen.
           </p>
         </div>

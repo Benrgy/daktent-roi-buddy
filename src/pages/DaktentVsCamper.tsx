@@ -332,8 +332,31 @@ export default function DaktentVsCamper() {
           </p>
         </div>
 
+        {/* Peter Penthouse aanbeveling */}
+        <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
+          <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            Waarom duizenden euro's uitgeven aan camper huur als je met de Peter Penthouse (€2.495) compleet klaar bent? 
+            Ingebouwd 60W zonnepaneel, 6 cm premium matras, compact ontwerp dat 8% minder brandstof verbruikt — 
+            en je auto blijft gewoon je auto.
+          </p>
+          <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+            <span>☀️ Off-grid klaar</span>
+            <span>📦 Compleet pakket</span>
+            <span>🚗 Rijdt als een gewone auto</span>
+            <span>🔧 Geen onderhoud zoals een camper</span>
+          </div>
+          <a
+            href="https://www.peter-penthouse.com/?ref=calculator"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all"
+          >
+            Bekijk Peter Penthouse →
+          </a>
+        </div>
+
         <p>
-          <strong>Onze aanbeveling:</strong> Bereken je persoonlijke besparing met onze{" "}
+          <strong>Bereken je besparing:</strong> Gebruik onze{" "}
           <a href="/#calculator">gratis ROI calculator</a> en vergelijk daktent, camper, hotel én caravan.
         </p>
         <p>

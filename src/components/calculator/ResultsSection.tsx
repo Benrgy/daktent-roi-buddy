@@ -79,13 +79,23 @@ function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs:
   const isPeterPenthouse = inputs.tentPrice === 2495;
 
   if (isPeterPenthouse && results.totalSavings > 0) {
+    const fuelSaving = Math.round(inputs.nightsPerYear * inputs.extraFuelPerNight * 0.08 * inputs.years);
+    const solarSaving = 150 * inputs.years;
     return (
       <div className="card-elevated p-5 border-l-4 border-l-primary">
-        <p className="text-sm font-semibold text-foreground mb-1">✅ Peter Penthouse keuze</p>
-        <p className="text-sm text-muted-foreground">
-          Met zonnepaneel bespaar je extra €150/jaar op campsite elektriciteit! 
-          Je verdient de investering terug in {breakEvenYears.toFixed(1)} jaar.
+        <p className="text-sm font-semibold text-foreground mb-1">✅ Slimme keuze: Peter Penthouse</p>
+        <p className="text-sm text-muted-foreground mb-2">
+          Compact ontwerp = <strong>8% minder brandstof</strong> (besparing ~{formatEuro(fuelSaving)} over {inputs.years} jaar). 
+          Ingebouwd 60W zonnepaneel bespaart <strong>{formatEuro(solarSaving)}</strong> op campingstroom. 
+          Totale investering terug in {breakEvenYears.toFixed(1)} jaar.
         </p>
+        <a
+          href="https://www.peter-penthouse.com/?ref=calculator"
+          target="_blank" rel="noopener noreferrer"
+          className="text-xs font-semibold text-primary hover:underline"
+        >
+          Bekijk de Peter Penthouse →
+        </a>
       </div>
     );
   }
@@ -283,16 +293,26 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
-          className="block card-elevated p-5 border-2 border-primary/20 hover:border-primary/40 transition-all group"
+          className="block rounded-2xl p-5 md:p-6 border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-r from-card to-primary/5 transition-all group shadow-sm hover:shadow-md"
         >
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-4">
             <span className="text-3xl">⭐</span>
-            <div>
-              <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                Klaar voor je daktent? Bekijk Peter Penthouse →
+            <div className="flex-1">
+              <p className="text-base font-bold text-foreground group-hover:text-primary transition-colors mb-1">
+                Je bespaart {formatEuro(results.totalSavings)} — investeer het slim
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                ✓ Solar panel = €150/jaar besparing · ✓ Compact = minder brandstof · ✓ Premium matras
+              <p className="text-sm text-muted-foreground mb-3">
+                Elke nacht zonder daktent kost je {formatEuro(Math.round((results.hotelBreakdown.total - results.daktentBreakdown.total) / (inputs.nightsPerYear * inputs.years)))} extra. 
+                De Peter Penthouse verdient zichzelf terug.
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                <span>☀️ 60W zonnepaneel + powerbank</span>
+                <span>🛏️ 6 cm premium matras</span>
+                <span>📦 Compleet pakket, geen upsells</span>
+                <span>⛽ 8% minder brandstof</span>
+              </div>
+              <p className="text-sm font-bold text-primary mt-3 group-hover:underline">
+                Bekijk de Peter Penthouse → €2.495 compleet
               </p>
             </div>
           </div>

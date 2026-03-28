@@ -30,7 +30,7 @@ const usps = [
   {
     icon: Timer,
     title: "60 Sec Opzetten",
-    desc: "Klap open, klim omhoog, slaap. Geen gedoe met tentharingen of campingplekken zoeken.",
+    desc: "Klap open, klim omhoog, slaap. Zoals de Peter Penthouse: plug & play inclusief zonnepaneel en premium matras — geen gedoe.",
     img: uspEasy,
     alt: "Persoon zet snel een daktent op bij zonsondergang",
   },

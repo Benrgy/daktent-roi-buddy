@@ -316,8 +316,31 @@ export default function DaktentVsHotel() {
           </p>
         </div>
 
+        {/* Peter Penthouse aanbeveling */}
+        <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
+          <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            Zoek je een daktent die het verschil maakt? De Peter Penthouse (€2.495) wordt geleverd als compleet pakket: 
+            6 cm premium matras, 60W zonnepaneel met 20.000 mAh powerbank, 320 GSM waterdicht canvas en aluminium frame. 
+            Geen verborgen kosten, geen upsells — plug & play.
+          </p>
+          <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+            <span>☀️ Off-grid klaar</span>
+            <span>🛏️ Beste matras in zijn klasse</span>
+            <span>⛽ Compact = minder brandstof</span>
+            <span>🔧 Geen kwetsbare hydrauliek</span>
+          </div>
+          <a
+            href="https://www.peter-penthouse.com/?ref=calculator"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all"
+          >
+            Bekijk Peter Penthouse →
+          </a>
+        </div>
+
         <p>
-          <strong>Onze aanbeveling:</strong> Bereken je persoonlijke besparing met onze{" "}
+          <strong>Bereken je besparing:</strong> Gebruik onze{" "}
           <a href="/#calculator">gratis ROI calculator</a> en ontdek hoeveel je kunt besparen.
         </p>
         <p>
