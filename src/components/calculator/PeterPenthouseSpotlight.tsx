@@ -90,12 +90,12 @@ export function PeterPenthouseSpotlight() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-xl bg-primary/5 border border-primary/15">
               <div>
                 <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-display text-3xl font-black text-foreground">€2.495</span>
+                  <span className="font-display text-3xl font-black text-foreground">€1.749</span>
                   <span className="text-sm text-muted-foreground line-through">€3.500+</span>
                   <span className="text-xs font-semibold text-primary">premium merken</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Compleet pakket — geen verborgen kosten. Duurzaam gebouwd met 320 GSM anti-rip canvas en aluminium frame.
+                  Compleet pakket incl. verzending — vanaf €1.599 bij ophalen. Duurzaam gebouwd met 320 GSM anti-rip canvas en aluminium frame.
                 </p>
               </div>
               <a
