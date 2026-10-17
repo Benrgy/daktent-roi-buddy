@@ -12,6 +12,7 @@ interface ArticleLayoutProps {
   title: string;
   subtitle: string;
   heroImage: string;
+  heroAlt?: string;
   tocItems: TOCItem[];
   children: React.ReactNode;
   publishDate: string;
@@ -23,6 +24,7 @@ export function ArticleLayout({
   title,
   subtitle,
   heroImage,
+  heroAlt,
   tocItems,
   children,
   publishDate,
@@ -107,7 +109,7 @@ export function ArticleLayout({
       {/* Hero */}
       <header className="relative pt-14 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt={title} className="w-full h-full object-cover" />
+          <img src={heroImage} alt={heroAlt ?? title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[hsl(155_45%_10%/0.9)]" />
         </div>
         <div className="relative z-10 py-16 md:py-24 px-4">

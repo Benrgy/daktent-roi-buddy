@@ -110,6 +110,12 @@ export function PeterPenthouseSpotlight() {
             </div>
           </div>
 
+          <div className="px-6 md:px-8 pb-4 text-center">
+            <a href="/peter-penthouse-daktent" className="text-sm font-semibold text-primary hover:underline">
+              Peter Penthouse daktent: prijs, specificaties en kosten per nacht →
+            </a>
+          </div>
+
           {/* Social proof */}
           <div className="px-6 md:px-8 pb-6 md:pb-8">
             <p className="text-xs text-muted-foreground text-center">

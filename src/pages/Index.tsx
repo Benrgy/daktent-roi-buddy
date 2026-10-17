@@ -279,7 +279,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-2">📖 Lees Onze Vergelijkingen</h2>
           <p className="text-muted-foreground text-center mb-8">Ontdek welke overnachtingsoptie het beste bij jou past.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             <a href="/daktent-vs-hotel" className="group block rounded-xl border border-border bg-card p-6 hover:shadow-lg hover:border-primary/30 transition-all">
               <span className="text-3xl mb-3 block">🏨</span>
               <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Daktent vs Hotel</h3>
@@ -290,6 +290,12 @@ export default function Index() {
               <span className="text-3xl mb-3 block">🚐</span>
               <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Daktent vs Camper</h3>
               <p className="text-sm text-muted-foreground mt-1">Koop je een daktent of huur je een camper? Kosten & gemak vergeleken.</p>
+              <span className="text-sm font-semibold text-primary mt-3 inline-block">Lees meer →</span>
+            </a>
+            <a href="/peter-penthouse-daktent" className="group block rounded-xl border border-border bg-card p-6 hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-3xl mb-3 block">⭐</span>
+              <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Peter Penthouse daktent</h3>
+              <p className="text-sm text-muted-foreground mt-1">Prijs, specificaties, huren of kopen en wat hij per nacht kost.</p>
               <span className="text-sm font-semibold text-primary mt-3 inline-block">Lees meer →</span>
             </a>
           </div>

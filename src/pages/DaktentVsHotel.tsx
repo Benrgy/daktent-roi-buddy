@@ -342,6 +342,11 @@ export default function DaktentVsHotel() {
         </div>
 
         <p>
+          Wil je eerst de details? Lees onze{" "}
+          <a href="/peter-penthouse-daktent">Peter Penthouse review met prijs, specificaties en kosten per nacht</a>.
+        </p>
+
+        <p>
           <strong>Bereken je besparing:</strong> Gebruik onze{" "}
           <a href="/#calculator">gratis ROI calculator</a> en ontdek hoeveel je kunt besparen.
         </p>
