@@ -152,10 +152,10 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
             onSelect={(v) => onChange({ tentPrice: v })}
           />
           <button
-            onClick={() => onChange({ tentPrice: 1749 })}
+            onClick={() => onChange({ tentPrice: 1800 })}
             className="preset-btn-highlight mt-2 flex items-center gap-1.5"
           >
-            ⭐ Peter Penthouse €1.749
+            ⭐ Peter Penthouse €1.800
             <span className="text-[10px] bg-primary-foreground/20 px-1.5 py-0.5 rounded-full">Aanbevolen</span>
           </button>
         </div>

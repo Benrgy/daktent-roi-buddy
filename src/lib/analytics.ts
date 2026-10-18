@@ -9,6 +9,6 @@ export function trackPeterPenthouseClick(location: string) {
     event_category: 'Peter Penthouse',
     event_label: location,
     affiliate_partner: 'peter_penthouse',
-    value: 1749,
+    value: 1800,
   });
 }
