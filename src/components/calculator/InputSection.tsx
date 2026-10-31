@@ -54,12 +54,12 @@ function EuroInput({ label, value, onChange, tooltip, example = true }: {
   const id = useId();
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-1.5">
         <label htmlFor={id} className="text-sm font-medium text-foreground">{label}</label>
         {example && <span className="text-xs text-muted-foreground">voorbeeldwaarde</span>}
         {tooltip && (
           <Tooltip>
-            <TooltipTrigger><Info className="w-3.5 h-3.5 text-muted-foreground" /></TooltipTrigger>
+            <TooltipTrigger aria-label={label}><Info className="w-3.5 h-3.5 text-muted-foreground" /></TooltipTrigger>
             <TooltipContent><p className="max-w-[200px] text-xs">{tooltip}</p></TooltipContent>
           </Tooltip>
         )}

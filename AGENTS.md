@@ -1,4 +1,5 @@
 # Architecture rules
 - Keep the rental-versus-purchase calculation as a pure function in `src/lib/hurenOfKopen.ts`, separate from the existing ROI calculator, so the two models do not affect each other.
 - Store attributed rental and purchase example prices in `src/data/prijzen.ts` and import them into the relevant articles, so examples share one source of truth.
-- Keep public route SEO and literal static article excerpts in `src/seo/routesMeta.ts`, consumed by the client SEO hook and the build-only Vite static-route plugin; validate route-specific canonical and JSON-LD output so crawler HTML is complete without changing React rendering.
+- Keep public route SEO, shared FAQ questions/answers and literal static article excerpts in `src/seo/routesMeta.ts`, consumed by the pages, client SEO hook and build-only Vite static-route plugin; validate route-specific canonical and JSON-LD output so browser and crawler FAQ content agree.
+- Track calculator interaction and edited price fields separately from numerical inputs, so untouched defaults remain identifiable without changing calculation results.
