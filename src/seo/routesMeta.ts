@@ -7,6 +7,7 @@ export interface RouteMeta {
   canonical: string;
   h1: string;
   summary: string;
+  staticSections?: { heading: string; text: string }[];
 }
 
 export const routesMeta: RouteMeta[] = [
