@@ -30,10 +30,10 @@ export default function DaktentVsHotel() {
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: "Daktent vs Hotel (2025) — Wat is Goedkoper?",
+      headline: "Daktent vs hotel: wat is goedkoper? Eerlijke vergelijking",
       description: "Eerlijke vergelijking tussen daktent en hotel op kosten, comfort en flexibiliteit.",
       datePublished: "2025-03-15",
-      dateModified: "2025-03-27",
+      dateModified: "2026-10-31",
       author: { "@type": "Organization", name: "Daktent ROI Calculator" },
       publisher: { "@type": "Organization", name: "Daktent ROI Calculator" },
       mainEntityOfPage: "https://daktentroicalculator.online/daktent-vs-hotel",

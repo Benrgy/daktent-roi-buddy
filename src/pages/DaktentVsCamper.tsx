@@ -29,10 +29,10 @@ export default function DaktentVsCamper() {
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: "Daktent vs Camper (2025) — Eerlijke Vergelijking",
-      description: "Vergelijk daktent en camper op kosten, gemak en flexibiliteit in 2025.",
+      headline: "Daktent vs camper: eerlijke vergelijking op kosten en gemak",
+      description: "Vergelijk daktent en camper op kosten, gemak en flexibiliteit.",
       datePublished: "2025-03-15",
-      dateModified: "2025-03-27",
+      dateModified: "2026-10-31",
       author: { "@type": "Organization", name: "Daktent ROI Calculator" },
       publisher: { "@type": "Organization", name: "Daktent ROI Calculator" },
       mainEntityOfPage: "https://daktentroicalculator.online/daktent-vs-camper",
