@@ -15,7 +15,7 @@ const tocItems = [
   { id: "vergelijking", label: "Volledige Vergelijking" },
   { id: "voor-wie", label: "Voor Wie?" },
   { id: "pros-cons", label: "Voordelen & Nadelen" },
-  { id: "ervaringen", label: "Ervaringen 2025" },
+  { id: "ervaringen", label: "Video: ervaringen en tips met een daktent" },
   { id: "faq", label: "Veelgestelde Vragen" },
   { id: "verdict", label: "Eindoordeel" },
 ];
@@ -45,7 +45,7 @@ export default function DaktentVsHotel() {
   return (
     <ArticleLayout
       title={seo.h1}
-      subtitle="Is een daktent écht goedkoper dan een hotel? We rekenen het eerlijk voor in 2025."
+      subtitle="Is een daktent écht goedkoper dan een hotel? We rekenen het eerlijk voor."
       heroImage={heroImg}
       tocItems={tocItems}
       publishDate="Maart 2025"
@@ -54,7 +54,7 @@ export default function DaktentVsHotel() {
     >
       {/* Intro */}
       <section id="intro">
-        <h2>Daktent of Hotel: Wat is Slimmer in 2025?</h2>
+        <h2>Daktent of hotel: wat is slimmer?</h2>
         <p>Wanneer een daktent zich terugverdient, hangt af van jouw prijzen en hoe vaak je gaat. <a href="/#calculator">Reken het uit met de calculator</a>.</p>
         <p>Vergelijk aanschaf, dakdragers, camping en onderhoud met hotelovernachtingen, eten, parkeren en toeristenbelasting.</p>
 
@@ -232,7 +232,7 @@ export default function DaktentVsHotel() {
 
       {/* Ervaringen */}
       <section id="ervaringen">
-        <h2>Ervaringen van Daktent-Gebruikers (2025)</h2>
+        <h2>Video: ervaringen en tips met een daktent</h2>
         
 
 
@@ -269,7 +269,7 @@ export default function DaktentVsHotel() {
 
       {/* Verdict */}
       <section id="verdict">
-        <h2>Eindoordeel: Daktent vs Hotel in 2025</h2>
+        <h2>Eindoordeel: daktent vs hotel</h2>
         
         <div className="not-prose my-6 p-6 rounded-xl bg-primary/5 border border-primary/15">
           <div className="flex items-center gap-3 mb-4">

@@ -15,7 +15,7 @@ const tocItems = [
   { id: "vergelijking", label: "Volledige Vergelijking" },
   { id: "voor-wie", label: "Voor Wie?" },
   { id: "pros-cons", label: "Voordelen & Nadelen" },
-  { id: "ervaringen", label: "Ervaringen 2025" },
+  { id: "ervaringen", label: "Video: ervaringen en tips met een daktent" },
   { id: "faq", label: "Veelgestelde Vragen" },
   { id: "verdict", label: "Eindoordeel" },
 ];
@@ -53,7 +53,7 @@ export default function DaktentVsCamper() {
     >
       {/* Intro */}
       <section id="intro">
-        <h2>Daktent of Camper: De Grote Vergelijking van 2025</h2>
+        <h2>Daktent of camper: de grote vergelijking</h2>
         <p>
           Wanneer een daktent zich terugverdient tegenover camperhuur, hangt af van jouw prijzen en hoe vaak je gaat. <a href="/#calculator">Reken het uit met de calculator</a>.
         </p>
@@ -254,7 +254,7 @@ export default function DaktentVsCamper() {
 
       {/* Ervaringen */}
       <section id="ervaringen">
-        <h2>Ervaringen: Van Camper naar Daktent (2025)</h2>
+        <h2>Video: ervaringen en tips met een daktent</h2>
         
 
 
@@ -291,7 +291,7 @@ export default function DaktentVsCamper() {
 
       {/* Verdict */}
       <section id="verdict">
-        <h2>Eindoordeel: Daktent vs Camper in 2025</h2>
+        <h2>Eindoordeel: daktent vs camper</h2>
         
         <div className="not-prose my-6 p-6 rounded-xl bg-primary/5 border border-primary/15">
           <div className="flex items-center gap-3 mb-4">
