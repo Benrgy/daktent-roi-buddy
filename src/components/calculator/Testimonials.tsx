@@ -77,10 +77,10 @@ export function Testimonials() {
             Echte ervaringen
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Wat daktent-reizigers zeggen
+            Wat daktent-gebruikers elders schrijven
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Geen verzinsels — echte quotes van echte gebruikers, met bronvermelding.
+            Deze citaten komen uit openbare reviews op andere websites, over verschillende merken daktenten. Het zijn geen klanten van deze site.
           </p>
         </motion.div>
 

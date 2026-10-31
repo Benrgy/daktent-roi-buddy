@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getRouteMeta } from "./routesMeta";
+import { getRouteMeta, getFaqSchema } from "./routesMeta";
 
 export function useRouteSeo(path: string) {
   const route = getRouteMeta(path);
@@ -31,6 +31,19 @@ export function useRouteSeo(path: string) {
     }
     for (const [name, value] of Object.entries({ "twitter:title": route.title, "twitter:description": route.description })) {
       setTag(`meta[name="${name}"]`, "meta", { name }, "content", value);
+    }
+    const faq = getFaqSchema(route);
+    if (faq) {
+      const existingFaq = [...document.head.querySelectorAll('script[type="application/ld+json"]')].some(script => {
+        try { const data = JSON.parse(script.textContent || "{}"); const schemas = Array.isArray(data) ? data : data["@graph"] ?? [data]; return schemas.some((schema: { "@type": string; mainEntity?: unknown }) => schema["@type"] === "FAQPage" && JSON.stringify(schema.mainEntity) === JSON.stringify(faq.mainEntity)); } catch { return false; }
+      });
+      if (!existingFaq) {
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(faq);
+        document.head.appendChild(script);
+        restore.push(() => script.remove());
+      }
     }
     return () => {
       document.title = previousTitle;

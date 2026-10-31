@@ -60,7 +60,7 @@ export function ArticleLayout({
   return (
     <div className="min-h-screen bg-background">
       {/* Sticky nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg shadow-sm border-b border-border/50">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background sm:bg-background/95 backdrop-blur-lg shadow-sm border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <img src={logoImg} alt="Daktent ROI Calculator" width={28} height={28} className="w-7 h-7" />

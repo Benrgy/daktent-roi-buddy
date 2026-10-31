@@ -6,6 +6,7 @@ import { ProsCons } from "@/components/article/ProsCons";
 import { CHECKED, PRICE_DELIVERED, PRICE_PICKUP, PETER_PENTHOUSE_SOURCE, RENTAL_EXAMPLE } from "@/data/prijzen";
 import { hurenOfKopen, type HurenOfKopenInputs } from "@/lib/hurenOfKopen";
 import heroImg from "@/assets/hero-bg.jpg";
+import { getRouteMeta } from "@/seo/routesMeta";
 import { useRouteSeo } from "@/seo/useRouteSeo";
 
 const initialInputs: HurenOfKopenInputs = { tripsPerYear: 2, rentPerTrip: RENTAL_EXAMPLE.total, years: 5, purchasePrice: PRICE_DELIVERED, roofRacks: 0, storagePerMonth: 0, resaleValue: 0 };
@@ -17,12 +18,7 @@ const tocItems = [
   { id: "auto", label: "Past hij op jouw auto?" },
   { id: "faq", label: "Veelgestelde vragen" },
 ];
-const faqItems = [
-  { q: "Wanneer is kopen goedkoper dan huren?", a: "Als je totale huurkosten hoger worden dan aanschaf en dakdragers plus stalling, verminderd met je verwachte verkoopwaarde. Het omslagpunt hangt af van jouw invoer." },
-  { q: "Welke huurprijs vul ik in?", a: "Vraag je verhuurder de totaalprijs voor jouw reis, inclusief eventuele dakdragers. Vul die totaalprijs in, niet alleen de dagprijs van de tent." },
-  { q: "Hoe neem ik verkoopwaarde mee?", a: "Vul alleen een bedrag in als je een reëel verkoopbedrag weet. De rekenhulp trekt dit aan het einde van de gebruiksperiode af van de koopkosten." },
-  { q: "Moet ik dakdragers kopen als ik al dakrails heb?", a: "Controleer welke dakdragers geschikt zijn voor jouw auto en de gekozen tent. Dakrails zijn niet hetzelfde als dakdragers. Vraag bij twijfel je leverancier of verhuurder welke bevestiging nodig is." },
-];
+const faqItems = getRouteMeta("/daktent-huren-of-kopen").faq ?? [];
 const euro = (value: number) => new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
 const number = (value: number) => new Intl.NumberFormat("nl-NL", { maximumFractionDigits: 2 }).format(value);
 
@@ -38,6 +34,7 @@ const fields: { key: keyof HurenOfKopenInputs; label: string; help?: string }[] 
 
 export default function DaktentHurenOfKopen() {
   const seo = useRouteSeo("/daktent-huren-of-kopen");
+  const [editedFields, setEditedFields] = useState<string[]>([]);
   const [values, setValues] = useState<Record<keyof HurenOfKopenInputs, string>>(() => Object.fromEntries(Object.entries(initialInputs).map(([key, value]) => [key, String(value)])) as Record<keyof HurenOfKopenInputs, string>);
   const inputs = useMemo(() => Object.fromEntries(Object.entries(values).map(([key, value]) => [key, value.trim() === "" ? NaN : Number(value)])) as unknown as HurenOfKopenInputs, [values]);
   const result = useMemo(() => hurenOfKopen(inputs), [inputs]);
@@ -56,7 +53,8 @@ export default function DaktentHurenOfKopen() {
             {fields.map(field => (
               <div key={field.key} className={field.key === "resaleValue" ? "sm:col-span-2" : ""}>
                 <label htmlFor={`rent-buy-${field.key}`} className="block text-sm font-semibold text-foreground mb-2">{field.label}</label>
-                <input id={`rent-buy-${field.key}`} type="number" min={field.key === "years" ? "1" : "0"} step={field.key === "years" || field.key === "tripsPerYear" ? "1" : "0.01"} value={values[field.key]} onChange={event => setValues(previous => ({ ...previous, [field.key]: event.target.value }))} aria-describedby={field.help || field.key === "rentPerTrip" || field.key === "purchasePrice" ? `help-${field.key}` : undefined} className="w-full rounded-lg border border-input bg-card px-3 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+                {!["tripsPerYear", "years"].includes(field.key) && !editedFields.includes(field.key) && <p className="text-xs text-muted-foreground mb-2">voorbeeldwaarde</p>}
+                <input id={`rent-buy-${field.key}`} type="number" min={field.key === "years" ? "1" : "0"} step={field.key === "years" || field.key === "tripsPerYear" ? "1" : "0.01"} value={values[field.key]} onChange={event => { setEditedFields(previous => [...new Set([...previous, field.key])]); setValues(previous => ({ ...previous, [field.key]: event.target.value })); }} aria-describedby={field.help || field.key === "rentPerTrip" || field.key === "purchasePrice" ? `help-${field.key}` : undefined} className="w-full rounded-lg border border-input bg-card px-3 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
                 {field.help && <p id={`help-${field.key}`} className="mt-2 text-xs leading-relaxed text-muted-foreground">{field.help}</p>}
                 {field.key === "rentPerTrip" && <p id="help-rentPerTrip" className="mt-2 text-xs leading-relaxed text-muted-foreground">Voorbeeld: Daktrail rekent voor de Peter Penthouse EUR {RENTAL_EXAMPLE.dailyPrice} per dag voor dag 1 t/m {RENTAL_EXAMPLE.days}, dus {RENTAL_EXAMPLE.days} dagen = EUR {RENTAL_EXAMPLE.total} (prijs gecontroleerd {RENTAL_EXAMPLE.checked}, <a className="text-primary underline" href={RENTAL_EXAMPLE.source} target="_blank" rel="noopener noreferrer">daktrail.nl/huurprijzen</a>). Vraag bij jouw verhuurder de totaalprijs voor je reis.</p>}
                 {field.key === "purchasePrice" && <p id="help-purchasePrice" className="mt-2 text-xs leading-relaxed text-muted-foreground">Voorbeeld: Peter Penthouse EUR {number(PRICE_DELIVERED)} bezorgd, EUR {number(PRICE_PICKUP)} ophalen, <a className="text-primary underline" href={PETER_PENTHOUSE_SOURCE} target="_blank" rel="noopener noreferrer">peter-penthouse.com</a>, {CHECKED}.</p>}
@@ -64,6 +62,7 @@ export default function DaktentHurenOfKopen() {
             ))}
           </div>
 
+          {editedFields.length === 0 && <p className="text-sm text-muted-foreground">Voorbeeld met standaardwaarden. Vul je eigen prijzen in voor jouw uitkomst.</p>}
           {result ? <>
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 border-y border-border py-5">
               {[

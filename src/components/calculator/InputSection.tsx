@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { CalculatorInputs } from "@/lib/calculator";
 import { Info, Calendar, Tent, Hotel, Coins, Truck, Home } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -6,17 +7,19 @@ import { motion } from "framer-motion";
 interface InputSectionProps {
   inputs: CalculatorInputs;
   onChange: (updates: Partial<CalculatorInputs>) => void;
+  editedFields?: string[];
 }
 
 function SliderInput({ label, value, min, max, step = 1, unit, onChange }: {
   label: string; value: number; min: number; max: number; step?: number; unit: string;
   onChange: (v: number) => void;
 }) {
+  const id = useId();
   const percentage = ((value - min) / (max - min)) * 100;
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-foreground">{label}</label>
+        <label htmlFor={id} className="text-sm font-medium text-foreground">{label}</label>
         <motion.span
           key={value}
           initial={{ scale: 1.2, color: "hsl(155 45% 28%)" }}
@@ -28,7 +31,7 @@ function SliderInput({ label, value, min, max, step = 1, unit, onChange }: {
       </div>
       <div className="relative">
         <input
-          type="range" min={min} max={max} step={step} value={value}
+          id={id} type="range" min={min} max={max} step={step} value={value}
           onChange={(e) => onChange(Number(e.target.value))}
           className="slider-track w-full"
         />
@@ -45,16 +48,18 @@ function SliderInput({ label, value, min, max, step = 1, unit, onChange }: {
   );
 }
 
-function EuroInput({ label, value, onChange, tooltip }: {
-  label: string; value: number; onChange: (v: number) => void; tooltip?: string;
+function EuroInput({ label, value, onChange, tooltip, example = true }: {
+  label: string; value: number; onChange: (v: number) => void; tooltip?: string; example?: boolean;
 }) {
+  const id = useId();
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center gap-1.5">
-        <label className="text-sm font-medium text-foreground">{label}</label>
+      <div className="flex flex-wrap items-center gap-1.5">
+        <label htmlFor={id} className="text-sm font-medium text-foreground">{label}</label>
+        {example && <span className="text-xs text-muted-foreground">voorbeeldwaarde</span>}
         {tooltip && (
           <Tooltip>
-            <TooltipTrigger><Info className="w-3.5 h-3.5 text-muted-foreground" /></TooltipTrigger>
+            <TooltipTrigger aria-label={label}><Info className="w-3.5 h-3.5 text-muted-foreground" /></TooltipTrigger>
             <TooltipContent><p className="max-w-[200px] text-xs">{tooltip}</p></TooltipContent>
           </Tooltip>
         )}
@@ -62,7 +67,7 @@ function EuroInput({ label, value, onChange, tooltip }: {
       <div className="relative">
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">€</span>
         <input
-          type="number" value={value} min={0}
+          id={id} type="number" value={value} min={0}
           onChange={(e) => onChange(Number(e.target.value) || 0)}
           className="w-full pl-8 pr-3 py-2.5 rounded-lg border border-input bg-card text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
         />
@@ -112,7 +117,7 @@ function SectionCard({ icon, title, children, index, accentColor }: SectionCardP
   );
 }
 
-export function InputSection({ inputs, onChange }: InputSectionProps) {
+export function InputSection({ inputs, onChange, editedFields = [] }: InputSectionProps) {
   return (
     <div className="space-y-5">
       <SectionCard icon={<Calendar className="w-4 h-4 text-primary" />} title="Je Vakantie Gewoontes" index={0}>
@@ -127,9 +132,9 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
           onChange={(v) => onChange({ years: v })}
         />
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">Gemiddeld aantal personen per trip?</label>
+          <label htmlFor="calc-persons" className="text-sm font-medium text-foreground">Gemiddeld aantal personen per trip?</label>
           <select
-            value={inputs.persons}
+            id="calc-persons" value={inputs.persons}
             onChange={(e) => onChange({ persons: Number(e.target.value) })}
             className="w-full px-3 py-2.5 rounded-lg border border-input bg-card text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
           >
@@ -142,7 +147,7 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
 
       <SectionCard icon={<Tent className="w-4 h-4 text-primary" />} title="Daktent Kosten" index={1} accentColor="bg-accent/40">
         <div>
-          <EuroInput label="Daktent aankoopprijs:" value={inputs.tentPrice} onChange={(v) => onChange({ tentPrice: v })} />
+          <EuroInput label="Daktent aankoopprijs:" value={inputs.tentPrice} example={!editedFields.includes("tentPrice")}  onChange={(v) => onChange({ tentPrice: v })} />
           <PresetRow
             presets={[
               { label: "Budget €1.200", value: 1200 },
@@ -156,17 +161,18 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
             className="preset-btn-highlight mt-2 flex items-center gap-1.5"
           >
             ⭐ Peter Penthouse €1.800
-            <span className="text-[10px] bg-primary-foreground/20 px-1.5 py-0.5 rounded-full">Aanbevolen</span>
+            <span className="text-[10px] bg-primary-foreground/20 px-1.5 py-0.5 rounded-full">Uitgelicht</span>
           </button>
         </div>
-        <EuroInput label="Dakdrager kosten:" value={inputs.roofRackPrice} onChange={(v) => onChange({ roofRackPrice: v })}
+        <EuroInput label="Dakdrager kosten:" value={inputs.roofRackPrice} example={!editedFields.includes("roofRackPrice")}  onChange={(v) => onChange({ roofRackPrice: v })}
           tooltip="Alleen als je nog geen dakdrager hebt" />
-        <EuroInput label="Jaarlijks onderhoud:" value={inputs.maintenancePerYear} onChange={(v) => onChange({ maintenancePerYear: v })}
+        <EuroInput label="Jaarlijks onderhoud:" value={inputs.maintenancePerYear} example={!editedFields.includes("maintenancePerYear")}  onChange={(v) => onChange({ maintenancePerYear: v })}
           tooltip="Waterproofing, reparaties, etc." />
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">Opslag kosten?</label>
+          <label htmlFor="calc-storage" className="text-sm font-medium text-foreground">Opslag kosten?</label>
+          {!editedFields.includes("storageMonthly") && <span className="text-xs text-muted-foreground">voorbeeldwaarde</span>}
           <select
-            value={inputs.storageMonthly}
+            id="calc-storage" value={inputs.storageMonthly}
             onChange={(e) => onChange({ storageMonthly: Number(e.target.value) })}
             className="w-full px-3 py-2.5 rounded-lg border border-input bg-card text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
           >
@@ -179,7 +185,7 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
 
       <SectionCard icon={<Hotel className="w-4 h-4 text-primary" />} title="Alternatief Kosten" index={2} accentColor="bg-warning/40">
         <div>
-          <EuroInput label="Gemiddelde hotel/Airbnb prijs per nacht:" value={inputs.hotelPricePerNight} onChange={(v) => onChange({ hotelPricePerNight: v })} />
+          <EuroInput label="Gemiddelde hotel/Airbnb prijs per nacht:" value={inputs.hotelPricePerNight} example={!editedFields.includes("hotelPricePerNight")}  onChange={(v) => onChange({ hotelPricePerNight: v })} />
           <PresetRow
             presets={[
               { label: "Budget €60", value: 60 },
@@ -189,56 +195,56 @@ export function InputSection({ inputs, onChange }: InputSectionProps) {
             onSelect={(v) => onChange({ hotelPricePerNight: v })}
           />
         </div>
-        <EuroInput label="Campsite prijs per nacht:" value={inputs.campsitePricePerNight} onChange={(v) => onChange({ campsitePricePerNight: v })}
+        <EuroInput label="Campsite prijs per nacht:" value={inputs.campsitePricePerNight} example={!editedFields.includes("campsitePricePerNight")}  onChange={(v) => onChange({ campsitePricePerNight: v })}
           tooltip="Gemiddelde kosten per nacht op een camping met daktent" />
         <div className="space-y-3">
           <div className="flex items-center gap-3">
             <input
-              type="checkbox" checked={inputs.useCamperRental}
+              id="calc-camper-rental" type="checkbox" checked={inputs.useCamperRental}
               onChange={(e) => onChange({ useCamperRental: e.target.checked })}
               className="w-4 h-4 rounded border-input text-primary focus:ring-primary"
             />
-            <label className="text-sm font-medium text-foreground">Verhuur je soms campers?</label>
+            <label htmlFor="calc-camper-rental" className="text-sm font-medium text-foreground">Verhuur je soms campers?</label>
           </div>
           {inputs.useCamperRental && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-              <EuroInput label="Huurprijs per dag:" value={inputs.camperRentalPerDay} onChange={(v) => onChange({ camperRentalPerDay: v })} />
+              <EuroInput label="Huurprijs per dag:" value={inputs.camperRentalPerDay} example={!editedFields.includes("camperRentalPerDay")}  onChange={(v) => onChange({ camperRentalPerDay: v })} />
             </motion.div>
           )}
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <EuroInput label="Eten hotel/dag:" value={inputs.hotelFoodPerDay} onChange={(v) => onChange({ hotelFoodPerDay: v })} />
-          <EuroInput label="Eten daktent/dag:" value={inputs.tentFoodPerDay} onChange={(v) => onChange({ tentFoodPerDay: v })} />
+          <EuroInput label="Eten hotel/dag:" value={inputs.hotelFoodPerDay} example={!editedFields.includes("hotelFoodPerDay")}  onChange={(v) => onChange({ hotelFoodPerDay: v })} />
+          <EuroInput label="Eten daktent/dag:" value={inputs.tentFoodPerDay} example={!editedFields.includes("tentFoodPerDay")}  onChange={(v) => onChange({ tentFoodPerDay: v })} />
         </div>
       </SectionCard>
 
       <SectionCard icon={<Coins className="w-4 h-4 text-primary" />} title="Extra Kosten" index={3}>
-        <EuroInput label="Extra brandstof per nacht:" value={inputs.extraFuelPerNight} onChange={(v) => onChange({ extraFuelPerNight: v })}
+        <EuroInput label="Extra brandstof per nacht:" value={inputs.extraFuelPerNight} example={!editedFields.includes("extraFuelPerNight")}  onChange={(v) => onChange({ extraFuelPerNight: v })}
           tooltip="Gemiddeld 10-15% extra brandstofverbruik door daktent" />
-        <EuroInput label="Parkeergeld hotels/dag:" value={inputs.hotelParkingPerDay} onChange={(v) => onChange({ hotelParkingPerDay: v })} />
-        <EuroInput label="Toeristenbelasting/nacht:" value={inputs.touristTaxPerNight} onChange={(v) => onChange({ touristTaxPerNight: v })} />
+        <EuroInput label="Parkeergeld hotels/dag:" value={inputs.hotelParkingPerDay} example={!editedFields.includes("hotelParkingPerDay")}  onChange={(v) => onChange({ hotelParkingPerDay: v })} />
+        <EuroInput label="Toeristenbelasting/nacht:" value={inputs.touristTaxPerNight} example={!editedFields.includes("touristTaxPerNight")}  onChange={(v) => onChange({ touristTaxPerNight: v })} />
       </SectionCard>
 
       <SectionCard icon={<Truck className="w-4 h-4 text-primary" />} title="Camper Huur Kosten" index={4} accentColor="bg-accent/40">
         <p className="text-xs text-muted-foreground -mt-2">Gebruikt in de vergelijking "Daktent vs Camper Huur"</p>
-        <EuroInput label="Camper huurprijs per dag:" value={inputs.camperHuurPerDay} onChange={(v) => onChange({ camperHuurPerDay: v })} />
-        <EuroInput label="Verzekering per dag:" value={inputs.camperInsurancePerDay} onChange={(v) => onChange({ camperInsurancePerDay: v })} />
-        <EuroInput label="Brandstof camper per dag:" value={inputs.camperFuelPerDay} onChange={(v) => onChange({ camperFuelPerDay: v })} />
-        <EuroInput label="Eten per dag (camper):" value={inputs.camperFoodPerDay} onChange={(v) => onChange({ camperFoodPerDay: v })} />
+        <EuroInput label="Camper huurprijs per dag:" value={inputs.camperHuurPerDay} example={!editedFields.includes("camperHuurPerDay")}  onChange={(v) => onChange({ camperHuurPerDay: v })} />
+        <EuroInput label="Verzekering per dag:" value={inputs.camperInsurancePerDay} example={!editedFields.includes("camperInsurancePerDay")}  onChange={(v) => onChange({ camperInsurancePerDay: v })} />
+        <EuroInput label="Brandstof camper per dag:" value={inputs.camperFuelPerDay} example={!editedFields.includes("camperFuelPerDay")}  onChange={(v) => onChange({ camperFuelPerDay: v })} />
+        <EuroInput label="Eten per dag (camper):" value={inputs.camperFoodPerDay} example={!editedFields.includes("camperFoodPerDay")}  onChange={(v) => onChange({ camperFoodPerDay: v })} />
       </SectionCard>
 
       <SectionCard icon={<Home className="w-4 h-4 text-primary" />} title="Caravan Kosten" index={5} accentColor="bg-warning/40">
         <p className="text-xs text-muted-foreground -mt-2">Gebruikt in de vergelijking "Daktent vs Caravan Kopen"</p>
-        <EuroInput label="Aanschafprijs caravan:" value={inputs.caravanPrice} onChange={(v) => onChange({ caravanPrice: v })} />
+        <EuroInput label="Aanschafprijs caravan:" value={inputs.caravanPrice} example={!editedFields.includes("caravanPrice")}  onChange={(v) => onChange({ caravanPrice: v })} />
         <div className="grid grid-cols-2 gap-3">
-          <EuroInput label="Onderhoud/jaar:" value={inputs.caravanMaintenancePerYear} onChange={(v) => onChange({ caravanMaintenancePerYear: v })} />
-          <EuroInput label="Verzekering/jaar:" value={inputs.caravanInsurancePerYear} onChange={(v) => onChange({ caravanInsurancePerYear: v })} />
+          <EuroInput label="Onderhoud/jaar:" value={inputs.caravanMaintenancePerYear} example={!editedFields.includes("caravanMaintenancePerYear")}  onChange={(v) => onChange({ caravanMaintenancePerYear: v })} />
+          <EuroInput label="Verzekering/jaar:" value={inputs.caravanInsurancePerYear} example={!editedFields.includes("caravanInsurancePerYear")}  onChange={(v) => onChange({ caravanInsurancePerYear: v })} />
         </div>
-        <EuroInput label="Stalling per maand:" value={inputs.caravanStoragePerMonth} onChange={(v) => onChange({ caravanStoragePerMonth: v })} />
-        <EuroInput label="Campsite per nacht:" value={inputs.caravanCampsitePerNight} onChange={(v) => onChange({ caravanCampsitePerNight: v })} />
+        <EuroInput label="Stalling per maand:" value={inputs.caravanStoragePerMonth} example={!editedFields.includes("caravanStoragePerMonth")}  onChange={(v) => onChange({ caravanStoragePerMonth: v })} />
+        <EuroInput label="Campsite per nacht:" value={inputs.caravanCampsitePerNight} example={!editedFields.includes("caravanCampsitePerNight")}  onChange={(v) => onChange({ caravanCampsitePerNight: v })} />
         <div className="grid grid-cols-2 gap-3">
-          <EuroInput label="Eten/dag:" value={inputs.caravanFoodPerDay} onChange={(v) => onChange({ caravanFoodPerDay: v })} />
-          <EuroInput label="Brandstof/nacht:" value={inputs.caravanFuelPerNight} onChange={(v) => onChange({ caravanFuelPerNight: v })} />
+          <EuroInput label="Eten/dag:" value={inputs.caravanFoodPerDay} example={!editedFields.includes("caravanFoodPerDay")}  onChange={(v) => onChange({ caravanFoodPerDay: v })} />
+          <EuroInput label="Brandstof/nacht:" value={inputs.caravanFuelPerNight} example={!editedFields.includes("caravanFuelPerNight")}  onChange={(v) => onChange({ caravanFuelPerNight: v })} />
         </div>
       </SectionCard>
     </div>

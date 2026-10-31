@@ -42,18 +42,11 @@ function perNight(tentPrice: number, nightsPerYear: number) {
   };
 }
 
-const faqItems = [
-  { q: "Wat kost de Peter Penthouse daktent?", a: `${euro(PRICE_PICKUP)} als je hem ophaalt in Soerendonk (Noord-Brabant), ${euro(PRICE_DELIVERED)} met bezorging in Nederland of België (${euro(150)} verzendkosten). Dat is inclusief zonnepaneel, powerbank, matras, ladder en luifel. Prijzen gecontroleerd op ${CHECKED}.` },
-  { q: "Hoe zwaar is de Peter Penthouse?", a: "De tent weegt 62 kg, de ladder 3 kg. Tel daar het gewicht van je dakdragers bij op en vergelijk dat met de dynamische daklast van je auto (te vinden in het instructieboekje)." },
-  { q: "Hoe groot is de Peter Penthouse?", a: "Uitgeklapt 190 × 230 × 130 cm, ingeklapt 190 × 115 × 25 cm. Uitgeklapt draagt hij volgens de maker 300 kg." },
-  { q: "Kun je de Peter Penthouse huren?", a: "De maker verhuurt zelf niet. Daktrail (Helmond en Gilze) verhuurt hem vanaf €25 per dag, met lagere dagprijzen vanaf dag 11 en dag 16. In vakantieperiodes huur je minimaal 7 dagen, daarbuiten minimaal 4." },
-  { q: "Zit er een binnentent of voortent bij?", a: "Nee. Er is één model met één pakket, zonder thermo-binnentent of ondertent. De aanritsbare luifel zit er wel bij. De tent is alleen in zwart verkrijgbaar." },
-  { q: "Is de Peter Penthouse direct leverbaar?", a: `Niet direct: op ${CHECKED} meldt de maker dat de tenten van dit jaar verkocht zijn en dat een nieuwe bestelling in november of december geleverd wordt. Bezichtigen in Soerendonk kan op afspraak.` },
-  { q: "Heb ik dakdragers nodig?", a: "Ja. De tent gaat op dakdragers, niet rechtstreeks op dakrails. De maker adviseert minimaal ongeveer 70 cm tussen de dragers en dragers met 100 kg draagvermogen voor marge." },
-];
+const faqItems = getRouteMeta("/peter-penthouse-daktent").faq ?? [];
 
 export default function PeterPenthouse() {
   const seo = useRouteSeo("/peter-penthouse-daktent");
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [delivered, setDelivered] = useState(true);
   const [nightsPerYear, setNightsPerYear] = useState(20);
   const price = delivered ? PRICE_DELIVERED : PRICE_PICKUP;
@@ -75,11 +68,6 @@ export default function PeterPenthouse() {
         publisher: { "@type": "Organization", name: "Daktent ROI Calculator" },
         mainEntityOfPage: PAGE_URL,
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqItems.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-      },
     ]);
     document.head.appendChild(script);
     return () => {
@@ -92,6 +80,9 @@ export default function PeterPenthouse() {
     try {
       const saved = JSON.parse(localStorage.getItem("daktent-calc-inputs") || "{}");
       localStorage.setItem("daktent-calc-inputs", JSON.stringify({ ...saved, tentPrice: price, nightsPerYear, years: YEARS }));
+      localStorage.setItem("daktent-calc-interacted", "true");
+      const edited = JSON.parse(localStorage.getItem("daktent-calc-edited-fields") || "[]");
+      localStorage.setItem("daktent-calc-edited-fields", JSON.stringify([...new Set([...edited, "tentPrice", "nightsPerYear", "years"])]));
     } catch {
       // geen opslag beschikbaar: de calculator start dan met de standaardwaarden
     }
@@ -110,6 +101,7 @@ export default function PeterPenthouse() {
       readTime="7 min"
       breadcrumbLabel="Peter Penthouse daktent"
     >
+      <p className="text-sm">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
       <section id="intro">
         <h2>Peter Penthouse daktent in het kort</h2>
         <p>
@@ -233,7 +225,7 @@ export default function PeterPenthouse() {
             {[{ v: false, l: `Ophalen ${euro(PRICE_PICKUP)}` }, { v: true, l: `Bezorgd ${euro(PRICE_DELIVERED)}` }].map((o) => (
               <button
                 key={o.l}
-                onClick={() => setDelivered(o.v)}
+                onClick={() => { setDelivered(o.v); setHasInteracted(true); }}
                 className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition-all ${delivered === o.v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border hover:border-primary/40"}`}
               >
                 {o.l}
@@ -250,9 +242,10 @@ export default function PeterPenthouse() {
             max={60}
             step={1}
             value={nightsPerYear}
-            onChange={(e) => setNightsPerYear(Number(e.target.value))}
+            onChange={(e) => { setNightsPerYear(Number(e.target.value)); setHasInteracted(true); }}
             className="w-full accent-[hsl(var(--primary))] mb-5"
           />
+          {!hasInteracted && <p className="text-sm text-muted-foreground mb-3">Voorbeeld met standaardwaarden. Vul je eigen prijzen in voor jouw uitkomst.</p>}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="rounded-lg bg-background/70 border border-border p-4">
               <p className="text-xs text-muted-foreground">Tent per nacht</p>
@@ -267,7 +260,7 @@ export default function PeterPenthouse() {
             <div className="rounded-lg bg-background/70 border border-border p-4">
               <p className="text-xs text-muted-foreground">Hotel per nacht (ter vergelijking)</p>
               <p className="font-display text-2xl font-bold text-foreground">{euro(live.hotel, 2)}</p>
-              <p className="text-xs text-muted-foreground">kamer, eten, parkeren, toeristenbelasting</p>
+              <p className="text-xs text-muted-foreground">kamer, eten, parkeren, toeristenbelasting — voorbeeldwaarden</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground mt-4">
@@ -308,10 +301,10 @@ export default function PeterPenthouse() {
         <h3>De aannames achter deze cijfers</h3>
         <ul>
           <li>Periode {YEARS} jaar; de tent is daarna niets meer waard (in werkelijkheid verkoop je hem vaak door, dan wordt het goedkoper).</li>
-          <li>Dakdragers {euro(defaultInputs.roofRackPrice)} en onderhoud {euro(defaultInputs.maintenancePerYear)} per jaar: de standaardwaarden van onze calculator, geen prijzen van de maker. Heb je al dakdragers, dan zakt de prijs per nacht.</li>
+          <li>Dakdragers {euro(defaultInputs.roofRackPrice)} en onderhoud {euro(defaultInputs.maintenancePerYear)} per jaar: voorbeeldwaarden van onze calculator, geen prijzen van de maker. Heb je al dakdragers, dan zakt de prijs per nacht.</li>
           <li>Geen stallingskosten: de tent past ingeklapt in een garage, schuur of op zolder.</li>
-          <li>Alles-in rekent daarnaast met {euro(defaultInputs.campsitePricePerNight)} camping, {euro(defaultInputs.tentFoodPerDay)} eten en {euro(defaultInputs.extraFuelPerNight)} extra brandstof per nacht.</li>
-          <li>Het hotel-alternatief: {euro(defaultInputs.hotelPricePerNight)} kamer, {euro(defaultInputs.hotelFoodPerDay)} eten, {euro(defaultInputs.hotelParkingPerDay)} parkeren en {euro(defaultInputs.touristTaxPerNight)} toeristenbelasting per nacht.</li>
+          <li>Alles-in rekent daarnaast met voorbeeldwaarden: {euro(defaultInputs.campsitePricePerNight)} camping, {euro(defaultInputs.tentFoodPerDay)} eten en {euro(defaultInputs.extraFuelPerNight)} extra brandstof per nacht.</li>
+          <li>Het hotel-alternatief (voorbeeldwaarden): {euro(defaultInputs.hotelPricePerNight)} kamer, {euro(defaultInputs.hotelFoodPerDay)} eten, {euro(defaultInputs.hotelParkingPerDay)} parkeren en {euro(defaultInputs.touristTaxPerNight)} toeristenbelasting per nacht.</li>
         </ul>
         <p>Klopt een van deze aannames niet voor jou? In de <a href="/#calculator">calculator</a> pas je ze allemaal aan.</p>
       </section>
@@ -380,8 +373,9 @@ export default function PeterPenthouse() {
           <a href="/daktent-vs-hotel">hotel</a> en een <a href="/daktent-vs-camper">camper</a>.
         </p>
         <div className="not-prose my-6">
+          <p className="text-xs text-muted-foreground">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
           <a
-            href="https://www.peter-penthouse.com/kopen"
+            href="https://www.peter-penthouse.com/kopen?ref=calculator"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackPeterPenthouseClick("review_page")}

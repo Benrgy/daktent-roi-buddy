@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { SITE_URL, routesMeta, type RouteMeta } from "./src/seo/routesMeta";
+import { SITE_URL, routesMeta, getFaqSchema, type RouteMeta } from "./src/seo/routesMeta";
 
 const escapeHtml = (value: string) => value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character] ?? character);
 
@@ -31,6 +31,10 @@ function validateRouteHtml(html: string, route: RouteMeta) {
       breadcrumb?.itemListElement?.[1]?.item !== route.canonical || schemas.some(schema => schema["@type"] === "WebApplication")) {
       throw new Error(`Missing or invalid route JSON-LD: ${route.path}`);
     }
+  }
+  const faq = getFaqSchema(route);
+  if (faq && !schemas.some(schema => schema["@type"] === "FAQPage" && JSON.stringify(schema.mainEntity) === JSON.stringify(faq.mainEntity))) {
+    throw new Error(`Missing or invalid route FAQ JSON-LD: ${route.path}`);
   }
 }
 
@@ -62,6 +66,7 @@ function renderRouteHtml(template: string, route: RouteMeta) {
             { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
             { "@type": "ListItem", position: 2, name: route.h1, item: route.canonical },
           ] },
+          ...(getFaqSchema(route) ? [getFaqSchema(route)] : []),
         ],
       };
       return `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>`;

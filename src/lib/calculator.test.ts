@@ -2,6 +2,12 @@ import { describe, expect, it } from "vitest";
 import { calculate, defaultInputs } from "./calculator";
 
 describe("hoofdcalculator zonder productkortingen", () => {
+  it("berekent geen bronloze CO2-besparing", () => {
+    expect(calculate(defaultInputs)).not.toHaveProperty("co2Savings");
+  });
+  it("berekent geen vermeden hotelflesjes", () => {
+    expect(calculate(defaultInputs)).not.toHaveProperty("plasticSavings");
+  });
   it.each([
     { tentPrice: 2000, totalDaktentCost: 8100, totalSavings: 7700, nights: 23, months: 14 },
     { tentPrice: 1800, totalDaktentCost: 7900, totalSavings: 7900, nights: 21, months: 13 },

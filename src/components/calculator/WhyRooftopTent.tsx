@@ -22,8 +22,8 @@ const usps = [
   },
   {
     icon: Leaf,
-    title: "Duurzaam Reizen",
-    desc: "Kleinere CO₂-voetafdruk dan hotels of vliegvakanties. Geniet van de natuur zonder impact.",
+    title: "Natuurbeleving",
+    desc: "Je slaapt letterlijk onder de sterren.",
     img: uspEco,
     alt: "Daktent in een groen bos bij een rivier",
   },

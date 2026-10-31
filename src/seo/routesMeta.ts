@@ -1,3 +1,7 @@
+import { CHECKED, PRICE_PICKUP, PRICE_DELIVERED } from "../data/prijzen";
+
+const euro = (n: number) => new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
+
 export const SITE_URL = "https://daktentroicalculator.online";
 
 export interface RouteMeta {
@@ -7,6 +11,7 @@ export interface RouteMeta {
   canonical: string;
   h1: string;
   summary: string;
+  faq?: { q: string; a: string }[];
   staticSections?: { heading: string; text: string }[];
 }
 
@@ -28,12 +33,8 @@ export const routesMeta: RouteMeta[] = [
     summary: "Wanneer een daktent zich terugverdient, hangt af van jouw prijzen en hoe vaak je gaat. Reken het uit met de calculator. Vergelijk aanschaf, dakdragers, camping en onderhoud met hotelovernachtingen, eten, parkeren en toeristenbelasting.",
     staticSections: [
       {
-        "heading": "Daktent of hotel: wat is slimmer?",
-        "text": "Wanneer een daktent zich terugverdient, hangt af van jouw prijzen en hoe vaak je gaat. Reken het uit met de calculator. Vergelijk aanschaf, dakdragers, camping en onderhoud met hotelovernachtingen, eten, parkeren en toeristenbelasting."
-      },
-      {
         "heading": "Kostenvergelijking: Daktent vs Hotel per Jaar",
-        "text": "Vergelijk de kosten met jouw eigen reisplannen en prijzen in de calculator. Daktent aanschaf Jouw invoer Imperiaal/dakdragers Jouw invoer Camping Jouw invoer Onderhoud Jouw invoer Eten zelf koken Jouw invoer Totaal Jouw invoer Hotelkamers Jouw invoer Eten restaurant Jouw invoer Parkeerkosten Jouw invoer Toeristenbelasting Jouw invoer Totaal Jouw invoer Vergelijk jouw totale kosten Reken het uit met de calculator Gebruik onze gratis calculator om jouw persoonlijke besparing te berekenen met jouw eigen reispatroon."
+        "text": "Vergelijk de kosten met jouw eigen reisplannen en prijzen in de calculator. Vergelijk met jouw eigen prijzen in de calculator. Gebruik onze gratis calculator om jouw persoonlijke besparing te berekenen met jouw eigen reispatroon."
       }
     ],
   },
@@ -47,16 +48,25 @@ export const routesMeta: RouteMeta[] = [
     staticSections: [
       {
         "heading": "Daktent of camper: de grote vergelijking",
-        "text": "Wanneer een daktent zich terugverdient tegenover camperhuur, hangt af van jouw prijzen en hoe vaak je gaat. Reken het uit met de calculator. De keuze tussen een daktent en een camper gaat verder dan alleen geld. Het gaat om lifestyle, comfort, flexibiliteit en wat je belangrijk vindt op reis. In dit artikel vergelijken we beide opties eerlijk en uitgebreid. Of je nu overweegt om een camper te huren voor je volgende vakantie, of dat je twijfelt over de aanschaf van een daktent — na dit artikel weet je precies wat bij jou past."
+        "text": "In dit artikel vergelijken we beide opties eerlijk en uitgebreid. Of je nu overweegt om een camper te huren voor je volgende vakantie, of dat je twijfelt over de aanschaf van een daktent — na dit artikel weet je precies wat bij jou past."
       },
       {
         "heading": "Kostenvergelijking: Daktent vs Camper Huren",
-        "text": "Vergelijk de kosten met jouw eigen reisplannen en prijzen in de calculator. Daktent aanschaf Jouw invoer Dakdragers Jouw invoer Camping Jouw invoer Brandstof eigen auto Jouw invoer Onderhoud Jouw invoer Eten zelf koken Jouw invoer Totaal Jouw invoer Huur Jouw invoer Verzekering Jouw invoer Brandstof camper Jouw invoer Campingplaats camper Jouw invoer Eten Jouw invoer Totaal Jouw invoer Vergelijk jouw totale kosten Reken het uit met de calculator Overweeg je een eigen camper? Neem aanschaf, verzekering, wegenbelasting, onderhoud en stalling mee in je vergelijking. Bereken je eigen besparing →"
+        "text": "Vergelijk de kosten met jouw eigen reisplannen en prijzen in de calculator. Vergelijk met jouw eigen prijzen in de calculator. Overweeg je een eigen camper? Neem aanschaf, verzekering, wegenbelasting, onderhoud en stalling mee in je vergelijking. Bereken je eigen besparing →"
       }
     ],
   },
   {
     path: "/peter-penthouse-daktent",
+    faq: [
+  { q: "Wat kost de Peter Penthouse daktent?", a: `${euro(PRICE_PICKUP)} als je hem ophaalt in Soerendonk (Noord-Brabant), ${euro(PRICE_DELIVERED)} met bezorging in Nederland of België (${euro(150)} verzendkosten). Dat is inclusief zonnepaneel, powerbank, matras, ladder en luifel. Prijzen gecontroleerd op ${CHECKED}.` },
+  { q: "Hoe zwaar is de Peter Penthouse?", a: "De tent weegt 62 kg, de ladder 3 kg. Tel daar het gewicht van je dakdragers bij op en vergelijk dat met de dynamische daklast van je auto (te vinden in het instructieboekje)." },
+  { q: "Hoe groot is de Peter Penthouse?", a: "Uitgeklapt 190 × 230 × 130 cm, ingeklapt 190 × 115 × 25 cm. Uitgeklapt draagt hij volgens de maker 300 kg." },
+  { q: "Kun je de Peter Penthouse huren?", a: "De maker verhuurt zelf niet. Daktrail (Helmond en Gilze) verhuurt hem vanaf €25 per dag, met lagere dagprijzen vanaf dag 11 en dag 16. In vakantieperiodes huur je minimaal 7 dagen, daarbuiten minimaal 4." },
+  { q: "Zit er een binnentent of voortent bij?", a: "Nee. Er is één model met één pakket, zonder thermo-binnentent of ondertent. De aanritsbare luifel zit er wel bij. De tent is alleen in zwart verkrijgbaar." },
+  { q: "Is de Peter Penthouse direct leverbaar?", a: `Niet direct: op ${CHECKED} meldt de maker dat de tenten van dit jaar verkocht zijn en dat een nieuwe bestelling in november of december geleverd wordt. Bezichtigen in Soerendonk kan op afspraak.` },
+  { q: "Heb ik dakdragers nodig?", a: "Ja. De tent gaat op dakdragers, niet rechtstreeks op dakrails. De maker adviseert minimaal ongeveer 70 cm tussen de dragers en dragers met 100 kg draagvermogen voor marge." },
+    ],
     title: "Peter Penthouse daktent: review, prijs en kosten per nacht",
     description: "Peter Penthouse daktent: €1.800 ophalen, €1.950 bezorgd. Specificaties, wat erbij zit, huren of kopen en wat hij per nacht kost, uitgerekend met onze calculator.",
     canonical: `${SITE_URL}/peter-penthouse-daktent`,
@@ -75,6 +85,12 @@ export const routesMeta: RouteMeta[] = [
   },
   {
     path: "/daktent-huren-of-kopen",
+    faq: [
+  { q: "Wanneer is kopen goedkoper dan huren?", a: "Als je totale huurkosten hoger worden dan aanschaf en dakdragers plus stalling, verminderd met je verwachte verkoopwaarde. Het omslagpunt hangt af van jouw invoer." },
+  { q: "Welke huurprijs vul ik in?", a: "Vraag je verhuurder de totaalprijs voor jouw reis, inclusief eventuele dakdragers. Vul die totaalprijs in, niet alleen de dagprijs van de tent." },
+  { q: "Hoe neem ik verkoopwaarde mee?", a: "Vul alleen een bedrag in als je een reëel verkoopbedrag weet. De rekenhulp trekt dit aan het einde van de gebruiksperiode af van de koopkosten." },
+  { q: "Moet ik dakdragers kopen als ik al dakrails heb?", a: "Controleer welke dakdragers geschikt zijn voor jouw auto en de gekozen tent. Dakrails zijn niet hetzelfde als dakdragers. Vraag bij twijfel je leverancier of verhuurder welke bevestiging nodig is." },
+    ],
     title: "Daktent huren of kopen? Rekenhulp: wanneer is kopen goedkoper",
     description: "Vergelijk daktent huren en kopen met je eigen reisplannen, huurprijs, aanschaf, dakdragers, stalling en verkoopwaarde. Bereken jouw omslagpunt.",
     canonical: `${SITE_URL}/daktent-huren-of-kopen`,
@@ -117,4 +133,8 @@ export function getRouteMeta(path: string): RouteMeta {
   const meta = routesMeta.find(route => route.path === path);
   if (!meta) throw new Error(`Missing SEO metadata for ${path}`);
   return meta;
+}
+export function getFaqSchema(route: RouteMeta) {
+  if (!route.faq?.length) return null;
+  return { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: route.faq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
 }

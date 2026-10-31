@@ -44,7 +44,7 @@ export function PeterPenthouseSpotlight() {
           <div className="p-6 md:p-8 pb-0">
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-                <Shield className="w-3.5 h-3.5" /> Aanbevolen
+                <Shield className="w-3.5 h-3.5" /> Uitgelicht
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
                 <Maximize2 className="w-3.5 h-3.5" /> Inklapbaar ontwerp
@@ -85,6 +85,7 @@ export function PeterPenthouseSpotlight() {
             </div>
           </div>
 
+          <p className="px-6 md:px-8 text-xs text-muted-foreground">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
           {/* Price Anchor + CTA */}
           <div className="p-6 md:p-8 pt-0">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-xl bg-primary/5 border border-primary/15">

@@ -56,8 +56,6 @@ export interface CalculatorResults {
   yearlyBreakdown: YearBreakdown[];
   daktentBreakdown: CostBreakdown;
   hotelBreakdown: CostBreakdown;
-  co2Savings: number;
-  plasticSavings: number;
   scenarios: ScenarioResult[];
 }
 
@@ -178,10 +176,6 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
       (inputs.hotelParkingPerDay * nightsSoFar) + (inputs.touristTaxPerNight * nightsSoFar);
     yearlyBreakdown.push({ year: y, daktentCumulative: dCum, hotelCumulative: hCum, savings: hCum - dCum });
   }
-
-  // Environmental
-  const co2Savings = Math.round(totalNights * 4.5); // ~4.5kg CO2 per hotel night
-  const plasticSavings = Math.round(totalNights * 2.4); // ~2.4 plastic items per hotel night
 
   // === Scenario: Daktent vs Camper Huur ===
   const camperRentalPerDay = inputs.camperHuurPerDay;
@@ -329,8 +323,6 @@ export function calculate(inputs: CalculatorInputs): CalculatorResults {
       ],
       total: totalHotelCost,
     },
-    co2Savings,
-    plasticSavings,
     scenarios: [camperScenario, caravanScenario],
   };
 }

@@ -6,7 +6,7 @@ vi.mock("vite", () => ({ defineConfig: (value: unknown) => value }));
 vi.mock("@vitejs/plugin-react-swc", () => ({ default: () => ({ name: "react-test" }) }));
 vi.mock("lovable-tagger", () => ({ componentTagger: () => ({ name: "tagger-test" }) }));
 import config from "../../vite.config";
-import { routesMeta } from "./routesMeta";
+import { routesMeta, getFaqSchema } from "./routesMeta";
 
 it("writes all public route files with self-referencing URLs and preserves app loading", async () => {
   const directory = await mkdtemp(path.join(tmpdir(), "static-routes-"));
@@ -44,6 +44,7 @@ it("writes all public route files with self-referencing URLs and preserves app l
             { "@type": "ListItem", position: 1, name: "Home", item: "https://daktentroicalculator.online/" },
             { "@type": "ListItem", position: 2, name: route.h1, item: route.canonical },
           ] },
+          ...(getFaqSchema(route) ? [getFaqSchema(route)] : []),
         ]);
         expect(html).not.toContain('"@type": "WebApplication"');
       }
