@@ -11,7 +11,7 @@ import { Testimonials } from "@/components/calculator/Testimonials";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import logoImg from "/logo.png";
+import logoImg from "/logo-64.png";
 import presetWeekend from "@/assets/preset-weekend.jpg";
 import presetFamily from "@/assets/preset-family.jpg";
 import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
@@ -123,6 +123,7 @@ export default function Index() {
         <div className="absolute inset-0">
           <img
             src={heroBg}
+            {...{ fetchpriority: "high" }}
             alt="Daktent bij zonsondergang in de bergen"
             className="w-full h-full object-cover"
             width={1920}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronUp, Menu, X } from "lucide-react";
-import logoImg from "/logo.png";
+import logoImg from "/logo-64.png";
 
 interface TOCItem {
   id: string;
