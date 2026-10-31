@@ -5,7 +5,22 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    let robots = document.head.querySelector('meta[name="robots"]');
+    const existed = Boolean(robots);
+    const previous = robots?.getAttribute("content");
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.appendChild(robots);
+    }
+    robots.setAttribute("content", "noindex");
+    const tag = robots;
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    return () => {
+      if (!existed) tag.remove();
+      else if (previous === null || previous === undefined) tag.removeAttribute("content");
+      else tag.setAttribute("content", previous);
+    };
   }, [location.pathname]);
 
   return (

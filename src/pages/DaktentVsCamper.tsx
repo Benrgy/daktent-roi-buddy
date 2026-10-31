@@ -5,6 +5,7 @@ import { ComparisonTable } from "@/components/article/ComparisonTable";
 import { ProsCons } from "@/components/article/ProsCons";
 import { FAQ } from "@/components/article/FAQ";
 import heroImg from "@/assets/hero-daktent-vs-camper.jpg";
+import { useRouteSeo } from "@/seo/useRouteSeo";
 
 const tocItems = [
   { id: "intro", label: "Introductie" },
@@ -20,10 +21,8 @@ const tocItems = [
 ];
 
 export default function DaktentVsCamper() {
+  const seo = useRouteSeo("/daktent-vs-camper");
   useEffect(() => {
-    document.title = "Daktent vs Camper (2025) — Eerlijke Vergelijking op Kosten & Gemak";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Daktent of camper? Vergelijk de kosten, het gemak en de flexibiliteit in 2025. Ontdek wat beter bij jou past met onze eerlijke analyse en calculator.");
     
     const script = document.createElement("script");
     script.type = "application/ld+json";
@@ -44,7 +43,7 @@ export default function DaktentVsCamper() {
 
   return (
     <ArticleLayout
-      title="Daktent vs Camper"
+      title={seo.h1}
       subtitle="Koop je een daktent of huur je een camper? We vergelijken de kosten, het gemak en de flexibiliteit."
       heroImage={heroImg}
       tocItems={tocItems}
