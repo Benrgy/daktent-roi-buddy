@@ -166,7 +166,7 @@ export default function DaktentVsCamper() {
         </p>
         <p>
           Een camper is een ander verhaal: moeilijk parkeren in steden, brandstofkosten, soms te groot 
-          voor bepaalde wegen, en je hebt een apart rijbewijs nodig voor modellen boven de 3.500 kg.
+          voor bepaalde wegen. Controleer welk rijbewijs nodig is voor de gekozen camper.
         </p>
         <ul>
           <li><strong>Brandstofverbruik:</strong> Vergelijk het verbruik van jouw auto met dat van de gekozen camper</li>
@@ -281,11 +281,11 @@ export default function DaktentVsCamper() {
         <div className="my-6">
           <FAQ items={[
             { q: "Is een daktent echt goedkoper dan een camper huren?", a: "Dat hangt af van jouw huurprijs, aanschafkosten en reispatroon. Vul jouw eigen prijzen in de calculator in." },
-            { q: "Kan een daktent op elke auto?", a: "De meeste SUV's, crossovers en stationwagens zijn geschikt. Je auto moet minimaal 50-75 kg dynamisch daklaadvermogen hebben. Check de specificaties van je auto bij de dealer." },
-            { q: "Is een daktent comfortabel genoeg voor 2 weken vakantie?", a: "Ja, veel gezinnen gebruiken hun daktent voor 2-3 weken vakanties. Met een goed matras, campingkeuken en de juiste uitrusting is het zeer comfortabel. Het is vergelijkbaar met kamperen in een tent, maar dan verhoogd en droger." },
+            { q: "Kan een daktent op elke auto?", a: "Controleer de maximale dakbelasting in het instructieboekje van jouw auto en tel het gewicht van tent en dakdragers op." },
+            { q: "Is een daktent comfortabel genoeg voor een vakantie?", a: "Dat hangt af van jouw voorkeuren, de tent en de uitrusting. Probeer een daktent als je twijfelt of het comfort bij jou past." },
             { q: "Wat als het regent?", a: "Moderne daktenten zijn waterdicht en bestand tegen flinke regenbuien. Een luifel of tarp eronder geeft je extra beschutte ruimte. Bij extreme neerslag heb je in een camper meer comfort, maar voor normaal weer is een daktent prima." },
-            { q: "Heb ik een speciaal rijbewijs nodig voor een daktent?", a: "Nee, dat is juist het mooie. Je rijdt gewoon met je eigen auto en rijbewijs B. Voor grotere campers (boven 3.500 kg) heb je rijbewijs C1 nodig." },
-            { q: "Hoe lang gaat een daktent mee?", a: "Bij goed onderhoud gaat een kwaliteitsdaktent 10-15 jaar mee. De stof, ritsen en hardware zijn ontworpen voor intensief buitengebruik. Vergelijk dat met de afschrijving van een camper." },
+            { q: "Heb ik een speciaal rijbewijs nodig voor een daktent?", a: "Controleer de eisen voor jouw voertuig en uitrusting. Vergelijk je met een camper, controleer dan ook welk rijbewijs voor die camper nodig is." },
+            { q: "Hoe lang gaat een daktent mee?", a: "Dat hangt af van de tent, het gebruik, onderhoud en opslag. Volg de onderhoudsadviezen van de fabrikant." },
           ]} />
         </div>
       </section>
