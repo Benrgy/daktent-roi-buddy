@@ -5,12 +5,9 @@ import { ArticleLayout } from "@/components/article/ArticleLayout";
 import { ProsCons } from "@/components/article/ProsCons";
 import { FAQ } from "@/components/article/FAQ";
 import heroImg from "@/assets/hero-bg.jpg";
+import { PRICE_PICKUP, PRICE_DELIVERED, CHECKED } from "@/data/prijzen";
 
-// Prijzen en specificaties gecontroleerd op 17 oktober 2026 bij peter-penthouse.com
-// (/kopen, /waarom, /faq) en daktrail.nl (/huurprijzen). Bij een prijswijziging hier aanpassen.
-const PRICE_PICKUP = 1800;
-const PRICE_DELIVERED = 1950;
-const CHECKED = "17 oktober 2026";
+// Bronprijzen en controledatum staan centraal in data/prijzen.
 const YEARS = 5;
 const PAGE_URL = "https://daktentroicalculator.online/peter-penthouse-daktent";
 
@@ -342,6 +339,7 @@ export default function PeterPenthouse() {
           dakdragers) ongeveer hetzelfde als huren (€25 per dag zonder dakdragers). Ga je minder vaak, dan is huren goedkoper; ga je vaker, dan wint kopen.
           Huren is ook een goede manier om te testen of een daktent bij je past voordat je {euro(PRICE_DELIVERED)} uitgeeft. Een huurkoopregeling is er niet.
         </p>
+        <p>Bereken met jouw eigen reisplannen en kosten <a href="/daktent-huren-of-kopen">wanneer een daktent kopen goedkoper is dan huren</a>.</p>
       </section>
 
       <section id="pros-cons">

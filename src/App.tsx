@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import DaktentVsHotel from "./pages/DaktentVsHotel.tsx";
 import DaktentVsCamper from "./pages/DaktentVsCamper.tsx";
 import PeterPenthouse from "./pages/PeterPenthouse.tsx";
+import DaktentHurenOfKopen from "./pages/DaktentHurenOfKopen.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/daktent-vs-hotel" element={<DaktentVsHotel />} />
           <Route path="/daktent-vs-camper" element={<DaktentVsCamper />} />
           <Route path="/peter-penthouse-daktent" element={<PeterPenthouse />} />
+          <Route path="/daktent-huren-of-kopen" element={<DaktentHurenOfKopen />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
