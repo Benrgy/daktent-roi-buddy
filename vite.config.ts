@@ -41,7 +41,17 @@ function staticRoutePages() {
       for (const route of routesMeta) {
         const directory = path.join(outputDirectory, route.path.slice(1));
         await mkdir(directory, { recursive: true });
-        await writeFile(path.join(directory, "index.html"), renderRouteHtml(template, route));
+        const filename = path.join(directory, "index.html");
+        const expectedHtml = renderRouteHtml(template, route);
+        await writeFile(filename, expectedHtml);
+        // Fail the build if any generated route file is missing or incomplete.
+        const writtenHtml = await readFile(filename, "utf8");
+        if (writtenHtml !== expectedHtml ||
+          !writtenHtml.includes(`<title>${escapeHtml(route.title)}</title>`) ||
+          !writtenHtml.includes(`<link rel="canonical" href="${escapeHtml(route.canonical)}" />`) ||
+          !writtenHtml.includes(`<h1>${escapeHtml(route.h1)}</h1>`)) {
+          throw new Error(`Invalid static route HTML: ${filename}`);
+        }
       }
     },
   };
