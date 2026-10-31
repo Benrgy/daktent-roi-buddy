@@ -16,6 +16,7 @@ import presetWeekend from "@/assets/preset-weekend.jpg";
 import presetFamily from "@/assets/preset-family.jpg";
 import presetRoadtrip from "@/assets/preset-roadtrip.jpg";
 import presetFirsttime from "@/assets/preset-firsttime.jpg";
+import { useRouteSeo } from "@/seo/useRouteSeo";
 
 const presetBackgrounds: Record<string, string> = {
   weekend: presetWeekend,
@@ -25,6 +26,7 @@ const presetBackgrounds: Record<string, string> = {
 };
 
 export default function Index() {
+  const seo = useRouteSeo("/");
   const [scrolled, setScrolled] = useState(false);
   const [inputs, setInputs] = useState<CalculatorInputs>(() => {
     const saved = localStorage.getItem("daktent-calc-inputs");
@@ -128,8 +130,8 @@ export default function Index() {
             </div>
 
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
-              Verdient Een Daktent<br />
-              <span className="text-gradient">Zich Terug?</span>
+              {seo.h1.split(" Zich ")[0]}<br />
+              <span className="text-gradient">Zich {seo.h1.split(" Zich ")[1]}</span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed">

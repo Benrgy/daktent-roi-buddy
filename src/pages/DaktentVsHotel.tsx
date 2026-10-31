@@ -5,6 +5,7 @@ import { ComparisonTable } from "@/components/article/ComparisonTable";
 import { ProsCons } from "@/components/article/ProsCons";
 import { FAQ } from "@/components/article/FAQ";
 import heroImg from "@/assets/hero-daktent-vs-hotel.jpg";
+import { useRouteSeo } from "@/seo/useRouteSeo";
 
 const tocItems = [
   { id: "intro", label: "Introductie" },
@@ -20,10 +21,8 @@ const tocItems = [
 ];
 
 export default function DaktentVsHotel() {
+  const seo = useRouteSeo("/daktent-vs-hotel");
   useEffect(() => {
-    document.title = "Daktent vs Hotel (2025) — Wat is Goedkoper? Eerlijke Vergelijking";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Is een daktent goedkoper dan een hotel? Ontdek de echte kosten, comfort en flexibiliteit in deze eerlijke vergelijking voor 2025. Met calculator.");
     
     // JSON-LD
     const script = document.createElement("script");
@@ -45,7 +44,7 @@ export default function DaktentVsHotel() {
 
   return (
     <ArticleLayout
-      title="Daktent vs Hotel"
+      title={seo.h1}
       subtitle="Is een daktent écht goedkoper dan een hotel? We rekenen het eerlijk voor in 2025."
       heroImage={heroImg}
       tocItems={tocItems}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ArticleLayout } from "@/components/article/ArticleLayout";
 import { FAQ } from "@/components/article/FAQ";
@@ -6,10 +6,8 @@ import { ProsCons } from "@/components/article/ProsCons";
 import { CHECKED, PRICE_DELIVERED, PRICE_PICKUP, PETER_PENTHOUSE_SOURCE, RENTAL_EXAMPLE } from "@/data/prijzen";
 import { hurenOfKopen, type HurenOfKopenInputs } from "@/lib/hurenOfKopen";
 import heroImg from "@/assets/hero-bg.jpg";
+import { useRouteSeo } from "@/seo/useRouteSeo";
 
-const PAGE_URL = "https://daktentroicalculator.online/daktent-huren-of-kopen";
-const TITLE = "Daktent huren of kopen? Rekenhulp: wanneer is kopen goedkoper";
-const DESCRIPTION = "Vergelijk daktent huren en kopen met je eigen reisplannen, huurprijs, aanschaf, dakdragers, stalling en verkoopwaarde. Bereken jouw omslagpunt.";
 const initialInputs: HurenOfKopenInputs = { tripsPerYear: 2, rentPerTrip: RENTAL_EXAMPLE.total, years: 5, purchasePrice: PRICE_DELIVERED, roofRacks: 0, storagePerMonth: 0, resaleValue: 0 };
 const tocItems = [
   { id: "intro", label: "Kort antwoord" },
@@ -39,28 +37,13 @@ const fields: { key: keyof HurenOfKopenInputs; label: string; help?: string }[] 
 ];
 
 export default function DaktentHurenOfKopen() {
+  const seo = useRouteSeo("/daktent-huren-of-kopen");
   const [values, setValues] = useState<Record<keyof HurenOfKopenInputs, string>>(() => Object.fromEntries(Object.entries(initialInputs).map(([key, value]) => [key, String(value)])) as Record<keyof HurenOfKopenInputs, string>);
   const inputs = useMemo(() => Object.fromEntries(Object.entries(values).map(([key, value]) => [key, value.trim() === "" ? NaN : Number(value)])) as unknown as HurenOfKopenInputs, [values]);
   const result = useMemo(() => hurenOfKopen(inputs), [inputs]);
 
-  useEffect(() => {
-    const previousTitle = document.title;
-    const meta = document.querySelector('meta[name="description"]');
-    const previousDescription = meta?.getAttribute("content") ?? "";
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const previousCanonical = canonical?.getAttribute("href") ?? "";
-    document.title = TITLE;
-    meta?.setAttribute("content", DESCRIPTION);
-    canonical?.setAttribute("href", PAGE_URL);
-    return () => {
-      document.title = previousTitle;
-      meta?.setAttribute("content", previousDescription);
-      canonical?.setAttribute("href", previousCanonical);
-    };
-  }, []);
-
   return (
-    <ArticleLayout title="Daktent huren of kopen? Reken uit wanneer kopen goedkoper is" subtitle="Jouw reisplannen, jouw kosten, jouw omslagpunt." heroImage={heroImg} heroAlt="Daktent bij zonsondergang in de bergen (sfeerbeeld)" tocItems={tocItems} publishDate="Oktober 2026" readTime="Variabele" breadcrumbLabel="Daktent huren of kopen">
+    <ArticleLayout title={seo.h1} subtitle="Jouw reisplannen, jouw kosten, jouw omslagpunt." heroImage={heroImg} heroAlt="Daktent bij zonsondergang in de bergen (sfeerbeeld)" tocItems={tocItems} publishDate="Oktober 2026" readTime="Variabele" breadcrumbLabel="Daktent huren of kopen">
       <section id="intro">
         <h2>Kort antwoord</h2>
         <p>Huren is goedkoper als je weinig gaat. Kopen wint vanaf een bepaald aantal reizen. De rekenhulp hieronder rekent jouw omslagpunt uit.</p>

@@ -6,10 +6,12 @@ import { ProsCons } from "@/components/article/ProsCons";
 import { FAQ } from "@/components/article/FAQ";
 import heroImg from "@/assets/hero-bg.jpg";
 import { PRICE_PICKUP, PRICE_DELIVERED, CHECKED } from "@/data/prijzen";
+import { getRouteMeta } from "@/seo/routesMeta";
+import { useRouteSeo } from "@/seo/useRouteSeo";
 
 // Bronprijzen en controledatum staan centraal in data/prijzen.
 const YEARS = 5;
-const PAGE_URL = "https://daktentroicalculator.online/peter-penthouse-daktent";
+const PAGE_URL = getRouteMeta("/peter-penthouse-daktent").canonical;
 
 const tocItems = [
   { id: "intro", label: "Kort antwoord" },
@@ -51,19 +53,13 @@ const faqItems = [
 ];
 
 export default function PeterPenthouse() {
+  const seo = useRouteSeo("/peter-penthouse-daktent");
   const [delivered, setDelivered] = useState(true);
   const [nightsPerYear, setNightsPerYear] = useState(20);
   const price = delivered ? PRICE_DELIVERED : PRICE_PICKUP;
   const live = useMemo(() => perNight(price, nightsPerYear), [price, nightsPerYear]);
 
   useEffect(() => {
-    document.title = "Peter Penthouse daktent: review, prijs en kosten per nacht";
-    const meta = document.querySelector('meta[name="description"]');
-    const prevDescription = meta?.getAttribute("content") ?? "";
-    meta?.setAttribute("content", "Peter Penthouse daktent: €1.800 ophalen, €1.950 bezorgd. Specificaties, wat erbij zit, huren of kopen en wat hij per nacht kost, uitgerekend met onze calculator.");
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const prevCanonical = canonical?.getAttribute("href") ?? "";
-    canonical?.setAttribute("href", PAGE_URL);
 
     const script = document.createElement("script");
     script.type = "application/ld+json";
@@ -88,8 +84,6 @@ export default function PeterPenthouse() {
     document.head.appendChild(script);
     return () => {
       document.head.removeChild(script);
-      meta?.setAttribute("content", prevDescription);
-      canonical?.setAttribute("href", prevCanonical);
     };
   }, []);
 
@@ -107,7 +101,7 @@ export default function PeterPenthouse() {
 
   return (
     <ArticleLayout
-      title="Peter Penthouse daktent"
+      title={seo.h1}
       subtitle="Review op papier: prijs, specificaties en wat hij je per nacht kost, uitgerekend met onze calculator."
       heroImage={heroImg}
       heroAlt="Daktent op een auto bij zonsondergang (sfeerbeeld, niet de Peter Penthouse)"
