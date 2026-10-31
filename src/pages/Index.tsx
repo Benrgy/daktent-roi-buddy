@@ -8,9 +8,6 @@ import { ShareModal } from "@/components/calculator/ShareModal";
 import { WhyRooftopTent } from "@/components/calculator/WhyRooftopTent";
 import { PeterPenthouseSpotlight } from "@/components/calculator/PeterPenthouseSpotlight";
 import { Testimonials } from "@/components/calculator/Testimonials";
-import { EmailCaptureModal } from "@/components/calculator/EmailCaptureModal";
-import { SocialProofBanner } from "@/components/calculator/SocialProofBanner";
-import { ExitIntentPopup } from "@/components/calculator/ExitIntentPopup";
 import { ChevronDown, MapPin, Star, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -35,7 +32,6 @@ export default function Index() {
   });
   const [activePreset, setActivePreset] = useState<string | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
-  const [emailOpen, setEmailOpen] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
   const results = useMemo(() => calculate(inputs), [inputs]);
@@ -50,15 +46,6 @@ export default function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!localStorage.getItem("daktent-email-dismissed")) {
-        setEmailOpen(true);
-      }
-    }, 45000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleChange = (updates: Partial<CalculatorInputs>) => {
     setInputs((prev) => ({ ...prev, ...updates }));
     setActivePreset(null);
@@ -69,11 +56,6 @@ export default function Index() {
     setActivePreset(key);
     setInputs((prev) => ({ ...prev, ...presets[key].values }));
     setShowResults(true);
-  };
-
-  const handleEmailClose = () => {
-    setEmailOpen(false);
-    localStorage.setItem("daktent-email-dismissed", "true");
   };
 
   return (
@@ -210,8 +192,9 @@ export default function Index() {
       </AnimatePresence>
 
       <main id="calculator" className="relative z-10 max-w-6xl mx-auto px-4 py-10 md:py-14 scroll-mt-16">
-        {/* Social Proof Banner */}
-        <SocialProofBanner />
+        <p className="mb-6 text-center text-sm text-muted-foreground">
+          Gratis · zonder account · rekent alleen met jouw eigen invoer
+        </p>
 
         {/* Presets */}
         <div className="mb-10">
@@ -336,8 +319,6 @@ export default function Index() {
 
       {/* Modals */}
       <ShareModal isOpen={shareOpen} onClose={() => setShareOpen(false)} results={results} inputs={inputs} />
-      <EmailCaptureModal isOpen={emailOpen} onClose={handleEmailClose} />
-      <ExitIntentPopup />
     </div>
   );
 }
