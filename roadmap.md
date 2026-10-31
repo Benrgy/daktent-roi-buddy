@@ -1,5 +1,5 @@
 # Taken
-- [ ] Tien reviewcorrecties uitvoeren: milieu, voorbeeldwaarden, ervaringen, disclosure, vergelijkingen, FAQ-schema, llms.txt, sitemap, labels en header; tests en automatische build controleren.
+- [x] Tien reviewcorrecties uitgevoerd; 28 tests geslaagd, automatische build OK, calculatorinteractie, gekoppelde labels, FAQ-schema’s en mobiele headers gecontroleerd. Statische HTML via plugin-integratietests gecontroleerd (lokale dist-map niet beschikbaar).
 - [x] Route-eigen schema’s en letterlijke artikel-/FAQ-teksten toevoegen aan statische HTML; validatiefouten getest, 24 tests en automatische build geslaagd; statisch blok bevat 311 woorden.
 - [x] Gedeelde SEO-teksten en statische HTML voor alle vijf routes toevoegen.
 - [x] 404 noindex, 21 tests en automatische build controleren; routeplugin schrijft en leest HTML terug, statisch blok en React-vervanging getest.
