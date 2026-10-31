@@ -75,37 +75,7 @@ export default function DaktentVsCamper() {
           Vergelijk de kosten met jouw eigen reisplannen en prijzen in de <a href="/#calculator">calculator</a>.
         </p>
 
-        <div className="not-prose my-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏕️ Daktent </h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Daktent aanschaf</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Dakdragers</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Camping</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Brandstof eigen auto</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Onderhoud</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Eten zelf koken</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-primary text-lg">Jouw invoer</strong></li>
-              </ul>
-            </div>
-            <div className="rounded-xl border border-border bg-muted/30 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🚐 Camper Huren </h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Huur</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Verzekering</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Brandstof camper</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Campingplaats camper</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between"><span>Eten</span> <strong className="text-foreground">Jouw invoer</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-[hsl(var(--danger))] text-lg">Jouw invoer</strong></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-4 p-4 rounded-xl bg-[hsl(var(--success-light))] border border-[hsl(var(--success))]/20 text-center">
-            <p className="text-lg font-bold text-foreground">Vergelijk jouw totale kosten</p>
-            <p className="text-sm text-muted-foreground"><a href="/#calculator">Reken het uit met de calculator</a></p>
-          </div>
-        </div>
+        <p><a href="/#calculator">Vergelijk met jouw eigen prijzen in de calculator</a></p>
 
         <p>
           Overweeg je een eigen camper? Neem aanschaf, verzekering, wegenbelasting, onderhoud en stalling mee in je vergelijking.
@@ -307,7 +277,7 @@ export default function DaktentVsCamper() {
 
         {/* Peter Penthouse aanbeveling */}
         <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
-          <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
+          <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Uitgelicht: Peter Penthouse Daktent</h3>
           <p className="text-sm text-muted-foreground mb-3">
             De Peter Penthouse (€1.800 opgehaald, €1.950 bezorgd) wordt geleverd als pakket. 
             Ingebouwd 60W zonnepaneel, 6 cm premium matras, inklapbaar ontwerp — 
@@ -319,6 +289,7 @@ export default function DaktentVsCamper() {
             <span>🚗 Rijdt als een gewone auto</span>
             <span>🔧 Geen onderhoud zoals een camper</span>
           </div>
+          <p className="text-xs text-muted-foreground mb-3">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
             target="_blank" rel="noopener noreferrer"

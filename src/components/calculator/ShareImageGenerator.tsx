@@ -19,7 +19,8 @@ function generateShareImage(results: CalculatorResults, inputs: CalculatorInputs
     const h = 1080;
     canvas.width = w;
     canvas.height = h;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) { resolve(""); return; }
 
     // Background gradient (forest green to amber)
     const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -95,10 +96,9 @@ function generateShareImage(results: CalculatorResults, inputs: CalculatorInputs
     // Stats row
     const stats = [
       { label: "Break-even", value: `${results.breakEvenTrips > 200 ? "200+" : results.breakEvenTrips} nachten` },
-      { label: "CO₂ bespaard", value: `${results.co2Savings}kg` },
     ];
     stats.forEach((stat, i) => {
-      const x = cardX + (cardW / 2) * i + cardW / 4;
+      const x = cardX + (cardW / stats.length) * (i + 0.5);
       ctx.font = "bold 32px 'DM Sans', sans-serif";
       ctx.fillStyle = "#1a3a25";
       ctx.fillText(stat.value, x, cardY + 440);

@@ -6,13 +6,15 @@ import { SavingsChart } from "./SavingsChart";
 import { ShareImageButton } from "./ShareImageGenerator";
 import { PdfExportButton } from "./PdfExport";
 import { motion } from "framer-motion";
-import { TrendingUp, Leaf, Share2 } from "lucide-react";
+import { TrendingUp, Share2 } from "lucide-react";
 import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 
 interface ResultsSectionProps {
   results: CalculatorResults;
   inputs: CalculatorInputs;
   onShare: () => void;
+  isExample?: boolean;
+  onChoose?: () => void;
 }
 
 type ScenarioTab = "hotel" | "camper" | "caravan";
@@ -86,6 +88,7 @@ function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs:
         <p className="text-sm text-muted-foreground mb-2">
           Totale investering terug in {breakEvenYears.toFixed(1)} jaar.
         </p>
+        <p className="text-xs text-muted-foreground mb-2">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
@@ -169,7 +172,7 @@ const scenarioTabs: { key: ScenarioTab; label: string; emoji: string }[] = [
   { key: "caravan", label: "vs Caravan", emoji: "🏠" },
 ];
 
-export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps) {
+export function ResultsSection({ results, inputs, onShare, isExample, onChoose }: ResultsSectionProps) {
   const [activeTab, setActiveTab] = useState<ScenarioTab>("hotel");
 
   // Get current scenario data based on tab
@@ -210,7 +213,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         {scenarioTabs.map((tab) => (
           <button
             key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
+            onClick={() => { setActiveTab(tab.key); onChoose?.(); }}
             className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
               activeTab === tab.key
                 ? "bg-card text-foreground shadow-sm"
@@ -224,6 +227,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         ))}
       </div>
 
+      {isExample && <p role="status" className="text-sm text-muted-foreground">Voorbeeld met standaardwaarden. Vul je eigen prijzen in voor jouw uitkomst.</p>}
       <HeroResult
         savings={data.savings}
         breakEvenTrips={data.breakEvenTrips}
@@ -270,24 +274,10 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
         <SavingsChart yearlyBreakdown={data.yearlyBreakdown} />
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="card-elevated p-5">
-        <h4 className="section-header">🌍 Milieu Impact</h4>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="text-center p-3 rounded-xl bg-accent/5">
-            <Leaf className="w-6 h-6 text-accent mx-auto mb-1" />
-            <p className="text-2xl font-bold text-foreground">{results.co2Savings}kg</p>
-            <p className="text-xs text-muted-foreground">CO₂ besparing</p>
-          </div>
-          <div className="text-center p-3 rounded-xl bg-accent/5">
-            <span className="text-2xl">♻️</span>
-            <p className="text-2xl font-bold text-foreground">{results.plasticSavings}</p>
-            <p className="text-xs text-muted-foreground">Hotel flesjes vermeden</p>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Affiliate CTA */}
       {results.totalSavings > 0 && (
+        <>
+        <p className="text-xs text-muted-foreground">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
         <a
           href="https://www.peter-penthouse.com/?ref=calculator"
           target="_blank" rel="noopener noreferrer"
@@ -315,6 +305,7 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
             </div>
           </div>
         </a>
+        </>
       )}
 
       {/* Share image generator */}

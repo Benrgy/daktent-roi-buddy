@@ -32,6 +32,8 @@ export default function Index() {
     const saved = localStorage.getItem("daktent-calc-inputs");
     return saved ? { ...defaultInputs, ...JSON.parse(saved) } : defaultInputs;
   });
+  const [editedFields, setEditedFields] = useState<string[]>(() => JSON.parse(localStorage.getItem("daktent-calc-edited-fields") || "[]"));
+  const [hasInteracted, setHasInteracted] = useState(() => localStorage.getItem("daktent-calc-interacted") === "true");
   const [activePreset, setActivePreset] = useState<string | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [showResults, setShowResults] = useState(false);
@@ -40,7 +42,9 @@ export default function Index() {
 
   useEffect(() => {
     localStorage.setItem("daktent-calc-inputs", JSON.stringify(inputs));
-  }, [inputs]);
+    localStorage.setItem("daktent-calc-edited-fields", JSON.stringify(editedFields));
+    localStorage.setItem("daktent-calc-interacted", String(hasInteracted));
+  }, [inputs, editedFields, hasInteracted]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -49,12 +53,16 @@ export default function Index() {
   }, []);
 
   const handleChange = (updates: Partial<CalculatorInputs>) => {
+    setHasInteracted(true);
+    setEditedFields(prev => [...new Set([...prev, ...Object.keys(updates)])]);
     setInputs((prev) => ({ ...prev, ...updates }));
     setActivePreset(null);
     setShowResults(true);
   };
 
   const handlePreset = (key: string) => {
+    setHasInteracted(true);
+    setEditedFields(prev => [...new Set([...prev, ...Object.keys(presets[key].values)])]);
     setActivePreset(key);
     setInputs((prev) => ({ ...prev, ...presets[key].values }));
     setShowResults(true);
@@ -66,14 +74,14 @@ export default function Index() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background/95 backdrop-blur-lg shadow-md border-b border-border/50"
-            : "bg-transparent"
+            ? "bg-background sm:bg-background/95 backdrop-blur-lg shadow-md border-b border-border/50"
+            : "bg-background sm:bg-transparent"
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <img src={logoImg} alt="Daktent ROI Calculator logo" width={28} height={28} className="w-7 h-7" />
-            <span className={`font-bold text-sm transition-colors duration-300 ${scrolled ? "text-foreground" : "text-white"}`}>
+            <span className={`font-bold text-sm transition-colors duration-300 ${scrolled ? "text-foreground" : "text-foreground sm:text-primary-foreground"}`}>
               Daktent ROI Calculator
             </span>
           </a>
@@ -81,7 +89,7 @@ export default function Index() {
             {[
               { href: "#calculator", label: "Calculator" },
               { href: "#waarom", label: "Waarom" },
-              { href: "#testimonials", label: "Reviews" },
+              { href: "#testimonials", label: "Ervaringen" },
             ].map((link) => (
               <a
                 key={link.href}
@@ -100,7 +108,7 @@ export default function Index() {
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
                 scrolled
                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                  : "bg-white/15 text-white hover:bg-white/25 backdrop-blur-sm"
+                  : "bg-primary text-primary-foreground hover:bg-primary/90 sm:bg-white/15 sm:text-white sm:hover:bg-white/25 backdrop-blur-sm"
               }`}
             >
               Start Berekening
@@ -124,10 +132,7 @@ export default function Index() {
 
         <div className="relative z-10 py-16 md:py-24 px-4">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/90 text-sm font-medium backdrop-blur-md border border-white/10">
-              <img src={logoImg} alt="Daktent ROI Calculator logo" width={24} height={24} className="w-6 h-6" />
-              Daktent ROI Calculator
-            </div>
+
 
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
               {seo.h1.split(" Zich ")[0]}<br />
@@ -167,7 +172,6 @@ export default function Index() {
         <div className="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
           <span className="flex items-center gap-2">🏕️ <strong className="text-foreground">3 scenario's</strong> vergelijken</span>
           <span className="flex items-center gap-2">📊 <strong className="text-foreground">Visuele</strong> grafieken</span>
-          <span className="flex items-center gap-2">🌍 <strong className="text-foreground">CO₂</strong> impact</span>
           <span className="flex items-center gap-2">⚡ <strong className="text-foreground">30 sec</strong> resultaat</span>
         </div>
       </motion.div>
@@ -236,10 +240,10 @@ export default function Index() {
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
-            <InputSection inputs={inputs} onChange={handleChange} />
+            <InputSection inputs={inputs} onChange={handleChange} editedFields={editedFields} />
           </div>
           <div className="lg:col-span-3 lg:sticky lg:top-8 lg:self-start">
-            <ResultsSection results={results} inputs={inputs} onShare={() => setShareOpen(true)} />
+            <ResultsSection results={results} inputs={inputs} isExample={!hasInteracted} onChoose={() => setHasInteracted(true)} onShare={() => setShareOpen(true)} />
           </div>
         </div>
       </main>
@@ -302,6 +306,7 @@ export default function Index() {
         className="border-t border-border bg-card py-10 px-4"
       >
         <div className="max-w-5xl mx-auto text-center space-y-4">
+          <p className="text-xs text-muted-foreground">Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
           <a
             href="https://www.peter-penthouse.com/?ref=calculator"
             target="_blank" rel="noopener noreferrer"

@@ -55,10 +55,6 @@ function generatePdfHtml(results: CalculatorResults, inputs: CalculatorInputs): 
   .footer a { color:#1a5c3a; font-weight:600; }
   .cta { display:inline-block; margin-top:16px; padding:12px 24px; background:#1a5c3a; color:white; border-radius:10px; 
     text-decoration:none; font-weight:700; font-size:14px; }
-  .env { display:flex; gap:16px; margin:16px 0; }
-  .env-card { flex:1; text-align:center; padding:14px; background:#eaf5ef; border-radius:12px; }
-  .env-card .val { font-size:22px; font-weight:700; color:#1a5c3a; }
-  .env-card .lbl { font-size:11px; color:#5a5048; margin-top:4px; }
 </style>
 </head>
 <body>
@@ -114,17 +110,10 @@ function generatePdfHtml(results: CalculatorResults, inputs: CalculatorInputs): 
     </table>
   </div>
 
-  <div class="section">
-    <h2>🌍 Milieu Impact</h2>
-    <div class="env">
-      <div class="env-card"><div class="val">${results.co2Savings}kg</div><div class="lbl">CO₂ bespaard</div></div>
-      <div class="env-card"><div class="val">${results.plasticSavings}</div><div class="lbl">Plastic flesjes vermeden</div></div>
-    </div>
-  </div>
-
   <div class="footer">
     <p>Berekend met de Daktent ROI Calculator</p>
     <p style="margin-top:4px;">Deze berekening is indicatief. Werkelijke kosten kunnen afwijken.</p>
+    <p>Peter Penthouse staat op deze site uitgelicht. Links naar peter-penthouse.com bevatten een verwijzingscode.</p>
     <a class="cta" href="https://www.peter-penthouse.com/?ref=calculator-pdf">⭐ Bekijk Peter Penthouse Daktenten →</a>
   </div>
 </div>
