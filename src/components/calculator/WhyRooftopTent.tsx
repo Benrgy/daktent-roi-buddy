@@ -15,8 +15,8 @@ const usps = [
   },
   {
     icon: PiggyBank,
-    title: "Flink Besparen",
-    desc: "Na 1-2 seizoenen terugverdiend. Geen hotelprijzen, geen Airbnb-fees meer.",
+    title: "Kosten Vergelijken",
+    desc: "Wanneer kopen voordelig is, hangt af van jouw kosten en hoe vaak je gaat.",
     img: uspSavings,
     alt: "Spaarvarken voor een tent als symbool van besparing",
   },
@@ -53,7 +53,7 @@ export function WhyRooftopTent() {
             Meer dan een tent op je dak
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Een daktent is een investering in vrijheid. Dit is waarom duizenden reizigers de overstap maken.
+            Een daktent is een investering in vrijheid. Ontdek wat bij jouw reisplannen past.
           </p>
         </motion.div>
 
@@ -83,7 +83,7 @@ export function WhyRooftopTent() {
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg font-bold text-foreground mb-1.5">{usp.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{usp.desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{usp.desc}{usp.icon === PiggyBank && <> <a href="/#calculator" className="text-primary hover:underline">Reken het uit met de calculator.</a></>}</p>
               </div>
             </motion.div>
           ))}

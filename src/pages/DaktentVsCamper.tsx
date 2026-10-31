@@ -56,8 +56,7 @@ export default function DaktentVsCamper() {
       <section id="intro">
         <h2>Daktent of Camper: De Grote Vergelijking van 2025</h2>
         <p>
-          <strong>Een daktent kost €1.500-€3.000 eenmalig, terwijl een camper huren al snel €100-€180 per dag kost.</strong>{" "}
-          Na slechts 2-3 weken kamperen heb je de daktent terugverdiend. Maar is het zo simpel?
+          Wanneer een daktent zich terugverdient tegenover camperhuur, hangt af van jouw prijzen en hoe vaak je gaat. <a href="/#calculator">Reken het uit met de calculator</a>.
         </p>
         <p>
           De keuze tussen een daktent en een camper gaat verder dan alleen geld. Het gaat om lifestyle, 
@@ -68,57 +67,49 @@ export default function DaktentVsCamper() {
           van een daktent — na dit artikel weet je precies wat bij jou past.
         </p>
 
-        <blockquote>
-          "We huurden 3 jaar een camper voor onze zomervakantie. Toen we uitrekenden dat we €12.000 hadden uitgegeven, 
-          kochten we een daktent van €2.200. Beste beslissing ooit."
-          — Robert, 41, Den Haag
-        </blockquote>
       </section>
 
       {/* Kosten */}
       <section id="kosten">
         <h2>Kostenvergelijking: Daktent vs Camper Huren</h2>
         <p>
-          Laten we een realistisch scenario doorrekenen: <strong>een gezin dat 21 dagen per jaar op vakantie gaat</strong>, 
-          vergeleken over 5 jaar.
+          Vergelijk de kosten met jouw eigen reisplannen en prijzen in de <a href="/#calculator">calculator</a>.
         </p>
 
         <div className="not-prose my-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏕️ Daktent (5 jaar)</h3>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏕️ Daktent </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Daktent aanschaf</span> <strong className="text-foreground">€2.200</strong></li>
-                <li className="flex justify-between"><span>Dakdragers</span> <strong className="text-foreground">€400</strong></li>
-                <li className="flex justify-between"><span>Camping (21d × 5j × €30)</span> <strong className="text-foreground">€3.150</strong></li>
-                <li className="flex justify-between"><span>Brandstof eigen auto</span> <strong className="text-foreground">€2.625</strong></li>
-                <li className="flex justify-between"><span>Onderhoud (5j × €75)</span> <strong className="text-foreground">€375</strong></li>
-                <li className="flex justify-between"><span>Eten zelf koken</span> <strong className="text-foreground">€5.250</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-primary text-lg">€14.000</strong></li>
+                <li className="flex justify-between"><span>Daktent aanschaf</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Dakdragers</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Camping</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Brandstof eigen auto</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Onderhoud</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Eten zelf koken</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-primary text-lg">Jouw invoer</strong></li>
               </ul>
             </div>
             <div className="rounded-xl border border-border bg-muted/30 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🚐 Camper Huren (5 jaar)</h3>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4">🚐 Camper Huren </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Huur (21d × 5j × €140)</span> <strong className="text-foreground">€14.700</strong></li>
-                <li className="flex justify-between"><span>Verzekering (21d × 5j × €15)</span> <strong className="text-foreground">€1.575</strong></li>
-                <li className="flex justify-between"><span>Brandstof camper</span> <strong className="text-foreground">€5.250</strong></li>
-                <li className="flex justify-between"><span>Campingplaats camper</span> <strong className="text-foreground">€5.250</strong></li>
-                <li className="flex justify-between"><span>Eten</span> <strong className="text-foreground">€5.250</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-[hsl(var(--danger))] text-lg">€32.025</strong></li>
+                <li className="flex justify-between"><span>Huur</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Verzekering</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Brandstof camper</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Campingplaats camper</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Eten</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-[hsl(var(--danger))] text-lg">Jouw invoer</strong></li>
               </ul>
             </div>
           </div>
           <div className="mt-4 p-4 rounded-xl bg-[hsl(var(--success-light))] border border-[hsl(var(--success))]/20 text-center">
-            <p className="text-lg font-bold text-foreground">💰 Besparing met daktent: <span className="text-[hsl(var(--success))]">€18.025</span> in 5 jaar</p>
-            <p className="text-sm text-muted-foreground">Dat is €3.605 per jaar of €300 per maand</p>
+            <p className="text-lg font-bold text-foreground">Vergelijk jouw totale kosten</p>
+            <p className="text-sm text-muted-foreground"><a href="/#calculator">Reken het uit met de calculator</a></p>
           </div>
         </div>
 
         <p>
-          En een eigen camper kopen dan? Een fatsoenlijke camper kost €40.000-€80.000. Tel daar verzekering (€1.200/jaar), 
-          wegenbelasting (€600/jaar), onderhoud (€1.000/jaar) en stalling (€1.200/jaar) bij op. 
-          <strong>Zelfs een eigen camper is 3-5x duurder dan een daktent.</strong>
+          Overweeg je een eigen camper? Neem aanschaf, verzekering, wegenbelasting, onderhoud en stalling mee in je vergelijking.
         </p>
         <p>
           <a href="/#calculator">Bereken je eigen besparing →</a>
@@ -174,11 +165,11 @@ export default function DaktentVsCamper() {
           en op normale plekken tanken.
         </p>
         <p>
-          Een camper is een ander verhaal: moeilijk parkeren in steden, duur tanken (1 op 6-8), soms te groot 
-          voor bepaalde wegen, en je hebt een apart rijbewijs nodig voor modellen boven de 3.500 kg.
+          Een camper is een ander verhaal: moeilijk parkeren in steden, brandstofkosten, soms te groot 
+          voor bepaalde wegen. Controleer welk rijbewijs nodig is voor de gekozen camper.
         </p>
         <ul>
-          <li><strong>Brandstofverbruik:</strong> Auto met daktent: 1 op 12-15 · Camper: 1 op 6-8</li>
+          <li><strong>Brandstofverbruik:</strong> Vergelijk het verbruik van jouw auto met dat van de gekozen camper</li>
           <li><strong>Tolkosten:</strong> Auto-tarief vs hogere campertarieven</li>
           <li><strong>Parkeren in steden:</strong> Daktent-auto past overal · Camper vaak niet</li>
           <li><strong>Veerpont:</strong> Auto-tarief vs duurdere camper-tarieven</li>
@@ -192,16 +183,16 @@ export default function DaktentVsCamper() {
           <ComparisonTable
             altLabel="🚐 Camper"
             rows={[
-              { label: "Aanschafprijs", daktent: "€1.500-3.000", alt: "€40.000-80.000" },
-              { label: "Huurkosten per dag", daktent: "n.v.t.", alt: "€100-180" },
+              { label: "Aanschafprijs", daktent: "Jouw tentprijs", alt: "Jouw camperprijs" },
+              { label: "Huurkosten per dag", daktent: "n.v.t.", alt: "Prijs van jouw verhuurder" },
               { label: "Rijdt als een auto", daktent: "yes", alt: "no" },
               { label: "Parkeren in steden", daktent: "yes", alt: "no" },
               { label: "Eigen keuken", daktent: "no", alt: "yes" },
               { label: "Eigen toilet", daktent: "no", alt: "partial" },
               { label: "Opbouwtijd", daktent: "1-2 min", alt: "0 min" },
-              { label: "Brandstofverbruik", daktent: "1:12-15", alt: "1:6-8" },
+              { label: "Brandstofverbruik", daktent: "Verbruik van jouw auto", alt: "Verbruik van jouw camper" },
               { label: "Stalling nodig", daktent: "no", alt: "yes" },
-              { label: "Verzekering", daktent: "partial", alt: "€1.200/jaar" },
+              { label: "Verzekering", daktent: "partial", alt: "Jouw verzekeringskosten" },
               { label: "Geschikt voor off-road", daktent: "yes", alt: "no" },
               { label: "Huisdieren mee", daktent: "yes", alt: "partial" },
               { label: "Natuurbeleving", daktent: "yes", alt: "partial" },
@@ -228,10 +219,10 @@ export default function DaktentVsCamper() {
         <h3>🚐 Kies een camper als je:</h3>
         <ul>
           <li>Maximaal wooncomfort op reis wilt (keuken, toilet, douche)</li>
-          <li>Langere reizen maakt van 4+ weken</li>
+          <li>Langere reizen maakt</li>
           <li>Slecht weer geen probleem mag zijn</li>
           <li>Fysieke beperkingen hebt</li>
-          <li>Met meer dan 4 personen reist</li>
+          <li>Met een groep reist die extra leefruimte nodig heeft</li>
           <li>Fulltime wilt reizen (digital nomad)</li>
         </ul>
       </section>
@@ -242,10 +233,10 @@ export default function DaktentVsCamper() {
         <div className="my-6">
           <ProsCons
             pros={[
-              "10-20x goedkoper in aanschaf dan een eigen camper",
+              "Vergelijk de aanschafkosten met jouw eigen budget",
               "Je eigen auto blijft bruikbaar voor dagelijks gebruik",
               "Geen stalling, extra verzekering of wegenbelasting nodig",
-              "Veel minder brandstofkosten dankzij lager verbruik",
+              "Brandstofkosten vergelijken voor jouw auto en camper",
               "Parkeren en manoeuvreren zoals met een gewone auto",
               "Ideaal voor off-road en moeilijk bereikbare plekken",
               "In 1-2 minuten opgebouwd — sneller dan een camper parkeren",
@@ -255,7 +246,7 @@ export default function DaktentVsCamper() {
               "Minder bescherming bij extreem slecht weer",
               "Beperktere leefruimte vergeleken met camper",
               "Zelf koken op campinggastel vereist aanpassingsvermogen",
-              "Niet ideaal voor lange reizen van 4+ weken",
+              "Minder leefruimte tijdens lange reizen",
               "Matras is comfortabel maar kleiner dan een camperbed",
             ]}
           />
@@ -266,23 +257,8 @@ export default function DaktentVsCamper() {
       <section id="ervaringen">
         <h2>Ervaringen: Van Camper naar Daktent (2025)</h2>
         
-        <blockquote>
-          "5 jaar camperhuur = €18.000 uitgegeven en niks over. Nu kamperen we met onze daktent 
-          al 2 jaar en hebben we nog steeds dezelfde tent. Totale kosten tot nu toe: €4.000."
-          <br /><strong>— Thijs & Marloes, Rotterdam (januari 2025)</strong>
-        </blockquote>
 
-        <blockquote>
-          "Het mooiste aan een daktent is dat je auto gewoon je auto blijft. Maandag naar werk, 
-          vrijdag klap je de tent uit. Probeer dat maar eens met een camper."
-          <br /><strong>— Dennis, 36, Eindhoven (februari 2025)</strong>
-        </blockquote>
 
-        <blockquote>
-          "We hadden een eigen camper van €55.000. Tussen stalling, verzekering en onderhoud 
-          waren we €4.000 per jaar kwijt — zonder te rijden. Nu doen we alles met de daktent."
-          <br /><strong>— Annemiek, 52, Groningen (maart 2025)</strong>
-        </blockquote>
         {/* YouTube embed */}
         <div className="not-prose my-6">
           <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
@@ -304,12 +280,12 @@ export default function DaktentVsCamper() {
         <h2>Veelgestelde Vragen: Daktent vs Camper</h2>
         <div className="my-6">
           <FAQ items={[
-            { q: "Is een daktent echt goedkoper dan een camper huren?", a: "Ja, significant. Een camper huren kost €100-180/dag. Na 15-20 huurdagen heb je de aanschafprijs van een daktent (€1.500-3.000) al uitgegeven. Vanaf dat moment bespaar je met elke trip." },
-            { q: "Kan een daktent op elke auto?", a: "De meeste SUV's, crossovers en stationwagens zijn geschikt. Je auto moet minimaal 50-75 kg dynamisch daklaadvermogen hebben. Check de specificaties van je auto bij de dealer." },
-            { q: "Is een daktent comfortabel genoeg voor 2 weken vakantie?", a: "Ja, veel gezinnen gebruiken hun daktent voor 2-3 weken vakanties. Met een goed matras, campingkeuken en de juiste uitrusting is het zeer comfortabel. Het is vergelijkbaar met kamperen in een tent, maar dan verhoogd en droger." },
+            { q: "Is een daktent echt goedkoper dan een camper huren?", a: "Dat hangt af van jouw huurprijs, aanschafkosten en reispatroon. Vul jouw eigen prijzen in de calculator in." },
+            { q: "Kan een daktent op elke auto?", a: "Controleer de maximale dakbelasting in het instructieboekje van jouw auto en tel het gewicht van tent en dakdragers op." },
+            { q: "Is een daktent comfortabel genoeg voor een vakantie?", a: "Dat hangt af van jouw voorkeuren, de tent en de uitrusting. Probeer een daktent als je twijfelt of het comfort bij jou past." },
             { q: "Wat als het regent?", a: "Moderne daktenten zijn waterdicht en bestand tegen flinke regenbuien. Een luifel of tarp eronder geeft je extra beschutte ruimte. Bij extreme neerslag heb je in een camper meer comfort, maar voor normaal weer is een daktent prima." },
-            { q: "Heb ik een speciaal rijbewijs nodig voor een daktent?", a: "Nee, dat is juist het mooie. Je rijdt gewoon met je eigen auto en rijbewijs B. Voor grotere campers (boven 3.500 kg) heb je rijbewijs C1 nodig." },
-            { q: "Hoe lang gaat een daktent mee?", a: "Bij goed onderhoud gaat een kwaliteitsdaktent 10-15 jaar mee. De stof, ritsen en hardware zijn ontworpen voor intensief buitengebruik. Vergelijk dat met de afschrijving van een camper." },
+            { q: "Heb ik een speciaal rijbewijs nodig voor een daktent?", a: "Controleer de eisen voor jouw voertuig en uitrusting. Vergelijk je met een camper, controleer dan ook welk rijbewijs voor die camper nodig is." },
+            { q: "Hoe lang gaat een daktent mee?", a: "Dat hangt af van de tent, het gebruik, onderhoud en opslag. Volg de onderhoudsadviezen van de fabrikant." },
           ]} />
         </div>
       </section>
@@ -320,16 +296,13 @@ export default function DaktentVsCamper() {
         
         <div className="not-prose my-6 p-6 rounded-xl bg-primary/5 border border-primary/15">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">⭐</span>
             <div>
-              <p className="font-display text-2xl font-bold text-foreground">9.0 / 10</p>
               <p className="text-sm text-muted-foreground">Daktent als camper-alternatief</p>
             </div>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Voor de meeste kampeerders is een daktent het betere alternatief voor een camper. Je bespaart tienduizenden euro's, 
-            behoudt de flexibiliteit van je eigen auto, en geniet van een unieke kampeerervaring. 
-            Alleen als je extreme wooncomfort op reis nodig hebt of fulltime reist, is een camper de betere keuze.
+            Een daktent houdt je eigen auto bruikbaar; een camper biedt meer leefruimte.
+            Welke optie financieel bij jou past, hangt af van jouw prijzen en reispatroon. <a href="/#calculator">Vergelijk jouw kosten met de calculator</a>.
           </p>
         </div>
 
@@ -337,8 +310,8 @@ export default function DaktentVsCamper() {
         <div className="not-prose my-6 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-card to-primary/5">
           <h3 className="font-display text-lg font-bold text-foreground mb-2">🏕️ Onze Aanbeveling: Peter Penthouse Daktent</h3>
           <p className="text-sm text-muted-foreground mb-3">
-            Waarom duizenden euro's uitgeven aan camper huur als je met de Peter Penthouse (€1.800 opgehaald, €1.950 bezorgd) compleet klaar bent? 
-            Ingebouwd 60W zonnepaneel, 6 cm premium matras, compact ontwerp dat 8% minder brandstof verbruikt — 
+            De Peter Penthouse (€1.800 opgehaald, €1.950 bezorgd) wordt geleverd als pakket. 
+            Ingebouwd 60W zonnepaneel, 6 cm premium matras, inklapbaar ontwerp — 
             en je auto blijft gewoon je auto.
           </p>
           <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">

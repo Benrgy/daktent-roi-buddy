@@ -56,60 +56,45 @@ export default function DaktentVsHotel() {
       {/* Intro */}
       <section id="intro">
         <h2>Daktent of Hotel: Wat is Slimmer in 2025?</h2>
-        <p>
-          <strong>Een daktent bespaart het gemiddelde gezin €1.200 tot €3.500 per jaar</strong> vergeleken met hotelovernachtingen. 
-          Dat klinkt misschien ongeloofwaardig, maar als je de cijfers naast elkaar legt, is het verschil enorm.
-        </p>
-        <p>
-          Hotels worden steeds duurder. In 2025 betaal je in populaire Europese bestemmingen al snel €120-€180 per nacht 
-          voor een fatsoenlijke kamer. Tel daar het eten, parkeerkosten en toeristenbelasting bij op, en je zit al gauw 
-          boven de €200 per dag.
-        </p>
-        <p>
-          Een daktent kost eenmalig €1.500-€3.000 en daarna betaal je alleen nog campingkosten van gemiddeld €25-€40 per nacht. 
-          Na 15-25 overnachtingen heb je de investering terugverdiend.
-        </p>
+        <p>Wanneer een daktent zich terugverdient, hangt af van jouw prijzen en hoe vaak je gaat. <a href="/#calculator">Reken het uit met de calculator</a>.</p>
+        <p>Vergelijk aanschaf, dakdragers, camping en onderhoud met hotelovernachtingen, eten, parkeren en toeristenbelasting.</p>
 
-        <blockquote>
-          "We hadden de daktent na onze eerste zomervakantie al terugverdiend. Nu voelt elk weekend kamperen als gratis vakantie." 
-          — Mark, 38, uit Utrecht
-        </blockquote>
       </section>
 
       {/* Kosten */}
       <section id="kosten">
         <h2>Kostenvergelijking: Daktent vs Hotel per Jaar</h2>
         <p>
-          Laten we een realistisch scenario bekijken: <strong>een stel dat 30 nachten per jaar op reis gaat</strong> over een periode van 5 jaar.
+          Vergelijk de kosten met jouw eigen reisplannen en prijzen in de <a href="/#calculator">calculator</a>.
         </p>
 
         <div className="not-prose my-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏕️ Daktent (5 jaar)</h3>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏕️ Daktent </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Daktent aanschaf</span> <strong className="text-foreground">€2.200</strong></li>
-                <li className="flex justify-between"><span>Imperiaal/dakdragers</span> <strong className="text-foreground">€400</strong></li>
-                <li className="flex justify-between"><span>Camping (30n × 5j × €30)</span> <strong className="text-foreground">€4.500</strong></li>
-                <li className="flex justify-between"><span>Onderhoud (5j × €75)</span> <strong className="text-foreground">€375</strong></li>
-                <li className="flex justify-between"><span>Eten zelf koken (30n × 5j × €25)</span> <strong className="text-foreground">€3.750</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-primary text-lg">€11.225</strong></li>
+                <li className="flex justify-between"><span>Daktent aanschaf</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Imperiaal/dakdragers</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Camping</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Onderhoud</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Eten zelf koken</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-primary text-lg">Jouw invoer</strong></li>
               </ul>
             </div>
             <div className="rounded-xl border border-border bg-muted/30 p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏨 Hotel (5 jaar)</h3>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4">🏨 Hotel </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex justify-between"><span>Hotelkamers (30n × 5j × €130)</span> <strong className="text-foreground">€19.500</strong></li>
-                <li className="flex justify-between"><span>Eten restaurant (30n × 5j × €60)</span> <strong className="text-foreground">€9.000</strong></li>
-                <li className="flex justify-between"><span>Parkeerkosten (30n × 5j × €15)</span> <strong className="text-foreground">€2.250</strong></li>
-                <li className="flex justify-between"><span>Toeristenbelasting (30n × 5j × €4)</span> <strong className="text-foreground">€600</strong></li>
-                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-[hsl(var(--danger))] text-lg">€31.350</strong></li>
+                <li className="flex justify-between"><span>Hotelkamers</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Eten restaurant</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Parkeerkosten</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between"><span>Toeristenbelasting</span> <strong className="text-foreground">Jouw invoer</strong></li>
+                <li className="flex justify-between border-t border-border pt-2 mt-2"><span className="font-bold">Totaal</span> <strong className="text-[hsl(var(--danger))] text-lg">Jouw invoer</strong></li>
               </ul>
             </div>
           </div>
           <div className="mt-4 p-4 rounded-xl bg-[hsl(var(--success-light))] border border-[hsl(var(--success))]/20 text-center">
-            <p className="text-lg font-bold text-foreground">💰 Besparing met daktent: <span className="text-[hsl(var(--success))]">€20.125</span> in 5 jaar</p>
-            <p className="text-sm text-muted-foreground">Dat is €4.025 per jaar of €335 per maand</p>
+            <p className="text-lg font-bold text-foreground">Vergelijk jouw totale kosten</p>
+            <p className="text-sm text-muted-foreground"><a href="/#calculator">Reken het uit met de calculator</a></p>
           </div>
         </div>
 
@@ -126,7 +111,7 @@ export default function DaktentVsHotel() {
           roomservice, airconditioning en een schoon bed dat voor je is opgemaakt.
         </p>
         <p>
-          Maar comfort is relatief. Moderne daktenten in 2025 bieden dikke matrassen (8-10 cm), 
+          Maar comfort is relatief. Daktenten kunnen voorzien zijn van matrassen, 
           ventilatie en soms zelfs ingebouwde verlichting. Je slaapt letterlijk onder de sterren.
         </p>
         <p>
@@ -178,8 +163,8 @@ export default function DaktentVsHotel() {
           <ComparisonTable
             altLabel="🏨 Hotel"
             rows={[
-              { label: "Prijs per nacht", daktent: "€25-40", alt: "€100-200" },
-              { label: "Eenmalige investering", daktent: "€1.500-3.000", alt: "€0" },
+              { label: "Prijs per nacht", daktent: "Jouw campingprijs", alt: "Jouw hotelprijs" },
+              { label: "Eenmalige investering", daktent: "Jouw aanschafprijs", alt: "Geen aanschaf" },
               { label: "Eigen badkamer", daktent: "no", alt: "yes" },
               { label: "Airconditiong", daktent: "no", alt: "yes" },
               { label: "Natuurbeleving", daktent: "yes", alt: "no" },
@@ -190,7 +175,7 @@ export default function DaktentVsHotel() {
               { label: "Milieuvriendelijk", daktent: "yes", alt: "no" },
               { label: "Zelf koken mogelijk", daktent: "yes", alt: "no" },
               { label: "WiFi beschikbaar", daktent: "partial", alt: "yes" },
-              { label: "Terugverdientijd", daktent: "15-25 nachten", alt: "n.v.t." },
+              { label: "Terugverdientijd", daktent: "Afhankelijk van jouw invoer", alt: "n.v.t." },
             ]}
           />
         </div>
@@ -202,7 +187,7 @@ export default function DaktentVsHotel() {
         
         <h3>✅ Kies een daktent als je:</h3>
         <ul>
-          <li>Meer dan 10 nachten per jaar op vakantie gaat</li>
+          <li>Regelmatig op vakantie gaat</li>
           <li>Houdt van natuur en buitenleven</li>
           <li>Graag spontaan op pad gaat</li>
           <li>Wilt besparen op vakantiekosten</li>
@@ -213,7 +198,7 @@ export default function DaktentVsHotel() {
         <h3>🏨 Kies een hotel als je:</h3>
         <ul>
           <li>Maximaal comfort en luxe zoekt</li>
-          <li>Slechts 1-2 keer per jaar reist</li>
+          <li>Weinig reist</li>
           <li>Een stedentrip maakt (Parijs, Barcelona)</li>
           <li>Fysieke beperkingen hebt (toegankelijkheid)</li>
           <li>Zakelijk reist</li>
@@ -226,7 +211,7 @@ export default function DaktentVsHotel() {
         <div className="my-6">
           <ProsCons
             pros={[
-              "Tot 70% goedkoper dan hotels over meerdere jaren",
+              "Kosten vergelijken op basis van jouw reisplannen",
               "Totale vrijheid in locatie en planning",
               "In 2 minuten op- en afgebouwd",
               "Unieke natuurervaring voor het hele gezin",
@@ -235,7 +220,7 @@ export default function DaktentVsHotel() {
               "Huisdieren altijd welkom",
             ]}
             cons={[
-              "Eenmalige investering van €1.500-€3.000",
+              "Eenmalige investering in tent en dakdragers",
               "Geen eigen badkamer (sanitair op camping)",
               "Weersafhankelijk — regen en wind merkbaar",
               "Minder geschikt voor steden",
@@ -250,23 +235,8 @@ export default function DaktentVsHotel() {
       <section id="ervaringen">
         <h2>Ervaringen van Daktent-Gebruikers (2025)</h2>
         
-        <blockquote>
-          "Na 3 jaar hotels boeken voor onze zomervakanties, zijn we overgestapt op een daktent. 
-          Eerste jaar: €2.800 bespaard. Onze kinderen vinden het geweldig."
-          <br /><strong>— Sandra & Jeroen, Amersfoort (januari 2025)</strong>
-        </blockquote>
 
-        <blockquote>
-          "Ik was sceptisch over het comfort, maar de matras in mijn Thule Tepui is beter dan menig hotelbed. 
-          Wakker worden met uitzicht op de bergen — onbetaalbaar."
-          <br /><strong>— Pieter, 45, Breda (februari 2025)</strong>
-        </blockquote>
 
-        <blockquote>
-          "We combineren het: doordeweeks hotels voor de stad, weekenden de daktent voor natuur. 
-          Beste van beide werelden."
-          <br /><strong>— Lisa, 32, Amsterdam (maart 2025)</strong>
-        </blockquote>
         {/* YouTube embed */}
         <div className="not-prose my-6">
           <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
@@ -288,12 +258,12 @@ export default function DaktentVsHotel() {
         <h2>Veelgestelde Vragen over Daktent vs Hotel</h2>
         <div className="my-6">
           <FAQ items={[
-            { q: "Is een daktent echt goedkoper dan een hotel?", a: "Ja, bij meer dan 15-25 overnachtingen per jaar is een daktent significant goedkoper. De eenmalige investering (€1.500-€3.000) verdien je snel terug doordat je geen hotelkosten meer hebt." },
-            { q: "Hoe snel verdient een daktent zich terug?", a: "Bij gemiddelde hotelkosten van €130/nacht en campingkosten van €30/nacht bespaar je €100 per nacht. Een daktent van €2.000 verdient zich dus terug na 20 nachten." },
-            { q: "Is een daktent comfortabel genoeg?", a: "Moderne daktenten hebben dikke schuimmatrassen (8-10 cm), goede ventilatie en zijn waterdicht. Het comfort is vergelijkbaar met kamperen in een caravan, maar dan verhoogd en veiliger." },
+            { q: "Is een daktent echt goedkoper dan een hotel?", a: "Dat hangt af van jouw hotelprijzen, campingkosten en reispatroon. Reken jouw situatie uit met de calculator." },
+            { q: "Hoe snel verdient een daktent zich terug?", a: "De terugverdientijd hangt af van jouw aanschafprijs, overige kosten en hoe vaak je gaat. Vul jouw eigen prijzen in de calculator in." },
+            { q: "Is een daktent comfortabel genoeg?", a: "Moderne daktenten hebben schuimmatrassen, goede ventilatie en zijn waterdicht. Het comfort is vergelijkbaar met kamperen in een caravan, maar dan verhoogd en veiliger." },
             { q: "Kan ik een daktent het hele jaar door gebruiken?", a: "Ja, met de juiste uitrusting (slaapzak voor lage temperaturen, extra isolatie) kun je ook in herfst en winter kamperen. Veel gebruikers kamperen van maart tot november." },
-            { q: "Wat zijn de verborgen kosten van een daktent?", a: "Naast de aanschaf moet je rekening houden met dakdragers (€200-€500), jaarlijks onderhoud (€50-€100), en eventuele stalling (€0-€50/maand). Deze kosten zijn alsnog veel lager dan hotelkosten." },
-            { q: "Past een daktent op elke auto?", a: "De meeste daktenten passen op auto's met een dakdraagvermogen van minimaal 50-75 kg. SUV's, crossovers en stationwagens zijn ideaal. Check altijd het dynamisch daklaadvermogen van je auto." },
+            { q: "Wat zijn de verborgen kosten van een daktent?", a: "Naast de aanschaf moet je rekening houden met dakdragers, onderhoud en eventuele stalling. Neem jouw eigen kosten mee in de calculator." },
+            { q: "Past een daktent op elke auto?", a: "Controleer de maximale dakbelasting in het instructieboekje van jouw auto en tel het gewicht van tent en dakdragers op." },
           ]} />
         </div>
       </section>
@@ -304,16 +274,13 @@ export default function DaktentVsHotel() {
         
         <div className="not-prose my-6 p-6 rounded-xl bg-primary/5 border border-primary/15">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">⭐</span>
             <div>
-              <p className="font-display text-2xl font-bold text-foreground">8.5 / 10</p>
               <p className="text-sm text-muted-foreground">Daktent als hotel-alternatief</p>
             </div>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Voor iedereen die meer dan 15 nachten per jaar op reis gaat, is een daktent de financieel slimmere keuze. 
-            Je bespaart duizenden euro's, geniet van meer vrijheid en biedt je gezin unieke avonturen in de natuur. 
-            Hotels blijven ideaal voor stedentrips en luxe-momenten, maar voor de meeste vakanties wint de daktent het op bijna alle fronten.
+            Een daktent past bij reizen in de natuur; een hotel bij wie meer voorzieningen zoekt.
+            Welke optie financieel bij jou past, hangt af van jouw prijzen en reispatroon. <a href="/#calculator">Vergelijk jouw kosten met de calculator</a>.
           </p>
         </div>
 
@@ -327,8 +294,8 @@ export default function DaktentVsHotel() {
           </p>
           <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
             <span>☀️ Off-grid klaar</span>
-            <span>🛏️ Beste matras in zijn klasse</span>
-            <span>⛽ Compact = minder brandstof</span>
+            <span>🛏️ Matras inbegrepen</span>
+            <span>⛽ Inklapbaar ontwerp</span>
             <span>🔧 Geen kwetsbare hydrauliek</span>
           </div>
           <a

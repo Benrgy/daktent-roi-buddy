@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
-import { Sun, BedDouble, Package, Maximize2, Shield, Fuel } from "lucide-react";
+import { Sun, BedDouble, Package, Maximize2, Shield } from "lucide-react";
 import { trackPeterPenthouseClick } from "@/lib/analytics";
 
 const usps = [
   {
     icon: Sun,
     title: "Off-Grid Klaar",
-    desc: "60W zonnepaneel + 20.000 mAh powerbank — standaard inbegrepen. Geen campingstroom nodig, bespaar €150/jaar.",
-    highlight: "€150/jaar besparing",
+    desc: "60W zonnepaneel + 20.000 mAh powerbank — standaard inbegrepen.",
+    highlight: "Zonnepaneel + powerbank",
   },
   {
     icon: BedDouble,
     title: "Premium Matras",
-    desc: "6 cm dik: 3 cm memory foam + 3 cm high-density foam. Het dikste matras dat fysiek past — comfortabel genoeg voor weken achter elkaar.",
+    desc: "6 cm dik: 3 cm memory foam + 3 cm high-density foam.",
     highlight: "6 cm premium",
   },
   {
@@ -24,8 +24,8 @@ const usps = [
   {
     icon: Maximize2,
     title: "Compact & Ruim",
-    desc: "Ingeklapt nauwelijks windgeruis en minder brandstof. Uitgeklapt ruim voor twee personen met 2 panoramische dakramen.",
-    highlight: "8% minder brandstof",
+    desc: "Klap de tent open op je auto. Uitgeklapt met panoramische dakramen.",
+    highlight: "Inklapbaar ontwerp",
   },
 ];
 
@@ -47,7 +47,7 @@ export function PeterPenthouseSpotlight() {
                 <Shield className="w-3.5 h-3.5" /> Aanbevolen
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
-                <Fuel className="w-3.5 h-3.5" /> Bespaar op brandstof
+                <Maximize2 className="w-3.5 h-3.5" /> Inklapbaar ontwerp
               </span>
             </div>
 
@@ -91,8 +91,6 @@ export function PeterPenthouseSpotlight() {
               <div>
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="font-display text-3xl font-black text-foreground">€1.800</span>
-                  <span className="text-sm text-muted-foreground line-through">€3.500+</span>
-                  <span className="text-xs font-semibold text-primary">premium merken</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   Compleet pakket bij ophalen in Soerendonk — €1.950 bezorgd in NL en België. Duurzaam gebouwd met 320 GSM anti-rip canvas en aluminium frame.
@@ -119,7 +117,7 @@ export function PeterPenthouseSpotlight() {
           {/* Social proof */}
           <div className="px-6 md:px-8 pb-6 md:pb-8">
             <p className="text-xs text-muted-foreground text-center">
-              ✓ Geen hydrauliek — betrouwbaar · ✓ RVS hardware — roestvrij · ✓ Plug & play — direct klaar · ✓ Steeds populairder onder Nederlandse reizigers
+              ✓ Geen hydrauliek — betrouwbaar · ✓ RVS hardware — roestvrij · ✓ Plug & play — direct klaar
             </p>
           </div>
         </motion.div>
