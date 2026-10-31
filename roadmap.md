@@ -1,6 +1,6 @@
 # Taken
-- [ ] Gedeelde SEO-teksten en statische HTML voor alle vijf routes toevoegen.
-- [ ] 404 noindex, tests, automatische build en gegenereerde HTML controleren.
+- [x] Gedeelde SEO-teksten en statische HTML voor alle vijf routes toevoegen.
+- [x] 404 noindex, 21 tests en automatische build controleren; routeplugin schrijft en leest HTML terug, statisch blok en React-vervanging getest.
 - [x] Bronloze claims, quotes en scores verwijderen met behoud van structuur.
 - [x] Brandstof-/zonnepaneelclaims verwijderen; hoofdcalculatoruitkomsten controleren.
 - [x] CO₂, plastic en setup-tijden voor later inventariseren; tests en build controleren; per bestand rapporteren.
