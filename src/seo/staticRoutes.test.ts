@@ -1,7 +1,10 @@
 import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { expect, it } from "vitest";
+import { expect, it, vi } from "vitest";
+vi.mock("vite", () => ({ defineConfig: (value: unknown) => value }));
+vi.mock("@vitejs/plugin-react-swc", () => ({ default: () => ({ name: "react-test" }) }));
+vi.mock("lovable-tagger", () => ({ componentTagger: () => ({ name: "tagger-test" }) }));
 import config from "../../vite.config";
 import { routesMeta } from "./routesMeta";
 
