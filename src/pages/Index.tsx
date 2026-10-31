@@ -281,6 +281,12 @@ export default function Index() {
               <p className="text-sm text-muted-foreground mt-1">Prijs, specificaties, huren of kopen en wat hij per nacht kost.</p>
               <span className="text-sm font-semibold text-primary mt-3 inline-block">Lees meer →</span>
             </a>
+            <a href="/daktent-huren-of-kopen" className="group block rounded-xl border border-border bg-card p-6 hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-3xl mb-3 block">🏕️</span>
+              <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">Daktent huren of kopen?</h3>
+              <p className="text-sm text-muted-foreground mt-1">Reken met jouw eigen kosten uit wanneer kopen goedkoper is.</p>
+              <span className="text-sm font-semibold text-primary mt-3 inline-block">Naar de rekenhulp →</span>
+            </a>
           </div>
         </div>
       </motion.section>
