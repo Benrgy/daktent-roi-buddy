@@ -80,14 +80,10 @@ function SmartInsight({ results, inputs }: { results: CalculatorResults; inputs:
   const isPeterPenthouse = inputs.tentPrice === 1800 || inputs.tentPrice === 1950;
 
   if (isPeterPenthouse && results.totalSavings > 0) {
-    const fuelSaving = Math.round(inputs.nightsPerYear * inputs.extraFuelPerNight * 0.08 * inputs.years);
-    const solarSaving = 150 * inputs.years;
     return (
       <div className="card-elevated p-5 border-l-4 border-l-primary">
         <p className="text-sm font-semibold text-foreground mb-1">✅ Slimme keuze: Peter Penthouse</p>
         <p className="text-sm text-muted-foreground mb-2">
-          Compact ontwerp = <strong>8% minder brandstof</strong> (besparing ~{formatEuro(fuelSaving)} over {inputs.years} jaar). 
-          Ingebouwd 60W zonnepaneel bespaart <strong>{formatEuro(solarSaving)}</strong> op campingstroom. 
           Totale investering terug in {breakEvenYears.toFixed(1)} jaar.
         </p>
         <a
@@ -312,7 +308,6 @@ export function ResultsSection({ results, inputs, onShare }: ResultsSectionProps
                 <span>☀️ 60W zonnepaneel + powerbank</span>
                 <span>🛏️ 6 cm premium matras</span>
                 <span>📦 Compleet pakket, geen upsells</span>
-                <span>⛽ 8% minder brandstof</span>
               </div>
               <p className="text-sm font-bold text-primary mt-3 group-hover:underline">
                 Bekijk de Peter Penthouse → €1.800 compleet

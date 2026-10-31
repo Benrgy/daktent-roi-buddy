@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 /**
  * All testimonials below are real quotes from publicly available Dutch rooftop tent reviews.
@@ -11,7 +11,6 @@ const testimonials = [
     context: "iKamper Skycamp 2.0 · 200+ nachten",
     quote:
       "We besloten dat het het geld zeker waard was. Geen dun tentdoekje, geen zachte opberghoes. Maar een hardtop koffer. Wij vinden goed slapen superbelangrijk — vakantie of niet.",
-    rating: 4,
     source: "hildijk.nl",
     sourceUrl: "https://hildijk.nl/review-daktent-ikamper-skycamp2/",
     initials: "FH",
@@ -21,7 +20,6 @@ const testimonials = [
     context: "Jimba Jimba · Rondreis Schotland",
     quote:
       "Fantastische rondreis in Schotland gemaakt afgelopen zomer. De daktent was snel opgezet en handig in formaat mee te nemen op de auto. Op de overtocht ook geen problemen gehad met de hoogte.",
-    rating: 5,
     source: "daktent.nl",
     sourceUrl: "https://daktent.nl/over-ons/reviews/",
     initials: "MB",
@@ -31,7 +29,6 @@ const testimonials = [
     context: "Eerste daktent · Gezin met kinderen",
     quote:
       "Eerste ervaring met een daktent, snel en eenvoudig op te zetten en matras ligt heerlijk. Prima als extra slaapplek voor de kids. Niets mooier om hoog en droog te slapen.",
-    rating: 5,
     source: "daktent.nl",
     sourceUrl: "https://daktent.nl/over-ons/reviews/",
     initials: "HM",
@@ -41,7 +38,6 @@ const testimonials = [
     context: "iKamper Skycamp · 1 maand Noorwegen & Zweden",
     quote:
       "Het opzetten en afbreken duurt slechts 30 seconden tot een minuut. De daktent maakt spontaan reizen mogelijk. Vergeleken met een camper is het een voordelige optie — en je geniet van het beste uitzicht van bovenaf.",
-    rating: 5,
     source: "campwerk.nl",
     sourceUrl:
       "https://www.campwerk.nl/ervaring-rapport-maand-beloningen-dak-tent/",
@@ -52,7 +48,6 @@ const testimonials = [
     context: "Daktent.nl klant",
     quote:
       "De service bij aanschaf was helemaal super. De tent is snel en goed gemonteerd, alles duidelijk uitgelegd. Het is geen verkoopproduct om winst te maken, maar een product dat met liefde wordt uitgelegd en verkocht.",
-    rating: 5,
     source: "daktent.nl",
     sourceUrl: "https://daktent.nl/over-ons/reviews/",
     initials: "MV",
@@ -62,29 +57,11 @@ const testimonials = [
     context: "Daktent vakantieganger",
     quote:
       "Dit is een super wijze van tentvakantie. Geen moeite met opzetten, heerlijk comfortabel slapen. Het inklappen is zo simpel, nog geen 5 min en je bent weer weg.",
-    rating: 5,
     source: "daktent.nl",
     sourceUrl: "https://daktent.nl/over-ons/reviews/",
     initials: "JO",
   },
 ];
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`w-4 h-4 ${
-            star <= rating
-              ? "fill-accent text-accent"
-              : "fill-muted text-muted"
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
 
 export function Testimonials() {
   return (
@@ -118,7 +95,6 @@ export function Testimonials() {
               className="flex flex-col justify-between rounded-2xl border border-border bg-background p-5 shadow-sm hover:shadow-md transition-shadow"
             >
               <div>
-                <StarRating rating={t.rating} />
                 <blockquote className="mt-3 text-sm text-foreground leading-relaxed italic">
                   "{t.quote}"
                 </blockquote>
