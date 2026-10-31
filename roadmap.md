@@ -1,7 +1,7 @@
 # Taken
-- [ ] Bronloze claims, quotes en scores verwijderen met behoud van structuur.
-- [ ] Brandstof-/zonnepaneelclaims verwijderen; hoofdcalculatoruitkomsten controleren.
-- [ ] CO₂, plastic en setup-tijden voor later inventariseren; tests en build controleren; per bestand rapporteren.
+- [x] Bronloze claims, quotes en scores verwijderen met behoud van structuur.
+- [x] Brandstof-/zonnepaneelclaims verwijderen; hoofdcalculatoruitkomsten controleren.
+- [x] CO₂, plastic en setup-tijden voor later inventariseren; tests en build controleren; per bestand rapporteren.
 - [x] Nieuwe pagina huren of kopen, rekenregels, grafiek en tests toevoegen.
 - [x] Voorbeeldprijzen centraliseren en alleen gevraagde links, route en sitemap toevoegen.
 - [x] Nieuwe pagina, metadata, tests en automatische build controleren.
